@@ -1,0 +1,78 @@
+name: Compile check
+
+# Temporary compile-only check. Unsigned Simulator build, XCTest and Simulator
+# captures. No signing, no secrets, no upload.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: compile
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    runs-on: macos-26
+    timeout-minutes: 40
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+    steps:
+      - name: Check out
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Bootstrap pinned XcodeGen
+        run: sh ios/scripts/bootstrap-xcodegen.sh
+
+      - name: Generate Xcode project
+        run: sh ios/scripts/generate-project.sh
+
+      - name: Build unsigned Simulator app
+        run: |
+          mkdir -p build/compile
+          defaults write com.apple.dt.Xcode IDEBuildingContinueBuildingAfterErrors -bool YES
+          if sh ios/scripts/build.sh > build/compile/build.log 2>&1; then
+            tail -n 20 build/compile/build.log
+          else
+            result=$?
+            grep -n -E ': (fatal )?error: ' build/compile/build.log | sort -u > build/compile/build-errors.txt || true
+            echo "Distinct compiler errors: $(wc -l < build/compile/build-errors.txt)"
+            head -n 300 build/compile/build-errors.txt
+            exit "$result"
+          fi
+
+      - name: Run iPhone tests
+        continue-on-error: true
+        run: |
+          if sh ios/scripts/test.sh > build/compile/test.log 2>&1; then
+            tail -n 30 build/compile/test.log
+          else
+            result=$?
+            grep -n -E 'error:|failed|XCTAssert|Assertion Failure' build/compile/test.log > build/compile/test-failures.txt || true
+            head -n 300 build/compile/test-failures.txt
+            tail -n 30 build/compile/test.log
+            exit "$result"
+          fi
+
+      - name: Capture iPhone Simulator screens
+        continue-on-error: true
+        run: bash ios/scripts/capture-prototype-screens.sh
+
+      - name: Keep logs and captures
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: compile-${{ github.sha }}
+          path: |
+            build/compile/
+            ios/.build/prototype-screens/*.png
+            ios/.build/prototype-screens/*.log
+          if-no-files-found: warn
+          include-hidden-files: true
+          retention-days: 3

@@ -1,0 +1,178 @@
+{
+  "schema_version": "0.1.0",
+  "status": "proposed_seed_data_not_clinical_advice",
+  "scope": "28 exercise records, five 01-owned programme templates, evidence ledger, and visual-source manifest.",
+  "source_policy": {
+    "exercise_taxonomy_seed": "https://github.com/yuhonas/free-exercise-db",
+    "exercise_taxonomy_license": "Unlicense, public-domain dedication. Verify individual media provenance before shipping any source image.",
+    "product_visual_policy": "Reference images are development seeds only. Production 01 exercise visuals must be original, rights-audited, and accessible."
+  },
+  "evidence_records": [
+    {
+      "id": "EVD-ACSM-2026",
+      "type": "position_stand",
+      "title": "American College of Sports Medicine Position Stand: Resistance Training Prescription for Muscle Function, Hypertrophy, and Physical Performance in Healthy Adults",
+      "year": 2026,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41843416/",
+      "use": "Baseline resistance-training prescription and progression guardrails."
+    },
+    {
+      "id": "EVD-ACSM-2009",
+      "type": "position_stand",
+      "title": "Progression Models in Resistance Training for Healthy Adults",
+      "year": 2009,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/",
+      "use": "Progression models, loading, repetition ranges, and rest considerations."
+    },
+    {
+      "id": "EVD-VOLUME-2017",
+      "type": "systematic_review_meta_analysis",
+      "title": "Dose-response relationship between weekly resistance training volume and increases in muscle mass",
+      "year": 2017,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27433992/",
+      "use": "Volume should progress rather than start maximal."
+    },
+    {
+      "id": "EVD-LOAD-2021",
+      "type": "systematic_review_network_meta_analysis",
+      "title": "Resistance Training Load Effects on Muscle Hypertrophy and Strength Gain",
+      "year": 2021,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33433148/",
+      "use": "Load selection: strength is more specific to heavier loads, while hypertrophy can occur across loads when effort is appropriate."
+    },
+    {
+      "id": "EVD-FAILURE-2022",
+      "type": "systematic_review_meta_analysis",
+      "title": "Effects of resistance training performed to repetition failure or non-failure on muscular strength and hypertrophy",
+      "year": 2022,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33497853/",
+      "use": "Failure is an option, not a default requirement."
+    },
+    {
+      "id": "EVD-RIR-2023",
+      "type": "controlled_trial",
+      "title": "Influence of Resistance Training Proximity-to-Failure on Skeletal Muscle Hypertrophy",
+      "year": 2023,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36752989/",
+      "use": "RIR is a useful user-facing autoregulation input, with individual uncertainty."
+    }
+  ],
+  "exercises": [
+    {"id":"EX-BARBELL-BACK-SQUAT","name":"Barbell Back Squat","equipment":["barbell","rack"],"pattern":"squat","primary_muscles":["quadriceps","gluteus maximus"],"secondary_muscles":["adductors","spinal erectors","abdominals"],"level":"intermediate","cue":"Keep the load balanced over the mid-foot and use a controlled depth you can own.","substitutions":["Goblet Squat","Leg Press"],"pain_guardrail":"Stop and choose a tolerated alternative if pain occurs or control is lost.","visual_seed":{"dataset_lookup":"Barbell Squat","status":"reference_only"}},
+    {"id":"EX-GOBLET-SQUAT","name":"Goblet Squat","equipment":["dumbbell_or_kettlebell"],"pattern":"squat","primary_muscles":["quadriceps","gluteus maximus"],"secondary_muscles":["abdominals","adductors"],"level":"beginner","cue":"Keep the weight close, stay balanced through the whole foot, and stand with control.","substitutions":["Leg Press","Bodyweight Squat"],"pain_guardrail":"Use a pain-free depth and change the movement if needed.","visual_seed":{"dataset_lookup":"Goblet Squat","status":"reference_only"}},
+    {"id":"EX-LEG-PRESS","name":"Leg Press","equipment":["leg_press_machine"],"pattern":"knee_dominant","primary_muscles":["quadriceps","gluteus maximus"],"secondary_muscles":["hamstrings","calves"],"level":"beginner","cue":"Keep hips and back supported. Lower only as far as you can control without the pelvis rolling.","substitutions":["Goblet Squat","Split Squat"],"pain_guardrail":"Do not force range or load through joint pain.","visual_seed":{"dataset_lookup":"Leg Press","status":"reference_only"}},
+    {"id":"EX-ROMANIAN-DEADLIFT","name":"Romanian Deadlift","equipment":["barbell_or_dumbbells"],"pattern":"hinge","primary_muscles":["hamstrings","gluteus maximus"],"secondary_muscles":["spinal erectors","forearms"],"level":"intermediate","cue":"Move the hips back, keep the load close, and stop the descent when your position changes.","substitutions":["Dumbbell Romanian Deadlift","Cable Pull Through"],"pain_guardrail":"Use a reduced range or alternative if symptoms increase. Do not diagnose pain in-app.","visual_seed":{"dataset_lookup":"Romanian Deadlift","status":"reference_only"}},
+    {"id":"EX-LYING-LEG-CURL","name":"Lying Leg Curl","equipment":["leg_curl_machine"],"pattern":"knee_flexion","primary_muscles":["hamstrings"],"secondary_muscles":["calves"],"level":"beginner","cue":"Keep the hips anchored and control both directions.","substitutions":["Seated Leg Curl","Dumbbell Romanian Deadlift"],"pain_guardrail":"Use a comfortable range and avoid jerking.","visual_seed":{"dataset_lookup":"Lying Leg Curls","status":"reference_only"}},
+    {"id":"EX-LEG-EXTENSION","name":"Leg Extension","equipment":["leg_extension_machine"],"pattern":"knee_extension","primary_muscles":["quadriceps"],"secondary_muscles":[],"level":"beginner","cue":"Pause briefly with control, then lower without dropping the weight.","substitutions":["Leg Press","Split Squat"],"pain_guardrail":"Avoid painful range or aggressive lockout.","visual_seed":{"dataset_lookup":"Leg Extensions","status":"reference_only"}},
+    {"id":"EX-STANDING-CALF-RAISE","name":"Standing Calf Raise","equipment":["calf_raise_machine_or_bodyweight"],"pattern":"ankle_extension","primary_muscles":["gastrocnemius","soleus"],"secondary_muscles":[],"level":"beginner","cue":"Use a controlled stretch and full comfortable rise, without bouncing.","substitutions":["Seated Calf Raise"],"pain_guardrail":"Reduce range if the foot or ankle becomes painful.","visual_seed":{"dataset_lookup":"Standing Calf Raises","status":"reference_only"}},
+    {"id":"EX-BARBELL-BENCH-PRESS","name":"Barbell Bench Press","equipment":["barbell","bench","rack"],"pattern":"horizontal_push","primary_muscles":["pectoralis major","triceps","anterior deltoid"],"secondary_muscles":["serratus anterior"],"level":"intermediate","cue":"Keep a stable upper back and lower the bar with control to a repeatable touch point.","substitutions":["Dumbbell Bench Press","Machine Chest Press"],"pain_guardrail":"Use safety arms or a spotter when appropriate. Replace if shoulder pain occurs.","visual_seed":{"dataset_lookup":"Barbell Bench Press","status":"reference_only"}},
+    {"id":"EX-DUMBBELL-BENCH-PRESS","name":"Dumbbell Bench Press","equipment":["dumbbells","bench"],"pattern":"horizontal_push","primary_muscles":["pectoralis major","triceps","anterior deltoid"],"secondary_muscles":["serratus anterior"],"level":"beginner","cue":"Keep wrists stacked over elbows and press through a controlled path.","substitutions":["Machine Chest Press","Push Up"],"pain_guardrail":"Use a comfortable range and avoid painful shoulder positions.","visual_seed":{"dataset_lookup":"Dumbbell Bench Press","status":"reference_only"}},
+    {"id":"EX-INCLINE-DUMBBELL-PRESS","name":"Incline Dumbbell Press","equipment":["dumbbells","adjustable_bench"],"pattern":"incline_push","primary_muscles":["pectoralis major","anterior deltoid","triceps"],"secondary_muscles":[],"level":"beginner","cue":"Use a moderate incline and a smooth press without shrugging.","substitutions":["Incline Machine Press","Dumbbell Bench Press"],"pain_guardrail":"Change the bench angle or exercise if shoulder pain occurs.","visual_seed":{"dataset_lookup":"Incline Dumbbell Press","status":"reference_only"}},
+    {"id":"EX-LAT-PULLDOWN","name":"Lat Pulldown","equipment":["lat_pulldown_machine"],"pattern":"vertical_pull","primary_muscles":["latissimus dorsi"],"secondary_muscles":["biceps","upper back"],"level":"beginner","cue":"Pull the elbows down and control the return. Do not swing the torso.","substitutions":["Assisted Pull Up","Single Arm Cable Pulldown"],"pain_guardrail":"Use a grip and range that remain comfortable at the shoulders.","visual_seed":{"dataset_lookup":"Wide-Grip Lat Pulldown","status":"reference_only"}},
+    {"id":"EX-SEATED-CABLE-ROW","name":"Seated Cable Row","equipment":["cable_row_machine"],"pattern":"horizontal_pull","primary_muscles":["latissimus dorsi","mid back"],"secondary_muscles":["biceps","posterior deltoid"],"level":"beginner","cue":"Pull toward a consistent torso point, with a quiet torso and controlled return.","substitutions":["Chest Supported Dumbbell Row","Machine Row"],"pain_guardrail":"Avoid forceful torso swinging or painful range.","visual_seed":{"dataset_lookup":"Seated Cable Rows","status":"reference_only"}},
+    {"id":"EX-CHEST-SUPPORTED-ROW","name":"Chest Supported Dumbbell Row","equipment":["dumbbells","incline_bench"],"pattern":"horizontal_pull","primary_muscles":["mid back","latissimus dorsi"],"secondary_muscles":["biceps","posterior deltoid"],"level":"beginner","cue":"Keep the chest supported and pull elbows back with control.","substitutions":["Seated Cable Row","Machine Row"],"pain_guardrail":"Choose a bench angle and range that feel comfortable.","visual_seed":{"dataset_lookup":"Incline Dumbbell Row","status":"reference_only"}},
+    {"id":"EX-FACE-PULL","name":"Face Pull","equipment":["cable_machine","rope"],"pattern":"upper_back_pull","primary_muscles":["posterior deltoid","upper back"],"secondary_muscles":["rotator cuff","biceps"],"level":"beginner","cue":"Pull toward the upper face with elbows out and a controlled return.","substitutions":["Reverse Pec Deck","Band Face Pull"],"pain_guardrail":"Keep load modest and avoid forcing shoulder range.","visual_seed":{"dataset_lookup":"Face Pull","status":"reference_only"}},
+    {"id":"EX-OVERHEAD-PRESS","name":"Dumbbell Overhead Press","equipment":["dumbbells","bench_optional"],"pattern":"vertical_push","primary_muscles":["anterior deltoid","triceps"],"secondary_muscles":["upper chest","upper trapezius"],"level":"intermediate","cue":"Stay stacked through the torso and press in a controlled path.","substitutions":["Machine Shoulder Press","Landmine Press"],"pain_guardrail":"Use a supported or alternative press if overhead range is painful.","visual_seed":{"dataset_lookup":"Dumbbell Shoulder Press","status":"reference_only"}},
+    {"id":"EX-CABLE-LATERAL-RAISE","name":"Cable Lateral Raise","equipment":["cable_machine"],"pattern":"shoulder_abduction","primary_muscles":["lateral deltoid"],"secondary_muscles":["upper trapezius"],"level":"beginner","cue":"Raise with control and keep the shoulder away from the ear.","substitutions":["Dumbbell Lateral Raise","Machine Lateral Raise"],"pain_guardrail":"Use a comfortable range and reduce load if the shoulder is painful.","visual_seed":{"dataset_lookup":"Cable Lateral Raises","status":"reference_only"}},
+    {"id":"EX-DUMBBELL-CURL","name":"Dumbbell Curl","equipment":["dumbbells"],"pattern":"elbow_flexion","primary_muscles":["biceps"],"secondary_muscles":["brachialis","forearms"],"level":"beginner","cue":"Keep the upper arm mostly still and lower under control.","substitutions":["Cable Curl","Machine Preacher Curl"],"pain_guardrail":"Avoid swinging and use a grip that does not aggravate the elbow.","visual_seed":{"dataset_lookup":"Dumbbell Bicep Curl","status":"reference_only"}},
+    {"id":"EX-DUMBBELL-HAMMER-CURL","name":"Dumbbell Hammer Curl","equipment":["dumbbells"],"pattern":"elbow_flexion","primary_muscles":["brachialis","biceps"],"secondary_muscles":["forearms"],"level":"beginner","cue":"Keep palms facing inward, elbows near your sides, and lower slowly.","substitutions":["Dumbbell Curl"],"pain_guardrail":"Use a comfortable grip and stop if elbow pain increases.","visual_seed":{"dataset_lookup":"Dumbbell Hammer Curl","status":"reference_only"}},
+    {"id":"EX-DUMBBELL-INCLINE-CURL","name":"Dumbbell Incline Curl","equipment":["dumbbells","incline_bench"],"pattern":"elbow_flexion","primary_muscles":["biceps"],"secondary_muscles":["brachialis","forearms"],"level":"beginner","cue":"Keep your upper arms behind the torso and lift without swinging your shoulders.","substitutions":["Dumbbell Curl"],"pain_guardrail":"Use a comfortable bench angle and avoid a painful shoulder or elbow range.","visual_seed":{"dataset_lookup":"Dumbbell Incline Curl","status":"reference_only"}},
+    {"id":"EX-DUMBBELL-OVERHEAD-TRICEPS-EXTENSION","name":"Seated Dumbbell Overhead Triceps Extension","equipment":["dumbbells","bench"],"pattern":"elbow_extension","primary_muscles":["triceps"],"secondary_muscles":[],"level":"beginner","cue":"Keep the upper arms steady and lower only as far as your shoulders and elbows allow comfortably.","substitutions":["Cable Triceps Pressdown"],"pain_guardrail":"Switch to pressdowns if the overhead position causes shoulder or elbow discomfort.","visual_seed":{"dataset_lookup":"Dumbbell Seated Overhead Tricep Extension","status":"reference_only"}},
+    {"id":"EX-CABLE-TRICEPS-PRESSDOWN","name":"Cable Triceps Pressdown","equipment":["cable_machine"],"pattern":"elbow_extension","primary_muscles":["triceps"],"secondary_muscles":[],"level":"beginner","cue":"Keep elbows close to the body and finish each repetition with control.","substitutions":["Overhead Cable Triceps Extension","Machine Dip"],"pain_guardrail":"Avoid painful elbow range and excessive body sway.","visual_seed":{"dataset_lookup":"Triceps Pushdown","status":"reference_only"}},
+    {"id":"EX-PLANK","name":"Front Plank","equipment":["bodyweight"],"pattern":"anti_extension_core","primary_muscles":["abdominals"],"secondary_muscles":["gluteus maximus","shoulders"],"level":"beginner","cue":"Create a long straight line and breathe without letting the lower back sag.","substitutions":["Dead Bug","Pallof Press"],"pain_guardrail":"Stop if it provokes symptoms. Choose a simpler core option if needed.","visual_seed":{"dataset_lookup":"Plank","status":"reference_only"}},
+    {"id":"EX-DEAD-BUG","name":"Dead Bug","equipment":["bodyweight"],"pattern":"anti_extension_core","primary_muscles":["abdominals"],"secondary_muscles":["hip flexors"],"level":"beginner","cue":"Move slowly while keeping the torso controlled and breathing normally.","substitutions":["Front Plank","Bird Dog"],"pain_guardrail":"Reduce the range if control or comfort changes.","visual_seed":{"dataset_lookup":"Dead Bug","status":"reference_only"}},
+    {"id":"EX-SPLIT-SQUAT","name":"Split Squat","equipment":["bodyweight_or_dumbbells"],"pattern":"unilateral_squat","primary_muscles":["quadriceps","gluteus maximus"],"secondary_muscles":["adductors","abdominals"],"level":"beginner","cue":"Use a stable stance and lower under control while keeping balance through the front foot.","substitutions":["Leg Press","Goblet Squat"],"pain_guardrail":"Use support or reduce range if balance or joint comfort limits you.","visual_seed":{"dataset_lookup":"Split Squat","status":"reference_only"}},
+    {"id":"EX-HIP-THRUST","name":"Barbell Hip Thrust","equipment":["barbell","bench"],"pattern":"hip_extension","primary_muscles":["gluteus maximus"],"secondary_muscles":["hamstrings","abdominals"],"level":"intermediate","cue":"Keep ribs and pelvis controlled, then squeeze at the top without overextending.","substitutions":["Glute Bridge","Cable Pull Through"],"pain_guardrail":"Pad the bar and adjust setup if the movement is uncomfortable.","visual_seed":{"dataset_lookup":"Barbell Hip Thrust","status":"reference_only"}},
+    {"id":"EX-ASSISTED-PULL-UP","name":"Assisted Pull Up","equipment":["assisted_pull_up_machine"],"pattern":"vertical_pull","primary_muscles":["latissimus dorsi"],"secondary_muscles":["biceps","upper back"],"level":"beginner","cue":"Start from a controlled hang, pull elbows down, and avoid kicking.","substitutions":["Lat Pulldown","Band Assisted Pull Up"],"pain_guardrail":"Use enough assistance to maintain shoulder comfort and control.","visual_seed":{"dataset_lookup":"Assisted Pull Ups","status":"reference_only"}},
+    {"id":"EX-PUSH-UP","name":"Push Up","equipment":["bodyweight"],"pattern":"horizontal_push","primary_muscles":["pectoralis major","triceps","anterior deltoid"],"secondary_muscles":["serratus anterior","abdominals"],"level":"beginner","cue":"Keep a stable trunk and lower as one controlled unit.","substitutions":["Incline Push Up","Machine Chest Press"],"pain_guardrail":"Raise the hands or choose another press if the range is painful.","visual_seed":{"dataset_lookup":"Pushups","status":"reference_only"}},
+    {"id":"EX-INCLINE-WALK","name":"Incline Treadmill Walk","equipment":["treadmill"],"pattern":"low_impact_conditioning","primary_muscles":["calves","quadriceps","gluteus maximus"],"secondary_muscles":[],"level":"beginner","cue":"Use a pace and incline that allow controlled breathing and safe footing.","substitutions":["Outdoor Walk","Stationary Bike"],"pain_guardrail":"Use conservative settings and stop for chest pain, dizziness, or concerning symptoms.","visual_seed":{"dataset_lookup":"Walking Treadmill","status":"reference_only"}}
+  ],
+  "programme_templates": [
+    {
+      "id": "PRG-SLICK-START-3",
+      "name": "01 Start: Full Body Foundation",
+      "experience_band": "beginner_or_returning",
+      "goal_support": ["general_fitness","muscle_gain","fat_loss_support"],
+      "schedule": "3 non-consecutive days per week",
+      "duration_weeks": 6,
+      "base_rules": {"sets_per_exercise": "2 in weeks 1-2, then 2-3 as tolerated","target_rir":"2-3","rest_seconds":"90-150 compound, 60-90 accessory","progression":"When all prescribed repetitions are completed with target RIR and stable technique for two sessions, make the smallest practical load increase or add one repetition."},
+      "sessions": [
+        {"id":"A","name":"Full Body A","items":[["EX-GOBLET-SQUAT","2-3","8-12"],["EX-DUMBBELL-BENCH-PRESS","2-3","8-12"],["EX-SEATED-CABLE-ROW","2-3","8-12"],["EX-ROMANIAN-DEADLIFT","2","8-10"],["EX-CABLE-LATERAL-RAISE","2","12-15"],["EX-DEAD-BUG","2","6-10 per side"]]},
+        {"id":"B","name":"Full Body B","items":[["EX-LEG-PRESS","2-3","10-15"],["EX-LAT-PULLDOWN","2-3","8-12"],["EX-INCLINE-DUMBBELL-PRESS","2-3","8-12"],["EX-LYING-LEG-CURL","2","10-15"],["EX-CABLE-TRICEPS-PRESSDOWN","2","10-15"],["EX-DUMBBELL-CURL","2","10-15"]]},
+        {"id":"C","name":"Full Body C","items":[["EX-SPLIT-SQUAT","2","8-12 per side"],["EX-ASSISTED-PULL-UP","2-3","6-10"],["EX-DUMBBELL-BENCH-PRESS","2-3","8-12"],["EX-HIP-THRUST","2","8-12"],["EX-FACE-PULL","2","12-15"],["EX-PLANK","2","20-45 seconds"]]}
+      ],
+      "evidence_ids": ["EVD-ACSM-2026","EVD-ACSM-2009","EVD-RIR-2023"]
+    },
+    {
+      "id": "PRG-SLICK-BUILD-4",
+      "name": "01 Build: Four-Day Hypertrophy",
+      "experience_band": "consistent_intermediate",
+      "goal_support": ["muscle_gain","strength_support"],
+      "schedule": "4 days per week, upper lower split",
+      "duration_weeks": 8,
+      "base_rules": {"sets_per_exercise":"2-4","target_rir":"1-3, no failure required","rest_seconds":"120-180 compound, 60-120 accessory","progression":"Use double progression within the stated range. Add load only after the top of the range is achieved with target RIR and consistent form."},
+      "sessions": [
+        {"id":"upper_1","name":"Upper 1","items":[["EX-BARBELL-BENCH-PRESS","3","6-10"],["EX-SEATED-CABLE-ROW","3","8-12"],["EX-INCLINE-DUMBBELL-PRESS","3","8-12"],["EX-LAT-PULLDOWN","3","8-12"],["EX-CABLE-LATERAL-RAISE","3","12-20"],["EX-CABLE-TRICEPS-PRESSDOWN","2","10-15"],["EX-DUMBBELL-CURL","2","10-15"]]},
+        {"id":"lower_1","name":"Lower 1","items":[["EX-BARBELL-BACK-SQUAT","3","5-8"],["EX-ROMANIAN-DEADLIFT","3","6-10"],["EX-LEG-EXTENSION","2-3","10-15"],["EX-LYING-LEG-CURL","2-3","10-15"],["EX-STANDING-CALF-RAISE","3","8-15"],["EX-PLANK","2","30-60 seconds"]]},
+        {"id":"upper_2","name":"Upper 2","items":[["EX-ASSISTED-PULL-UP","3","6-10"],["EX-DUMBBELL-BENCH-PRESS","3","8-12"],["EX-CHEST-SUPPORTED-ROW","3","8-12"],["EX-OVERHEAD-PRESS","2-3","8-12"],["EX-FACE-PULL","2-3","12-20"],["EX-DUMBBELL-CURL","2","10-15"],["EX-CABLE-TRICEPS-PRESSDOWN","2","10-15"]]},
+        {"id":"lower_2","name":"Lower 2","items":[["EX-LEG-PRESS","3","10-15"],["EX-HIP-THRUST","3","8-12"],["EX-SPLIT-SQUAT","2","8-12 per side"],["EX-LYING-LEG-CURL","3","10-15"],["EX-STANDING-CALF-RAISE","3","10-20"],["EX-DEAD-BUG","2","8-12 per side"]]}
+      ],
+      "evidence_ids": ["EVD-ACSM-2026","EVD-VOLUME-2017","EVD-LOAD-2021","EVD-FAILURE-2022"]
+    },
+    {
+      "id": "PRG-SLICK-CONSIST-3",
+      "name": "01 Consistency: Three-Day Strength and Activity Support",
+      "experience_band": "beginner_to_intermediate",
+      "goal_support": ["fat_loss_support","consistency","general_fitness"],
+      "schedule": "3 full-body strength sessions plus optional low-impact walking",
+      "duration_weeks": 6,
+      "base_rules": {"sets_per_exercise":"2-3","target_rir":"2-4","rest_seconds":"60-150","progression":"Progress conservatively. A completed session and repeatable routine have priority over maximal fatigue."},
+      "sessions": [
+        {"id":"A","name":"Strength A","items":[["EX-LEG-PRESS","2-3","10-15"],["EX-DUMBBELL-BENCH-PRESS","2-3","8-12"],["EX-LAT-PULLDOWN","2-3","8-12"],["EX-LYING-LEG-CURL","2","10-15"],["EX-PLANK","2","20-45 seconds"],["EX-INCLINE-WALK","1","10-20 minutes optional"]]},
+        {"id":"B","name":"Strength B","items":[["EX-GOBLET-SQUAT","2-3","8-12"],["EX-SEATED-CABLE-ROW","2-3","8-12"],["EX-INCLINE-DUMBBELL-PRESS","2-3","8-12"],["EX-HIP-THRUST","2","8-12"],["EX-FACE-PULL","2","12-15"],["EX-INCLINE-WALK","1","10-20 minutes optional"]]},
+        {"id":"C","name":"Strength C","items":[["EX-SPLIT-SQUAT","2","8-12 per side"],["EX-ASSISTED-PULL-UP","2-3","6-10"],["EX-PUSH-UP","2","6-15"],["EX-ROMANIAN-DEADLIFT","2","8-10"],["EX-DEAD-BUG","2","6-10 per side"],["EX-INCLINE-WALK","1","10-25 minutes optional"]]}
+      ],
+      "evidence_ids": ["EVD-ACSM-2026","EVD-ACSM-2009","EVD-RIR-2023"]
+    },
+    {
+      "id": "PRG-01-ARMS-4",
+      "name": "01 Arms: Biceps + Triceps",
+      "experience_band": "beginner_to_intermediate",
+      "goal_support": ["muscle_gain","general_fitness"],
+      "schedule": "One arms session per week, with at least a rest day before repeating",
+      "duration_weeks": 4,
+      "base_rules": {"sets_per_exercise":"2-3","target_rir":"2-3","rest_seconds":"75","progression":"Repeat the load until all sets reach the top of the rep range with control, then increase by the smallest practical amount."},
+      "sessions": [
+        {"id":"arms","name":"Arms: Biceps + Triceps","items":[["EX-DUMBBELL-CURL","3","8-12"],["EX-CABLE-TRICEPS-PRESSDOWN","3","10-15"],["EX-DUMBBELL-HAMMER-CURL","2","10-12"],["EX-DUMBBELL-OVERHEAD-TRICEPS-EXTENSION","2","10-15"]]}
+      ],
+      "evidence_ids": ["EVD-ACSM-2026","EVD-RIR-2023"]
+    },
+    {
+      "id": "PRG-01-BICEPS-4",
+      "name": "01 Biceps Focus",
+      "experience_band": "beginner_to_intermediate",
+      "goal_support": ["muscle_gain","general_fitness"],
+      "schedule": "One biceps-focused session per week; allow recovery before repeating",
+      "duration_weeks": 4,
+      "base_rules": {"sets_per_exercise":"2-3","target_rir":"2-3","rest_seconds":"75","progression":"Keep technique consistent. When all sets reach the upper rep target, increase load by the smallest practical amount."},
+      "sessions": [
+        {"id":"biceps","name":"Biceps Focus","items":[["EX-DUMBBELL-CURL","3","8-12"],["EX-DUMBBELL-INCLINE-CURL","2","10-12"],["EX-DUMBBELL-HAMMER-CURL","2","10-15"]]}
+      ],
+      "evidence_ids": ["EVD-ACSM-2026","EVD-RIR-2023"]
+    }
+  ],
+  "effort_meter": {
+    "modes": {
+      "reduced_demand":"Remove one accessory movement or one set, preserve a meaningful core session, target RIR 3-4.",
+      "standard":"Follow the base template, target programme RIR.",
+      "push":"Add at most one permitted accessory set or choose the top of an existing set range. Never override pain, major recovery concern, or a beginner cap.",
+      "conservative":"Use the low end of set ranges, target RIR 3-4, and shorten conditioning."
+    },
+    "hard_stops": ["reported pain requiring exercise change","unresolved concerning symptoms","unsafe equipment context","user cancellation"]
+  },
+  "codex_integration_contract": {
+    "use_now": ["seed only local fixture data", "show source IDs in a Why this? sheet", "store visual_seed as non-production reference metadata", "allow substitutions by ID", "validate schema before decoding"],
+    "do_not_do": ["download or ship reference images as final 01 artwork", "claim medical clearance", "state that a programme is universally best", "automatically use push mode for beginners"],
+    "next_required_assets": ["original WorkoutVisual for each EX ID", "reviewed source-to-claim mapping", "structured UserTrainingProfile", "adaptation test cases"]
+  }
+}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSCalendarsFullAccessUsageDescription</key>
+    <string>01 uses Calendar access when you choose to add, update or remove a workout appointment. It retrieves only the event identifiers saved for its own copies.</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleName</key>
+    <string>01</string>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>$(MARKETING_VERSION)</string>
+    <key>CFBundleVersion</key>
+    <string>$(CURRENT_PROJECT_VERSION)</string>
+    <key>CFBundleDisplayName</key>
+    <string>01</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>app.the01.ios.widget</string>
+            <key>CFBundleURLSchemes</key>
+            <array><string>the01</string></array>
+        </dict>
+    </array>
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+    <key>UIAppFonts</key>
+    <array>
+        <string>Monoton-Regular.ttf</string>
+        <string>PirataOne-Regular.ttf</string>
+        <string>Anton-Regular.ttf</string>
+        <string>Fraunces-Italic-Variable.ttf</string>
+    </array>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>NSSupportsLiveActivities</key>
+    <true/>
+    <key>NSHealthShareUsageDescription</key>
+    <string>01 reads the movement, workout, sleep, height, and body-weight samples you choose to share to fill your profile and show useful activity context. The data 01 imports stays on this iPhone.</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>01 uses HealthKit access to manage your health connection. 01 does not write Health data in this beta.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>01 uses the microphone only while you hold push-to-talk so you can review a local action before confirming it.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>01 uses the camera only when you choose to take a progress, food or sharing photo. You review the picture before saving or sharing it.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>01 saves the sharing image you reviewed to Photos only when you choose Save to Photos.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>01 converts your deliberate push-to-talk audio into text on this iPhone so you can confirm a local action.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>01 uses your location after you start an outdoor walk or run, including while recording in the background, to draw your route and measure distance. 01 stores the route locally.</string>
+    <key>NSMotionUsageDescription</key>
+    <string>01 counts steps during an outdoor walk or run you start. Step tracking is optional, and your activity remains on this iPhone.</string>
+    <key>NSAppleMusicUsageDescription</key>
+    <string>01 lets you choose music from your library or Apple Music for workouts. Music is optional and starts only when you choose it.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>location</string>
+        <string>audio</string>
+    </array>
+	<key>01AppGroupIdentifier</key>
+	<string>group.app.the01.ios</string>
+</dict>
+</plist>

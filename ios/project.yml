@@ -1,0 +1,178 @@
+name: ZeroOne
+
+options:
+  minimumXcodeGenVersion: 2.45.4
+  createIntermediateGroups: true
+
+configs:
+  Debug: debug
+  Release: release
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: 7
+
+targets:
+  ZeroOne:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Sources/ZeroOne
+        excludes:
+          - Features/Launch/SplashBrandRevealView.swift
+          - Resources/Brand
+          - Resources/Info.plist
+          - Resources/ThemeFX
+      - path: Sources/Shared/WorkoutActivityAttributes.swift
+      - path: Sources/ZeroOne/Resources/ThemeFX
+        type: folder
+        buildPhase: resources
+    resources:
+      - path: Sources/ZeroOne/Resources/ExerciseVideos
+    # Info.plist is a source file so UIBackgroundModes remains a real array.
+    # Do not use INFOPLIST_KEY_UIBackgroundModes as an unverified build setting.
+    dependencies:
+      - sdk: HealthKit.framework
+      - sdk: EventKit.framework
+      - sdk: ActivityKit.framework
+      - target: ZeroOneLiveActivity
+        embed: true
+    settings:
+      base:
+        PRODUCT_NAME: ZeroOne
+        PRODUCT_BUNDLE_IDENTIFIER: app.the01.ios
+        GENERATE_INFOPLIST_FILE: "NO"
+        INFOPLIST_FILE: Sources/ZeroOne/Resources/Info.plist
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_ENTITLEMENTS: Sources/ZeroOne/Resources/ZeroOne.entitlements
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: Apple Distribution
+          PROVISIONING_PROFILE_SPECIFIER: 01 GitHub App Store 2026-09-21
+  ZeroOneLiveActivity:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Sources/ZeroOne/DesignSystem/DesignTokens.swift
+      - path: Sources/ZeroOne/DesignSystem/ResolvedDesignColors.swift
+      - path: Sources/ZeroOne/DesignSystem/ThemeTypography.swift
+      - path: Sources/ZeroOne/DesignSystem/TypographyComponents.swift
+      - path: Sources/ZeroOne/DesignSystem/ProofTypography.swift
+      - path: Sources/ZeroOne/DesignSystem/Icons.swift
+      - path: Sources/Shared/WorkoutActivityAttributes.swift
+      - path: Sources/ZeroOne/Domain/Localization/AppLanguagePreference.swift
+      - path: Sources/ZeroOne/Infrastructure/Localization/AppLocalization.swift
+      - path: Sources/ZeroOne/Domain/Widgets/DailyWidgetSnapshot.swift
+      - path: Sources/ZeroOne/Domain/Widgets/DailyWidgetPresentation.swift
+      - path: Sources/ZeroOne/Domain/Widgets/DailyWidgetWater.swift
+      - path: Sources/ZeroOne/Domain/Hydration/HydrationPersistence.swift
+      - path: Sources/ZeroOne/Domain/Hydration/HydrationTransactions.swift
+      - path: Sources/ZeroOne/Features/Widgets/DailyWidgetFace.swift
+      - path: Sources/ZeroOne/Features/Widgets/WidgetWaterIntents.swift
+      - path: Sources/ZeroOne/Features/Widgets/WorkoutNativeRestLineExperiment.swift
+      - path: Sources/ZeroOneLiveActivity
+        excludes:
+          - Info.plist
+          - ZeroOneLiveActivity.entitlements
+      - path: Sources/ZeroOne/Resources/Icons.xcassets
+        type: file
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/Fonts/InstrumentSans-Variable.ttf
+        type: file
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/Fonts/InstrumentSans-Variable-OFL.txt
+        type: file
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/Fonts/Monoton-Regular.ttf
+        type: file
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/Fonts/Monoton-OFL.txt
+        type: file
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/Fonts/PirataOne-Regular.ttf
+        type: file
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/Fonts/PirataOne-OFL.txt
+        type: file
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/Fonts/Anton-Regular.ttf
+        type: file
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/Fonts/Anton-OFL.txt
+        type: file
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/Fonts/Fraunces-Italic-Variable.ttf
+        type: file
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/Fonts/Fraunces-OFL.txt
+        type: file
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/en.lproj
+        type: folder
+        buildPhase: resources
+      - path: Sources/ZeroOne/Resources/bg.lproj
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - sdk: ActivityKit.framework
+      - sdk: WidgetKit.framework
+    settings:
+      base:
+        PRODUCT_NAME: ZeroOneLiveActivity
+        PRODUCT_BUNDLE_IDENTIFIER: app.the01.ios.liveactivity
+        INFOPLIST_FILE: Sources/ZeroOneLiveActivity/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Sources/ZeroOneLiveActivity/ZeroOneLiveActivity.entitlements
+        GENERATE_INFOPLIST_FILE: "NO"
+        APPLICATION_EXTENSION_API_ONLY: "YES"
+        SKIP_INSTALL: "YES"
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: Apple Distribution
+          PROVISIONING_PROFILE_SPECIFIER: 01 Live Activity App Store 2026-09-23
+  ZeroOneTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Tests/ZeroOneTests
+    dependencies:
+      - target: ZeroOne
+    settings:
+      base:
+        PRODUCT_NAME: ZeroOneTests
+        PRODUCT_BUNDLE_IDENTIFIER: app.the01.ios.tests
+        GENERATE_INFOPLIST_FILE: "YES"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/ZeroOne.app/ZeroOne"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+
+schemes:
+  ZeroOne:
+    build:
+      targets:
+        ZeroOne: all
+        ZeroOneLiveActivity: all
+        ZeroOneTests: [test]
+    run:
+      config: Debug
+      # Debug runs only: local StoreKit test catalogue with Sammy's prices (9 Oct).
+      storeKitConfiguration: StoreKit/ZeroOne.storekit
+      environmentVariables:
+        ZERO_ONE_STOREKIT_TEST: "1"
+    test:
+      config: Debug
+      targets:
+        - ZeroOneTests
+    archive:
+      config: Release

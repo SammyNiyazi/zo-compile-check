@@ -1,0 +1,28 @@
+# ios/ZeroOne.xcodeproj is generated from ios/project.yml and committed
+# as an Xcode/Xcode Cloud compatibility artifact. Do not ignore it.
+
+# Local macOS build and tool artifacts.
+ios/.build/
+DerivedData/
+
+# Unsigned physical-device IPA generated for local sideload testing.
+/build/sideload/
+
+# Generated Xcode Cloud project export package.
+/build/xcode-cloud/
+/build/native-naming/
+/build/accounts-validation/
+
+# Xcode user-specific state.
+*.xcuserstate
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+
+# Generated public account configuration. Private backend credentials never belong in this repo.
+ios/Sources/ZeroOne/Resources/AccountConfiguration.json
+supabase/.temp/
+supabase/.env*
+
+# macOS metadata.
+.DS_Store
