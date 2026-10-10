@@ -575,7 +575,8 @@ private struct ZeroOneMountedRootContent: View {
         _hydrationViewModel = State(initialValue: hydrationViewModel)
         _nutritionRepository = State(initialValue: nutritionRepository)
         _dietTrackerFeature = State(initialValue: DietTrackerFeatureModel(
-            repository: DietTrackerRepository(store: dietTrackerStore)
+            repository: DietTrackerRepository(store: dietTrackerStore),
+            reminders: DietTrackerReminderScheduler()
         ))
         _dailyContext = State(initialValue: dailyContext)
         _demoState = State(initialValue: ZeroOneDemoStateModel(store: demoStateStore))
@@ -1057,11 +1058,55 @@ private struct ZeroOneMountedRootContent: View {
 
     private func presentAssistantActions(confirmedTranscript: String? = nil) {
         guard showsRootVoiceDock, rootVoiceAccessTask == nil else { return }
+        // Proof 26: a clear request acts as soon as the hold ends; anything else gets the options.
+        if let confirmedTranscript, let quick = VoiceQuickIntent.match(confirmedTranscript) {
+            closeRootVoiceDock()
+            runVoiceQuickIntent(quick)
+            return
+        }
         // Capture the real confirmTranscript() result before disappearance resets voice.
         confirmedSpeechRequest = confirmedTranscript
         assistantSheetOpenedFromDock = true
         closeRootVoiceDock()
         showsAssistantActions = true
+    }
+
+    private func runVoiceQuickIntent(_ intent: VoiceQuickIntent) {
+        invalidateRootShareRoutes()
+        switch intent {
+        case let .addWater(milliliters):
+            if let receipt = hydrationViewModel.addWaterFromQuickAction(milliliters: milliliters) {
+                showQuickWaterToast(HydrationQuickLogGroup(receipt))
+            } else {
+                presentQuickWaterToast(QuickWaterToast(message: "Water wasn't saved", undoUnconfirmed: true),
+                    announcement: "Water wasn't saved. Review your water total.")
+            }
+        case .startWorkout:
+            openRecommendedProgramme()
+        case let .open(destination):
+            Task { @MainActor in
+                try? await Task.sleep(for: .milliseconds(220))
+                switch destination {
+                case .diets: selectedTab = .diets
+                case .logFood:
+                    openFoodLogInDiets = true
+                    selectedTab = .diets
+                case .workoutLibrary: applyAssistantRoute(.workoutLibrary)
+                case .steps: showsSteps = true
+                case .history:
+                    profileDestination = .history
+                    showsProfile = true
+                case .music: showsWorkoutMusic = true
+                case .walk:
+                    await outdoorActivity.load()
+                    if outdoorActivity.hasUnfinishedSession {
+                        openOutdoorActivity(outdoorActivity.selectedKind)
+                    } else {
+                        showsOutdoorKindChoice = true
+                    }
+                }
+            }
+        }
     }
 
     private var rootVoiceHasCompetingPresentation: Bool {

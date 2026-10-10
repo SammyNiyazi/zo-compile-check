@@ -10,7 +10,7 @@ struct AppleHealthSleepReader: SleepHistoryReading {
     func readSleepWeek(endingAt date: Date) async throws -> SleepWeek {
         guard HKHealthStore.isHealthDataAvailable(),
               let type = HKCategoryType.categoryType(forIdentifier: .sleepAnalysis) else {
-            throw AppleHealthKitError.unavailable
+            throw SleepReadError.unavailable
         }
         let todayStart = calendar.startOfDay(for: date)
         let start = calendar.date(byAdding: .hour, value: -6 - 6 * 24, to: todayStart) ?? todayStart
@@ -29,6 +29,8 @@ struct AppleHealthSleepReader: SleepHistoryReading {
         }
         return SleepWeek.make(samples: segments, today: date, calendar: calendar)
     }
+
+    enum SleepReadError: Error { case unavailable }
 
     /// In bed is not sleep, so it is left out.
     static func stage(_ rawValue: Int) -> SleepStage? {

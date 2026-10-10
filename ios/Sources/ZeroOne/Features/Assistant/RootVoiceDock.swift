@@ -39,6 +39,13 @@ struct RootVoiceDock: View {
         .accessibilityElement(children: .contain)
         .accessibilityAction(.escape) { onClose() }
         .transaction { if reduceMotion { $0.disablesAnimations = true } }
+        // Proof 26: let go and it acts. The words go straight on; the root acts on a clear
+        // request or shows the options, so there is no separate review step.
+        .onChange(of: coordinator.phase == .transcriptConfirmation) { _, reviewing in
+            guard reviewing, !coordinator.transcript.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                  let transcript = coordinator.confirmTranscript() else { return }
+            onConfirm(transcript)
+        }
     }
 
     private func captureContent(availableHeight: CGFloat) -> some View {
@@ -184,7 +191,7 @@ struct RootVoiceDock: View {
     private var listeningMessage: String {
         switch coordinator.phase {
         case .ready:
-            localization.string("Release to review. Slide onto the cancel button to discard.")
+            localization.string("Let go and 01 does it. Slide onto the cancel button to discard.")
         case .preparing:
             coordinator.transcript.isEmpty ? localization.string("Recording begins only after access is ready.") : coordinator.transcript
         case .listening:

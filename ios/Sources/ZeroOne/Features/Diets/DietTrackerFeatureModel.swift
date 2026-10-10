@@ -13,13 +13,22 @@ final class DietTrackerFeatureModel {
     private(set) var requiresSavedDataReview = false
     @ObservationIgnored private let now: () -> Date
     @ObservationIgnored private let timeZone: () -> TimeZone
+    /// Proof 23 reminders; the root supplies the real scheduler, tests leave it nil.
+    @ObservationIgnored private let reminders: DietTrackerReminderScheduling?
 
     init(repository: DietTrackerRepository, now: @escaping () -> Date = { .now },
-         timeZone: @escaping () -> TimeZone = { .current }) {
+         timeZone: @escaping () -> TimeZone = { .current },
+         reminders: DietTrackerReminderScheduling? = nil) {
         self.repository = repository
         self.now = now
         self.timeZone = timeZone
+        self.reminders = reminders
         refresh(reloadStorage: false)
+    }
+
+    private func rescheduleReminders() {
+        guard repository.availability == .available else { return }
+        reminders?.reconcile(repository.snapshot, now: now())
     }
 
     var checklist: [DietTrackerOccurrence]? {
@@ -35,6 +44,7 @@ final class DietTrackerFeatureModel {
             observationEpoch += 1
             // A successful read does not unlock an uncertain editor save.
             if !requiresSavedDataReview { errorMessage = nil }
+            rescheduleReminders()
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -53,6 +63,7 @@ final class DietTrackerFeatureModel {
             if draft.original == nil { _ = try repository.add(draft, at: now()) }
             else { _ = try repository.update(draft, at: now()) }
             errorMessage = nil
+            rescheduleReminders()
             return true
         } catch {
             let failure = error as? DietTrackerError
@@ -95,6 +106,7 @@ final class DietTrackerFeatureModel {
                 _ = try repository.log(occurrence, at: date)
             }
             errorMessage = nil
+            rescheduleReminders()
             return true
         } catch {
             errorMessage = error.localizedDescription
@@ -107,6 +119,7 @@ final class DietTrackerFeatureModel {
         do {
             try repository.setArchived(archived, tracker: tracker, at: now())
             errorMessage = nil
+            rescheduleReminders()
             return true
         } catch {
             errorMessage = error.localizedDescription
