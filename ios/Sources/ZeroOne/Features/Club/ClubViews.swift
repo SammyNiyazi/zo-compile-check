@@ -289,6 +289,7 @@ struct ClubJoinView: View {
     @State private var showTrained = true
     @State private var sixteen = false
     @State private var showingRules = false
+    @State private var nameHeld = false
 
     var body: some View {
         NavigationStack {
@@ -307,10 +308,14 @@ struct ClubJoinView: View {
                     Toggle("I'm 16 or older", isOn: $sixteen)
                     Button("Club rules") { showingRules = true }
                 }
-                if let notice = club.notice {
+                if nameHeld {
+                    Section { Text("That name or handle breaks the Club rules. Pick another.").foregroundStyle(theme.textSecondary) }
+                } else if let notice = club.notice {
                     Section { Text(verbatim: localization.string(notice)).foregroundStyle(theme.textSecondary) }
                 }
             }
+            .onChange(of: name) { _, _ in nameHeld = false }
+            .onChange(of: handle) { _, _ in nameHeld = false }
             .scrollContentBackground(.hidden)
             .navigationTitle(Text("Join the Club"))
             .navigationBarTitleDisplayMode(.inline)
@@ -318,6 +323,10 @@ struct ClubJoinView: View {
                 ToolbarItem(placement: .cancellationAction) { Button("Not now") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Join") {
+                        guard ClubWordFilter.isClean(name), ClubWordFilter.isClean(handle) else {
+                            nameHeld = true
+                            return
+                        }
                         Task {
                             if await club.join(handle: handle, displayName: name, findable: findable,
                                                showTrained: showTrained, confirmedSixteen: sixteen) { dismiss() }
@@ -743,6 +752,8 @@ struct ClubComposeView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var selected: WorkoutHistoryEntry?
     @State private var text = ""
+    /// Proof 50: the line as held by the filter, abusive words masked.
+    @State private var heldLine: String?
     /// One ID per Publish, kept across retries so a post is never made twice.
     @State private var actionID = UUID()
 
@@ -760,7 +771,15 @@ struct ClubComposeView: View {
                 }
                 Section {
                     TextField("Say something (optional)", text: $text, axis: .vertical).lineLimit(1...4)
+                        .onChange(of: text) { _, _ in heldLine = nil }
                 } footer: { Text("Only the sets above and your line are posted. Nothing else from this workout leaves your iPhone.") }
+                if let heldLine {
+                    Section {
+                        Label("Not sent yet", systemImage: "exclamationmark.circle").font(.headline)
+                        if !heldLine.isEmpty { Text(verbatim: heldLine).foregroundStyle(.secondary) }
+                        Text("This looks like it breaks the Club rules. Edit it, then post.")
+                    }
+                }
             } else {
                 Section("Pick a workout") {
                     if sessions.isEmpty { Text("Finish a workout to post it.") }
@@ -785,9 +804,15 @@ struct ClubComposeView: View {
             if let selected {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Post") {
+                        let line = text.trimmingCharacters(in: .whitespacesAndNewlines)
+                        let sets = Self.sets(for: selected)
+                        // Custom exercise names are typed by the person too.
+                        guard ClubWordFilter.isClean(line), sets.allSatisfy({ ClubWordFilter.isClean($0.exercise) }) else {
+                            heldLine = ClubWordFilter.masked(line)
+                            return
+                        }
                         Task {
-                            if await club.publish(id: actionID, text: text.trimmingCharacters(in: .whitespacesAndNewlines),
-                                                  sets: Self.sets(for: selected)) { dismiss() }
+                            if await club.publish(id: actionID, text: line, sets: sets) { dismiss() }
                         }
                     }
                     .disabled(club.isWorking)

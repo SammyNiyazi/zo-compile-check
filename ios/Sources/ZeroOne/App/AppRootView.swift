@@ -3127,6 +3127,10 @@ private struct ZeroOneMountedRootContent: View {
             focusHydrationInDiets = true
             selectedTab = .diets
         case .walk: openOutdoorActivity(.walk)
+        case .workout:
+            // The Workout control: today's workout opens; nothing starts by itself.
+            selectedTab = .today
+            openTodayWorkout()
         }
     }
 

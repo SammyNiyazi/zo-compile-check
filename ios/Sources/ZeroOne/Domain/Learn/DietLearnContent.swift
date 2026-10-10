@@ -121,6 +121,82 @@ enum DietLearnCatalog {
                 .init(title: "Vitamin D", organization: "NHS", url: URL(string: "https://www.nhs.uk/conditions/vitamins-and-minerals/vitamin-d/")!, supports: "10 micrograms in autumn and winter; 100 microgram upper limit"),
                 .init(title: "How pharmacies can help", organization: "NHS", url: URL(string: "https://www.nhs.uk/nhs-services/pharmacies/how-pharmacies-can-help/")!, supports: "Pharmacists advise on using medicines and side effects")
             ]
+        ),
+        // Proof 24 trend articles, drafted 10 October 2026. Sources read that day:
+        // EMA Wegovy overview, NHS semaglutide, the STEP 1 body-composition abstract,
+        // the 2022 NEJM time-restricted eating trial (via its PubMed summary), and
+        // the FDA compounding safety page (content current as of 22 April 2026).
+        LearnLesson(
+            id: "diet-glp1", topic: .habits,
+            title: "GLP-1 medicines",
+            dek: "Ozempic, Wegovy and similar: what the trials show, and what it means if you train.", minutes: 4,
+            evidence: .researchSummary,
+            shortVersion: "Semaglutide is a prescription medicine: Ozempic treats type 2 diabetes, and Wegovy, at a higher dose, is for weight management alongside a reduced-calorie diet and more activity. In the main 68-week study of 1,961 adults, people lost 15% of their body weight on average, against 2% on placebo.",
+            steps: [
+                .init(id: "prescription", title: "Only on prescription", detail: "The NHS says to buy it from a registered pharmacy, and warns that some websites sell fake weight-loss medicines."),
+                .init(id: "muscle", title: "Keep training", detail: "In a body-scan part of that study, fat mass fell 19.3% and lean mass 9.7%. Lean mass includes muscle, so lifting and enough protein are worth keeping up. Ask your prescriber what suits you."),
+                .init(id: "after", title: "Plan for after", detail: "In a study reviewed by the EMA, people who kept taking it lost a further 8% over 48 weeks. People switched to placebo regained 7%.")
+            ],
+            questions: [
+                .init(id: "same", title: "Is Wegovy the same as Ozempic?", answer: "Both contain semaglutide, at different doses and for different uses. Ozempic is for type 2 diabetes."),
+                .init(id: "side", title: "What are the common side effects?", answer: "The EMA lists headache, nausea, vomiting, diarrhoea, constipation and belly pain, each in more than 1 in 10 people."),
+                .init(id: "app", title: "Does 01 change my plan if I take it?", answer: "No. 01 only knows what you choose to track, and it never suggests a medicine or a dose.")
+            ],
+            settled: "Large studies reviewed by the EMA show far more weight loss with semaglutide than with diet and activity alone.",
+            open: "How best to keep muscle while taking it, and what happens over many years, are still being studied.",
+            safety: "Take it only on prescription, from a registered pharmacy. It isn't suitable for everyone, for example after acute pancreatitis. Talk to your doctor.",
+            sources: [
+                .init(title: "Wegovy: EPAR medicine overview", organization: "European Medicines Agency", url: URL(string: "https://www.ema.europa.eu/en/medicines/human/EPAR/wegovy")!, supports: "Use, 15% vs 2% weight loss over 68 weeks, maintenance study, common side effects"),
+                .init(title: "Semaglutide", organization: "NHS", url: URL(string: "https://www.nhs.uk/medicines/semaglutide/")!, supports: "Prescription only, registered pharmacy, fake medicines online, pancreatitis"),
+                .init(title: "Impact of semaglutide on body composition: STEP 1", organization: "Journal of the Endocrine Society", url: URL(string: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8089287/")!, supports: "Fat mass −19.3%, lean mass −9.7% at week 68")
+            ],
+            grade: LearnGrade(level: .strong, claim: "Strong evidence for weight loss")
+        ),
+        LearnLesson(
+            id: "diet-intermittent-fasting", topic: .habits,
+            title: "Intermittent fasting",
+            dek: "Eating in a window: what a year-long trial found.", minutes: 3,
+            evidence: .researchSummary,
+            shortVersion: "Intermittent fasting limits when you eat, for example only between 8:00 and 16:00. In a 12-month trial of 139 adults with obesity who all cut calories, people with the 8-hour window lost 8.0 kg on average and people without it 6.3 kg. The trial couldn't tell that difference apart from chance.",
+            steps: [
+                .init(id: "less", title: "It works by eating less", detail: "Both groups in the trial had the same calorie target. The window is one way to reach it."),
+                .init(id: "keep", title: "Pick what you can keep", detail: "With no clear extra benefit, the best pattern is the one you can stick with."),
+                .init(id: "fuel", title: "Fit training in", detail: "If you lift, keep a meal with protein close to your workout, inside your window.")
+            ],
+            questions: [
+                .init(id: "muscle", title: "Will I lose more muscle?", answer: "In that trial, lean mass and body fat changed in line with weight, with no clear difference between the groups."),
+                .init(id: "app", title: "Can I follow it in 01?", answer: "Yes. Choose it as your diet in Diets. 01 tracks what you log; it doesn't set your window or your calories.")
+            ],
+            settled: "Cutting calories leads to weight loss with or without a time window.",
+            open: "Whether the window adds a real benefit on top wasn't settled: the 1.8 kg difference could be chance.",
+            safety: "If you have diabetes, take medicines that lower blood sugar, are pregnant or have had an eating disorder, ask a doctor before fasting.",
+            sources: [
+                .init(title: "Calorie restriction with or without time-restricted eating in weight loss", organization: "New England Journal of Medicine (2022)", url: URL(string: "https://pubmed.ncbi.nlm.nih.gov/35443107/")!, supports: "139 adults, 12 months, −8.0 kg vs −6.3 kg, difference not significant")
+            ],
+            grade: LearnGrade(level: .moderate, claim: "Moderate evidence: about the same as cutting calories")
+        ),
+        LearnLesson(
+            id: "diet-peptides", topic: .habits,
+            title: "Peptides like BPC-157",
+            dek: "Sold online as recovery boosters. Here's what's known.", minutes: 3,
+            evidence: .publicGuidance,
+            shortVersion: "BPC-157 and similar \"research peptides\" are sold online for recovery and healing. None is an approved medicine for that. The US FDA says it has found no, or only limited, safety information for the ways people take them, and some may trigger immune reactions.",
+            steps: [
+                .init(id: "approved", title: "Not an approved medicine", detail: "No regulator has approved these peptides to treat injuries or speed up recovery."),
+                .init(id: "sport", title: "Banned in sport", detail: "The World Anti-Doping Agency prohibits BPC-157 at all times, as a substance not approved for human use."),
+                .init(id: "recovery", title: "What 01 builds on", detail: "Sleep, enough protein and a sensible training load. That's what your plan and reviews look at.")
+            ],
+            questions: [
+                .init(id: "label", title: "What does \"for research use only\" mean?", answer: "It means the product isn't meant for people. The FDA also flags impurities as a risk with these peptides.")
+            ],
+            settled: "No regulator has approved these peptides for recovery, and the FDA lists little or no safety information for them.",
+            open: "Good trials in people are missing for the uses they're sold for.",
+            safety: "Don't inject products bought online. If you compete in a tested sport, BPC-157 is a doping violation.",
+            sources: [
+                .init(title: "Bulk drug substances that may present significant safety risks", organization: "US Food and Drug Administration", url: URL(string: "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks")!, supports: "No or limited safety information, immunogenicity and impurity risks"),
+                .init(title: "The Prohibited List", organization: "World Anti-Doping Agency", url: URL(string: "https://www.wada-ama.org/en/prohibited-list")!, supports: "BPC-157 prohibited at all times (S0, non-approved substances)")
+            ],
+            grade: LearnGrade(level: .limited, claim: "Limited evidence in people")
         )
     ].filter(\.isValid)
 }

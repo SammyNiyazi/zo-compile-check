@@ -206,11 +206,28 @@ struct LearnLessonView: View {
         VStack(alignment: .leading, spacing: 0) {
             subhead("How sure?")
             VStack(alignment: .leading, spacing: ZOSpace.s) {
-                HStack(spacing: 10) {
-                    LearnEvidenceMeterView(evidence: lesson.evidence)
-                    Text(localization.string(lesson.evidence.title)).zoText(.section)
+                if let grade = lesson.grade {
+                    HStack(spacing: 10) {
+                        HStack(spacing: ZOSpace.xs) {
+                            ForEach(LearnGrade.Level.allCases, id: \.rawValue) { level in
+                                Capsule().fill(level.rawValue <= grade.level.rawValue ? theme.textPrimary : theme.surfaceTertiary)
+                                    .frame(width: 22, height: 8)
+                            }
+                        }
+                        .accessibilityHidden(true)
+                        Text(localization.string(grade.claim)).zoText(.section)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .accessibilityElement(children: .combine)
+                    Text(localization.string(lesson.evidence.title)).zoText(.caption)
+                        .foregroundStyle(theme.textSecondary)
+                } else {
+                    HStack(spacing: 10) {
+                        LearnEvidenceMeterView(evidence: lesson.evidence)
+                        Text(localization.string(lesson.evidence.title)).zoText(.section)
+                    }
+                    .accessibilityElement(children: .combine)
                 }
-                .accessibilityElement(children: .combine)
                 Text(lesson.settled)
                     .zoText(.caption)
                     .foregroundStyle(theme.textSecondary)

@@ -1270,6 +1270,8 @@ struct WorkoutCoachLineView: View {
 
     @Environment(\.zeroOneTheme) private var theme
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.zeroOneLocalization) private var localization
+    private var spoken: WorkoutSpokenCoach { .shared }
 
     var body: some View {
         HStack(alignment: .top, spacing: 10) {
@@ -1296,6 +1298,13 @@ struct WorkoutCoachLineView: View {
                         .foregroundStyle(index == 0 ? theme.textPrimary : theme.textSecondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
+                // Proof 42: the chip shows only while 01 is speaking in the headphones.
+                if spoken.isSpeaking {
+                    Label(localization.string("Saying it in your AirPods"), systemImage: "headphones")
+                        .zoText(.caption)
+                        .foregroundStyle(theme.textSecondary)
+                        .accessibilityHidden(true)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -1303,6 +1312,10 @@ struct WorkoutCoachLineView: View {
         .accessibilityLabel(lines.map(\.plainText).joined(separator: " "))
         .accessibilityAddTraits(.isStaticText)
         .accessibilityIdentifier("workout.coachLine")
+        // Off by default; says the main line once, only with headphones connected.
+        .task(id: lines.first?.plainText) {
+            spoken.say(lines.first?.plainText ?? "", language: localization.language)
+        }
     }
 
     private var numberFont: Font {

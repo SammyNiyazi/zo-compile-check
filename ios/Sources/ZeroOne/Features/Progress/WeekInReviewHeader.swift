@@ -17,7 +17,7 @@ struct WeekInReviewHeader: View {
     }
 
     private var maximum: Double {
-        let values = review.rows.flatMap { [Double($0.done), $0.plan?.upperBound ?? 0] }
+        let values: [Double] = review.rows.flatMap { row -> [Double] in [Double(row.done), row.plan?.upperBound ?? 0] }
         return max(values.max() ?? 1, 1)
     }
 

@@ -1661,6 +1661,9 @@ struct ProfileAccountView: View {
             .init(id: .notifications, group: .howItWorks, title: "Notifications",
                   detail: "Optional workout reminders", symbol: "bell",
                   keywords: "notes notifications reminder quiet hours"),
+            .init(route: .coach, group: .howItWorks, title: "Coach voice",
+                  detail: "Say it in my AirPods", symbol: "headphones",
+                  keywords: "coach voice airpods headphones speak spoken audio"),
             .init(id: .settings, group: .howItWorks, title: "Appearance and themes",
                   detail: "Light, dark or system", symbol: "paintpalette", keywords: "theme settings"),
             .init(route: .theme, group: .howItWorks, title: "Theme",
@@ -1720,6 +1723,10 @@ struct ProfileAccountView: View {
         case .theme:
             NavigationLink {
                 ProfileSettingsThemeView(selectedAppearance: $selectedAppearance)
+            } label: { entryLabel(entry) }
+        case .coach:
+            NavigationLink {
+                WorkoutCoachSettingsView()
             } label: { entryLabel(entry) }
         case let .help(link):
             Link(destination: link.url) { entryLabel(entry) }
@@ -1793,7 +1800,7 @@ private enum ProfileGroup: CaseIterable, Identifiable {
 private struct ProfileEntry: Identifiable {
     enum Route: Hashable {
         case destination(ProfileDestination)
-        case export, importData, theme
+        case export, importData, theme, coach
         case help(ProfileSettingsHelpLink)
     }
 

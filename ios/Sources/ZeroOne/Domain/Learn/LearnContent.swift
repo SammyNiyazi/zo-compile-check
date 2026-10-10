@@ -80,6 +80,24 @@ struct LearnStep: Identifiable {
     let detail: String
 }
 
+/// Proof 24: how strong the evidence is for one stated claim, e.g. "Strong
+/// evidence for weight loss". A lesson without a grade keeps the meter ungraded.
+struct LearnGrade: Equatable {
+    enum Level: Int, CaseIterable {
+        case limited = 1, moderate, strong
+        var title: String {
+            switch self {
+            case .limited: "Limited evidence"
+            case .moderate: "Moderate evidence"
+            case .strong: "Strong evidence"
+            }
+        }
+    }
+    let level: Level
+    /// The full label, e.g. "Strong evidence for weight loss".
+    let claim: String
+}
+
 struct LearnLesson: Identifiable {
     let id: String
     let topic: LearnTopic
@@ -94,6 +112,7 @@ struct LearnLesson: Identifiable {
     let open: String
     let safety: String
     let sources: [LearnSource]
+    var grade: LearnGrade? = nil
 
     var isValid: Bool {
         !id.isEmpty && !title.isEmpty && !dek.isEmpty && minutes > 0

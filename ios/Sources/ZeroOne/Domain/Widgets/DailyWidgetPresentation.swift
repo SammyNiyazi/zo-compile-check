@@ -73,7 +73,7 @@ enum DailyWidgetFormatting {
 
 /// Deep links open a destination only. They never begin tracking or save user data.
 enum DailyWidgetRoute: String, CaseIterable {
-    case steps, calories, water, today, walk
+    case steps, calories, water, today, walk, workout
     var url: URL { URL(string: "the01://widget/\(rawValue)")! }
 
     init?(url: URL) {
