@@ -3030,3 +3030,233 @@
 "Safety" = "Безопасност";
 
 "Opens the source in Safari." = "Отваря източника в Safari.";
+
+"Post a workout" = "Публикувай тренировка";
+
+"Nothing here yet." = "Още няма нищо тук.";
+
+"Follow people from People, or post your own workout. Posts from people you follow show here." = "Последвай хора от „Хора“ или публикувай своя тренировка. Тук се показват публикациите на хората, които следваш.";
+
+"Join the 01 Club." = "Влез в 01 Club.";
+
+"Follow people who train, see who trained this week and give Respect. Your card gets its own number. Body weight, food and progress photos are never shared." = "Следвай хора, които тренират, виж кой е тренирал тази седмица и давай Respect. Картата ти получава собствен номер. Теглото, храната и снимките на прогреса никога не се споделят.";
+
+"Join the Club" = "Влез в Club";
+
+"Sign in to join the Club." = "Влез в профила си, за да се присъединиш към Club.";
+
+"The Club needs an 01 account. Sign in from Profile. Your training works without it." = "Club изисква профил в 01. Влез от „Профил“. Тренировките ти работят и без него.";
+
+"The Club opens soon." = "Club отваря скоро.";
+
+"Your account is ready. Following and posts switch on when the Club opens." = "Профилът ти е готов. Следването и публикациите се включват, когато Club отвори.";
+
+"Your Club account is paused." = "Профилът ти в Club е спрян.";
+
+"Your training is untouched. If you think this is wrong, write to Sammy at sammy@the01.app." = "Тренировките ти не са засегнати. Ако смяташ, че е грешка, пиши на Sammy на sammy@the01.app.";
+
+"The Club isn't part of this build." = "Club не е част от тази версия.";
+
+"Your training works fully on this iPhone." = "Тренировките ти работят напълно на този iPhone.";
+
+"The Club can't be reached." = "Няма връзка с Club.";
+
+"Check your connection. Nothing on this iPhone changed." = "Провери връзката си. Нищо на този iPhone не е променено.";
+
+"Club" = "Club";
+
+"No. %1$@ · %2$lld followers" = "№ %1$@ · %2$lld последователи";
+
+"People" = "Хора";
+
+"Activity" = "Активност";
+
+"Reports" = "Сигнали";
+
+"Your card and Club privacy" = "Твоята карта и поверителност в Club";
+
+"Trained this week" = "Тренирали тази седмица";
+
+"Former member" = "Бивш член";
+
+"Delete post" = "Изтрий публикацията";
+
+"Report this post" = "Сигнализирай за публикацията";
+
+"Hide %1$@'s posts" = "Скрий публикациите на %1$@";
+
+"Block %1$@" = "Блокирай %1$@";
+
+"Respect %1$lld" = "Respect %1$lld";
+
+"Block %1$@?" = "Да блокираш ли %1$@?";
+
+"Block" = "Блокирай";
+
+"They won't see your card, posts or workouts and can't follow you. They won't be told." = "Няма да виждат картата, публикациите и тренировките ти и няма да могат да те следват. Няма да бъдат уведомени.";
+
+"Name people see" = "Име, което хората виждат";
+
+"Handle" = "Потребителско име";
+
+"Your handle: 3 to 30 letters, numbers or underscores." = "Потребителското име: от 3 до 30 латински букви, цифри или долни черти.";
+
+"Find me by name" = "Намирай ме по име";
+
+"Show me in \"Trained this week\"" = "Показвай ме в „Тренирали тази седмица“";
+
+"What others see: your card, that you trained this week and what you post. Never your body weight, food or progress photos." = "Какво виждат другите: картата ти, че си тренирал тази седмица и това, което публикуваш. Никога теглото, храната или снимките на прогреса ти.";
+
+"I'm 16 or older" = "На 16 или повече години съм";
+
+"Club rules" = "Правила на Club";
+
+"Join" = "Влез";
+
+"%1$lld followers · %2$lld following" = "%1$lld последователи · следва %2$lld";
+
+"Follow back" = "Последвай и ти";
+
+"Follow" = "Последвай";
+
+"This member isn't available." = "Този член не е достъпен.";
+
+"They may have a private profile or left the Club." = "Може да има личен профил или да е напуснал Club.";
+
+"Show their posts" = "Показвай публикациите им";
+
+"Hide their posts" = "Скрий публикациите им";
+
+"Block this member?" = "Да блокираш ли този член?";
+
+"No one found." = "Никой не е намерен.";
+
+"List" = "Списък";
+
+"Followers" = "Последователи";
+
+"No one yet." = "Още никой.";
+
+"Search by name" = "Търси по име";
+
+"trained this week" = "тренирал тази седмица";
+
+"Respect" = "Respect";
+
+"No Respect in the last 30 days yet." = "Още няма Respect през последните 30 дни.";
+
+"No followers yet." = "Още няма последователи.";
+
+"%1$@ and %2$lld others gave you Respect" = "%1$@ и още %2$lld ти дадоха Respect";
+
+"%1$@ gave you Respect" = "%1$@ ти даде Respect";
+
+"Who sees" = "Кой вижда";
+
+"Body weight, food and progress photos are never shared unless you post them yourself." = "Теглото, храната и снимките на прогреса никога не се споделят, освен ако сам не ги публикуваш.";
+
+"Blocked" = "Блокирани";
+
+"No one." = "Никой.";
+
+"Unblock" = "Отблокирай";
+
+"Leave the Club" = "Напусни Club";
+
+"Your card" = "Твоята карта";
+
+"Leave the Club?" = "Да напуснеш ли Club?";
+
+"Your Club profile, follows and posts are removed. Your training on this iPhone stays." = "Профилът ти в Club, следванията и публикациите се премахват. Тренировките ти на този iPhone остават.";
+
+"Thanks. Sammy will look at it." = "Благодаря. Sammy ще го прегледа.";
+
+"He reads every report himself, usually within a day." = "Той лично чете всеки сигнал, обикновено до един ден.";
+
+"Also block %1$@" = "Блокирай и %1$@";
+
+"What's wrong with this post?" = "Какъв е проблемът с публикацията?";
+
+"Reason" = "Причина";
+
+"Add details (optional)" = "Добави подробности (по желание)";
+
+"Sammy reads every report, usually within a day. The person won't know it was you." = "Sammy чете всеки сигнал, обикновено до един ден. Човекът няма да разбере, че си бил ти.";
+
+"Report" = "Сигнал";
+
+"Send report" = "Изпрати сигнала";
+
+"Harassment or hate" = "Тормоз или омраза";
+
+"Sexual content" = "Сексуално съдържание";
+
+"Spam or a scam" = "Спам или измама";
+
+"Dangerous advice" = "Опасен съвет";
+
+"Something else" = "Нещо друго";
+
+"Like pushing someone through pain" = "Например да караш някого да продължи през болка";
+
+"Train hard, be decent." = "Тренирай здраво, бъди свестен.";
+
+"No insults, hate or harassment." = "Без обиди, омраза или тормоз.";
+
+"No sexual content." = "Без сексуално съдържание.";
+
+"No selling, spam or scams." = "Без продажби, спам или измами.";
+
+"No pushing anyone through pain or into extreme diets." = "Не карай никого да продължава през болка или да спазва крайни диети.";
+
+"Respect is the reaction. Use it a lot." = "Respect е реакцията. Използвай я често.";
+
+"I read every report myself, usually within a day. If something feels wrong, tap Report, or just write to me. Sammy" = "Чета лично всеки сигнал, обикновено до един ден. Ако нещо не е наред, натисни „Сигнал“ или просто ми пиши. Sammy";
+
+"Status" = "Статус";
+
+"Nothing to review." = "Няма нищо за преглед.";
+
+"%1$@ · No. %2$@ · %3$lld reports" = "%1$@ · № %2$@ · %3$lld сигнала";
+
+"Dismiss" = "Отхвърли";
+
+"Removed" = "Премахната";
+
+"Dismissed" = "Отхвърлен";
+
+"Only you see this. Reporters stay anonymous to the people they report." = "Само ти виждаш това. Подалите сигнал остават анонимни за хората, за които сигнализират.";
+
+"What your followers see" = "Какво виждат последователите ти";
+
+"Say something (optional)" = "Напиши нещо (по желание)";
+
+"Only the sets above and your line are posted. Nothing else from this workout leaves your iPhone." = "Публикуват се само сериите по-горе и твоят ред. Нищо друго от тази тренировка не напуска iPhone-а ти.";
+
+"Pick a workout" = "Избери тренировка";
+
+"Finish a workout to post it." = "Завърши тренировка, за да я публикуваш.";
+
+"The Club is for people aged 16 and over." = "Club е за хора на 16 и повече години.";
+
+"Use 3 to 30 letters, numbers or underscores." = "Използвай от 3 до 30 латински букви, цифри или долни черти.";
+
+"Add the name people will see." = "Добави името, което хората ще виждат.";
+
+"Pick at least one set or write something." = "Избери поне една серия или напиши нещо.";
+
+"Sign in again to use the Club." = "Влез отново, за да използваш Club.";
+
+"The Club isn't open yet." = "Club още не е отворен.";
+
+"Join the Club first." = "Първо влез в Club.";
+
+"Your Club account is paused. Write to Sammy if you think this is wrong." = "Профилът ти в Club е спрян. Пиши на Sammy, ако смяташ, че е грешка.";
+
+"That handle is taken. Try another." = "Това потребителско име е заето. Опитай друго.";
+
+"That didn't work. Check it and try again." = "Не стана. Провери и опитай отново.";
+
+"That isn't available." = "Това не е достъпно.";
+
+"The Club can't be reached right now. Try again." = "В момента няма връзка с Club. Опитай отново.";

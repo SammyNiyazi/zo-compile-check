@@ -11,6 +11,9 @@ struct SocialHomeView: View {
     let workoutStateAvailable: Bool
     @State private var section: SocialSection = .following
     @State private var selectedWorkout: WorkoutHistoryEntry?
+    @Environment(ZeroOneAccountStore.self) private var account
+    /// Club core v1 (Sammy, 10 Oct): the real Club when this build has the account service.
+    @State private var club: ClubStore?
 
     private var composeAvailability: SocialComposeAvailability {
         if !workoutStateAvailable { return .unavailable }
@@ -50,6 +53,9 @@ struct SocialHomeView: View {
                         }
                     }
                     if section == .following {
+                        if let club, account.isConfigured {
+                            ClubFeedSection(club: club, history: history)
+                        }
                         followingContent
                     } else if section == .clubs {
                         // Sammy, 9 Oct: the Club runs locally until its service is live.
@@ -67,6 +73,14 @@ struct SocialHomeView: View {
         }
         .zoThemeScreenSurface()
         .toolbar(.hidden, for: .navigationBar)
+        .onAppear {
+            if club == nil { club = ClubStore.live(account: account) }
+            club?.accountChanged(to: account.identity?.id)
+        }
+        .onChange(of: account.identity?.id) { _, id in
+            club?.accountChanged(to: id)
+            Task { await club?.refresh(history: history.entries) }
+        }
         .fullScreenCover(item: $selectedWorkout) { workout in
             Group {
                 SocialComposeView(workout: workout, history: history.entries)
@@ -88,7 +102,7 @@ struct SocialHomeView: View {
 
     @ViewBuilder
     private var followingContent: some View {
-        SocialServiceGate(section: .following)
+        if !account.isConfigured { SocialServiceGate(section: .following) }
         VStack(alignment: .leading, spacing: ZOSpace.m) {
             Text("SHARE FROM YOUR HISTORY")
                 .zoText(.caption)

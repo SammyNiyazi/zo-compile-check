@@ -3029,3 +3029,233 @@
 "Safety" = "Safety";
 
 "Opens the source in Safari." = "Opens the source in Safari.";
+
+"Post a workout" = "Post a workout";
+
+"Nothing here yet." = "Nothing here yet.";
+
+"Follow people from People, or post your own workout. Posts from people you follow show here." = "Follow people from People, or post your own workout. Posts from people you follow show here.";
+
+"Join the 01 Club." = "Join the 01 Club.";
+
+"Follow people who train, see who trained this week and give Respect. Your card gets its own number. Body weight, food and progress photos are never shared." = "Follow people who train, see who trained this week and give Respect. Your card gets its own number. Body weight, food and progress photos are never shared.";
+
+"Join the Club" = "Join the Club";
+
+"Sign in to join the Club." = "Sign in to join the Club.";
+
+"The Club needs an 01 account. Sign in from Profile. Your training works without it." = "The Club needs an 01 account. Sign in from Profile. Your training works without it.";
+
+"The Club opens soon." = "The Club opens soon.";
+
+"Your account is ready. Following and posts switch on when the Club opens." = "Your account is ready. Following and posts switch on when the Club opens.";
+
+"Your Club account is paused." = "Your Club account is paused.";
+
+"Your training is untouched. If you think this is wrong, write to Sammy at sammy@the01.app." = "Your training is untouched. If you think this is wrong, write to Sammy at sammy@the01.app.";
+
+"The Club isn't part of this build." = "The Club isn't part of this build.";
+
+"Your training works fully on this iPhone." = "Your training works fully on this iPhone.";
+
+"The Club can't be reached." = "The Club can't be reached.";
+
+"Check your connection. Nothing on this iPhone changed." = "Check your connection. Nothing on this iPhone changed.";
+
+"Club" = "Club";
+
+"No. %1$@ · %2$lld followers" = "No. %1$@ · %2$lld followers";
+
+"People" = "People";
+
+"Activity" = "Activity";
+
+"Reports" = "Reports";
+
+"Your card and Club privacy" = "Your card and Club privacy";
+
+"Trained this week" = "Trained this week";
+
+"Former member" = "Former member";
+
+"Delete post" = "Delete post";
+
+"Report this post" = "Report this post";
+
+"Hide %1$@'s posts" = "Hide %1$@'s posts";
+
+"Block %1$@" = "Block %1$@";
+
+"Respect %1$lld" = "Respect %1$lld";
+
+"Block %1$@?" = "Block %1$@?";
+
+"Block" = "Block";
+
+"They won't see your card, posts or workouts and can't follow you. They won't be told." = "They won't see your card, posts or workouts and can't follow you. They won't be told.";
+
+"Name people see" = "Name people see";
+
+"Handle" = "Handle";
+
+"Your handle: 3 to 30 letters, numbers or underscores." = "Your handle: 3 to 30 letters, numbers or underscores.";
+
+"Find me by name" = "Find me by name";
+
+"Show me in \"Trained this week\"" = "Show me in \"Trained this week\"";
+
+"What others see: your card, that you trained this week and what you post. Never your body weight, food or progress photos." = "What others see: your card, that you trained this week and what you post. Never your body weight, food or progress photos.";
+
+"I'm 16 or older" = "I'm 16 or older";
+
+"Club rules" = "Club rules";
+
+"Join" = "Join";
+
+"%1$lld followers · %2$lld following" = "%1$lld followers · %2$lld following";
+
+"Follow back" = "Follow back";
+
+"Follow" = "Follow";
+
+"This member isn't available." = "This member isn't available.";
+
+"They may have a private profile or left the Club." = "They may have a private profile or left the Club.";
+
+"Show their posts" = "Show their posts";
+
+"Hide their posts" = "Hide their posts";
+
+"Block this member?" = "Block this member?";
+
+"No one found." = "No one found.";
+
+"List" = "List";
+
+"Followers" = "Followers";
+
+"No one yet." = "No one yet.";
+
+"Search by name" = "Search by name";
+
+"trained this week" = "trained this week";
+
+"Respect" = "Respect";
+
+"No Respect in the last 30 days yet." = "No Respect in the last 30 days yet.";
+
+"No followers yet." = "No followers yet.";
+
+"%1$@ and %2$lld others gave you Respect" = "%1$@ and %2$lld others gave you Respect";
+
+"%1$@ gave you Respect" = "%1$@ gave you Respect";
+
+"Who sees" = "Who sees";
+
+"Body weight, food and progress photos are never shared unless you post them yourself." = "Body weight, food and progress photos are never shared unless you post them yourself.";
+
+"Blocked" = "Blocked";
+
+"No one." = "No one.";
+
+"Unblock" = "Unblock";
+
+"Leave the Club" = "Leave the Club";
+
+"Your card" = "Your card";
+
+"Leave the Club?" = "Leave the Club?";
+
+"Your Club profile, follows and posts are removed. Your training on this iPhone stays." = "Your Club profile, follows and posts are removed. Your training on this iPhone stays.";
+
+"Thanks. Sammy will look at it." = "Thanks. Sammy will look at it.";
+
+"He reads every report himself, usually within a day." = "He reads every report himself, usually within a day.";
+
+"Also block %1$@" = "Also block %1$@";
+
+"What's wrong with this post?" = "What's wrong with this post?";
+
+"Reason" = "Reason";
+
+"Add details (optional)" = "Add details (optional)";
+
+"Sammy reads every report, usually within a day. The person won't know it was you." = "Sammy reads every report, usually within a day. The person won't know it was you.";
+
+"Report" = "Report";
+
+"Send report" = "Send report";
+
+"Harassment or hate" = "Harassment or hate";
+
+"Sexual content" = "Sexual content";
+
+"Spam or a scam" = "Spam or a scam";
+
+"Dangerous advice" = "Dangerous advice";
+
+"Something else" = "Something else";
+
+"Like pushing someone through pain" = "Like pushing someone through pain";
+
+"Train hard, be decent." = "Train hard, be decent.";
+
+"No insults, hate or harassment." = "No insults, hate or harassment.";
+
+"No sexual content." = "No sexual content.";
+
+"No selling, spam or scams." = "No selling, spam or scams.";
+
+"No pushing anyone through pain or into extreme diets." = "No pushing anyone through pain or into extreme diets.";
+
+"Respect is the reaction. Use it a lot." = "Respect is the reaction. Use it a lot.";
+
+"I read every report myself, usually within a day. If something feels wrong, tap Report, or just write to me. Sammy" = "I read every report myself, usually within a day. If something feels wrong, tap Report, or just write to me. Sammy";
+
+"Status" = "Status";
+
+"Nothing to review." = "Nothing to review.";
+
+"%1$@ · No. %2$@ · %3$lld reports" = "%1$@ · No. %2$@ · %3$lld reports";
+
+"Dismiss" = "Dismiss";
+
+"Removed" = "Removed";
+
+"Dismissed" = "Dismissed";
+
+"Only you see this. Reporters stay anonymous to the people they report." = "Only you see this. Reporters stay anonymous to the people they report.";
+
+"What your followers see" = "What your followers see";
+
+"Say something (optional)" = "Say something (optional)";
+
+"Only the sets above and your line are posted. Nothing else from this workout leaves your iPhone." = "Only the sets above and your line are posted. Nothing else from this workout leaves your iPhone.";
+
+"Pick a workout" = "Pick a workout";
+
+"Finish a workout to post it." = "Finish a workout to post it.";
+
+"The Club is for people aged 16 and over." = "The Club is for people aged 16 and over.";
+
+"Use 3 to 30 letters, numbers or underscores." = "Use 3 to 30 letters, numbers or underscores.";
+
+"Add the name people will see." = "Add the name people will see.";
+
+"Pick at least one set or write something." = "Pick at least one set or write something.";
+
+"Sign in again to use the Club." = "Sign in again to use the Club.";
+
+"The Club isn't open yet." = "The Club isn't open yet.";
+
+"Join the Club first." = "Join the Club first.";
+
+"Your Club account is paused. Write to Sammy if you think this is wrong." = "Your Club account is paused. Write to Sammy if you think this is wrong.";
+
+"That handle is taken. Try another." = "That handle is taken. Try another.";
+
+"That didn't work. Check it and try again." = "That didn't work. Check it and try again.";
+
+"That isn't available." = "That isn't available.";
+
+"The Club can't be reached right now. Try again." = "The Club can't be reached right now. Try again.";

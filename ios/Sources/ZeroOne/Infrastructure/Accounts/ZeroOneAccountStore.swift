@@ -249,6 +249,23 @@ final class ZeroOneAccountStore {
         defaults.set(true, forKey: "01.account.hasAuthenticatedBefore")
     }
 
+    /// A current session for one server request by a signed-in feature (the Club). Refreshes and stores
+    /// the rotated token like every other path. Nil while signed out or while another account operation
+    /// runs, so two refreshes never spend the same refresh token. Callers never keep the result.
+    func sessionForRequest() async -> ZeroOneAccountSession? {
+        guard !isBusy, let saved = session, let service else { return nil }
+        isBusy = true
+        let started = revision
+        defer { isBusy = false }
+        do {
+            let current = try await current(saved, service: service)
+            return started == revision && identity != nil ? current : nil
+        } catch ZeroOneAccountError.sessionExpired {
+            _ = discardSession()
+            return nil
+        } catch { return nil }
+    }
+
     private func current(_ saved: ZeroOneAccountSession, service: any ZeroOneAccountServicing) async throws -> ZeroOneAccountSession {
         if saved.expiresAt > Date().addingTimeInterval(60) { return saved }
         let refreshed = try await service.refresh(saved)
