@@ -3994,3 +3994,21 @@
 "Up to 4. Each one is shrunk on this iPhone before upload, and its location and camera details are removed." = "До 4. Всяка се смалява на този iPhone преди качване, а местоположението и данните за камерата се премахват.";
 
 "Posting…" = "Публикуване…";
+
+"Your membership renews in 2 days" = "Членството ти се подновява след 2 дни";
+
+"On %1$@ your 01 membership renews for %2$@ %3$@. To change or cancel, use Manage in App Store." = "На %1$@ членството ти в 01 се подновява за %2$@ %3$@. За промяна или отказ използвай „Управлявайте в App Store“.";
+
+"On %1$@ your 01 membership renews. To change or cancel, use Manage in App Store." = "На %1$@ членството ти в 01 се подновява. За промяна или отказ използвай „Управлявайте в App Store“.";
+
+"Remind me 2 days before I'm charged" = "Напомни ми 2 дни преди плащане";
+
+"Ends %1$@. Nothing more is charged." = "Приключва на %1$@. Няма повече плащания.";
+
+"Free until %1$@, then %2$@." = "Безплатно до %1$@, после %2$@.";
+
+"Free until %1$@." = "Безплатно до %1$@.";
+
+"Next charge: %1$@, %2$@." = "Следващо плащане: %1$@, %2$@.";
+
+"Next charge: %1$@." = "Следващо плащане: %1$@.";

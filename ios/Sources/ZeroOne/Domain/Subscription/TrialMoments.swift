@@ -249,5 +249,58 @@ enum TrialNotificationScheduler {
 enum MembershipNotificationPreference {
     static let clubKey = "01.notify.club"
     static let membershipKey = "01.notify.membership"
+    /// Sammy 10 Oct: "Remind me 2 days before I'm charged", on by default, switched off on the
+    /// Membership screen. Covers the trial reminder and every renewal.
+    static let chargeReminderKey = "01.notify.chargeReminder"
     static var membershipOn: Bool { UserDefaults.standard.object(forKey: membershipKey) as? Bool ?? true }
+    static var chargeReminderOn: Bool { UserDefaults.standard.object(forKey: chargeReminderKey) as? Bool ?? true }
+    /// Both the trial notes and the renewal reminder.
+    static var remindersOn: Bool { membershipOn && chargeReminderOn }
+}
+
+/// Sammy 10 Oct: a note 2 days before every paid renewal (the trial has its own, richer note above).
+/// Only while Apple says the plan renews; local, rebuilt whenever membership changes.
+enum ChargeReminderScheduler {
+    static let reminderID = "01.renewal.reminder"
+
+    static func plan(next: MembershipNextCharge?, enabled: Bool, now: Date, calendar: Calendar,
+                     localization: AppLocalization) -> TrialNotificationScheduler.Plan? {
+        guard enabled, let next, next.renews, !next.isTrial,
+              let twoBefore = calendar.date(byAdding: .day, value: -2, to: next.date),
+              let fire = calendar.date(bySettingHour: TrialNotificationScheduler.hour, minute: 0, second: 0, of: twoBefore),
+              fire > now else { return nil }
+        let day = next.date.formatted(.dateTime.day().month(.wide).locale(localization.locale))
+        let body: String
+        if let price = next.price, let period = next.period {
+            body = localization.format("On %1$@ your 01 membership renews for %2$@ %3$@. To change or cancel, use Manage in App Store.",
+                                       .text(day), .text(price), .text(localization.string(period)))
+        } else {
+            body = localization.format("On %1$@ your 01 membership renews. To change or cancel, use Manage in App Store.", .text(day))
+        }
+        return TrialNotificationScheduler.Plan(identifier: reminderID, fireAt: fire,
+                                               title: localization.string("Your membership renews in 2 days"), body: body)
+    }
+
+    static func reconcile(_ plan: TrialNotificationScheduler.Plan?, calendar: Calendar = .current) {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [reminderID])
+        guard let plan else { return }
+        Task {
+            let status = await center.notificationSettings().authorizationStatus
+            guard status == .authorized || status == .provisional || status == .ephemeral else { return }
+            let content = UNMutableNotificationContent()
+            content.title = plan.title
+            content.body = plan.body
+            content.sound = .default
+            content.threadIdentifier = "01.membership"
+            let parts = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: plan.fireAt)
+            try? await center.add(UNNotificationRequest(identifier: plan.identifier, content: content,
+                trigger: UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)))
+        }
+    }
+}
+
+extension Notification.Name {
+    /// The Membership screen's reminder switch changed; the app root rebuilds the notes.
+    static let zeroOneChargeReminderChanged = Notification.Name("01.chargeReminderChanged")
 }

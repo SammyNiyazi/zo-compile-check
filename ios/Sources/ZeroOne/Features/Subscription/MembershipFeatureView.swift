@@ -479,6 +479,7 @@ private struct MembershipStatusScreen: View {
     let onClose: () -> Void
     let onRestore: () -> Void
     @State private var showingManage = false
+    @State private var remindBeforeCharge = MembershipNotificationPreference.chargeReminderOn
     @Environment(\.zeroOneTheme) private var theme
     @Environment(\.zeroOneLocalization) private var localization
 
@@ -525,6 +526,25 @@ private struct MembershipStatusScreen: View {
                     : localization.format("Temporary · %1$lld days left", .integer(days)))
                     }
                 }
+                if let next = store.nextCharge {
+                    // Sammy 10 Oct: when Apple charges next, and a reminder 2 days before.
+                    VStack(alignment: .leading, spacing: ZOSpace.s) {
+                        Text(verbatim: nextChargeLine(next)).zoText(.section)
+                        if next.renews {
+                            Toggle(isOn: $remindBeforeCharge) {
+                                Text("Remind me 2 days before I'm charged").zoText(.body)
+                            }
+                            .tint(theme.accentFill)
+                            .onChange(of: remindBeforeCharge) { _, on in
+                                UserDefaults.standard.set(on, forKey: MembershipNotificationPreference.chargeReminderKey)
+                                NotificationCenter.default.post(name: .zeroOneChargeReminderChanged, object: nil)
+                            }
+                        }
+                    }
+                    .padding(ZOSpace.l)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .zoThemeCardSurface()
+                }
                 MembershipNotice(text: "Your local training data is not changed by membership or Restore.")
                 if store.access.hasVerifiedAccess || store.access == .billingRetry || store.access == .revoked {
                     MembershipPrimaryButton(title: "Manage in App Store", subtitle: nil, disabled: false) {
@@ -547,6 +567,20 @@ private struct MembershipStatusScreen: View {
         switch store.access {
         case .gracePeriod, .billingRetry: true
         default: false
+        }
+    }
+
+    /// "Next charge: 24 October, $4.99 a month", "Free until 24 October, then $4.99 a month",
+    /// or "Ends 24 October. Nothing more is charged." once auto-renew is off.
+    private func nextChargeLine(_ next: MembershipNextCharge) -> String {
+        let day = next.date.formatted(.dateTime.day().month(.wide).locale(localization.locale))
+        guard next.renews else { return localization.format("Ends %1$@. Nothing more is charged.", .text(day)) }
+        let price = next.price.flatMap { price in next.period.map { price + " " + localization.string($0) } }
+        switch (next.isTrial, price) {
+        case (true, let price?): return localization.format("Free until %1$@, then %2$@.", .text(day), .text(price))
+        case (true, nil): return localization.format("Free until %1$@.", .text(day))
+        case (false, let price?): return localization.format("Next charge: %1$@, %2$@.", .text(day), .text(price))
+        case (false, nil): return localization.format("Next charge: %1$@.", .text(day))
         }
     }
 

@@ -13,6 +13,9 @@ final class StoreKitMembershipStore {
     private(set) var message: String?
     /// Proof 53: the verified trial end, renewal switch and renewal price. nil outside a trial.
     private(set) var trialRenewal: MembershipRecapRenewal?
+    /// Sammy 10 Oct: when Apple charges next (trial end or renewal), for the Membership screen
+    /// and the reminder 2 days before. nil without a live auto-renewing subscription.
+    private(set) var nextCharge: MembershipNextCharge?
     var selectedProductID: String?
 
     let configuration: MembershipConfiguration
@@ -142,6 +145,7 @@ final class StoreKitMembershipStore {
 
     func refreshAccess() async {
         trialRenewal = nil
+        nextCharge = nil
         let ids = Set(configuration.productIDs)
         var entitlement: Transaction?
         for await result in Transaction.currentEntitlements {
@@ -175,9 +179,17 @@ final class StoreKitMembershipStore {
                           products.first(where: { $0.id == live.1.productID })?.subscription?.introductoryOffer?.paymentMode == .freeTrial,
                           let end = live.1.expirationDate {
                     access = .trial(until: end)
-                    trialRenewal = Self.renewal(end: end, transaction: live.1, statuses: statuses, products: products)
+                    let renewal = Self.renewal(end: end, transaction: live.1, statuses: statuses, products: products)
+                    trialRenewal = renewal
+                    nextCharge = MembershipNextCharge(date: end, price: renewal.verifiedPrice, period: renewal.verifiedPeriod,
+                                                      isTrial: true, renews: renewal.continuation == .renews)
                 } else {
                     access = .member(until: live.1.expirationDate)
+                    if let end = live.1.expirationDate {
+                        let renewal = Self.renewal(end: end, transaction: live.1, statuses: statuses, products: products)
+                        nextCharge = MembershipNextCharge(date: end, price: renewal.verifiedPrice, period: renewal.verifiedPeriod,
+                                                          isTrial: false, renews: renewal.continuation == .renews)
+                    }
                 }
             } else if let entitlement {
                 access = .member(until: entitlement.expirationDate)

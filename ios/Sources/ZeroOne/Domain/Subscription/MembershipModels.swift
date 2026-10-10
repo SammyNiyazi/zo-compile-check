@@ -17,24 +17,26 @@ struct MembershipConfiguration {
         isBeta: true
     )
 
-    /// Release (TestFlight) stays unconfigured until the products exist in App
-    /// Store Connect. A Debug run launched with ZERO_ONE_STOREKIT_TEST=1 (the
-    /// ZeroOne scheme's Run action, with StoreKit/ZeroOne.storekit) uses Sammy's
-    /// prices against Xcode's local StoreKit: no real charges (Sammy, 9 Oct).
+    /// Release uses the products in App Store Connect (group "01 Membership", created 10 Oct 2026).
+    /// In TestFlight Apple's sandbox never charges and renews much faster than real time.
+    /// A Debug run launched with ZERO_ONE_STOREKIT_TEST=1 (the ZeroOne scheme's Run action, with
+    /// StoreKit/ZeroOne.storekit) uses the same IDs against Xcode's local StoreKit (Sammy, 9 Oct).
     static var current: MembershipConfiguration {
         #if DEBUG
         if ProcessInfo.processInfo.environment["ZERO_ONE_STOREKIT_TEST"] == "1" { return storeKitTest }
         #endif
-        return .unconfigured
+        return appStore
     }
 
-    static let storeKitTest = MembershipConfiguration(
+    static let appStore = MembershipConfiguration(
         productIDs: ["app.the01.membership.monthly", "app.the01.membership.yearly"],
         subscriptionGroupID: nil,
         termsURL: URL(string: "https://the01.app/terms"),
         privacyURL: URL(string: "https://the01.app/privacy"),
         isBeta: false
     )
+
+    static let storeKitTest = appStore
 
     var hasLegalLinks: Bool {
         [termsURL, privacyURL].allSatisfy { $0?.scheme == "https" && $0?.host != nil }
@@ -58,6 +60,19 @@ enum MembershipAccess: Equatable {
         default: false
         }
     }
+}
+
+/// The next time Apple charges, from verified StoreKit data: the end of a free trial or a regular
+/// renewal. Shown under Membership and used for the reminder 2 days before.
+struct MembershipNextCharge: Equatable {
+    let date: Date
+    /// Apple's display price of the plan it renews into; nil when Apple hasn't confirmed it.
+    let price: String?
+    /// "a month" or "a year" (localization keys); nil for other periods.
+    let period: String?
+    let isTrial: Bool
+    /// False once auto-renew is off: nothing will be charged.
+    let renews: Bool
 }
 
 enum MembershipEligibility: Equatable {

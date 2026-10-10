@@ -3993,3 +3993,21 @@
 "Up to 4. Each one is shrunk on this iPhone before upload, and its location and camera details are removed." = "Up to 4. Each one is shrunk on this iPhone before upload, and its location and camera details are removed.";
 
 "Posting…" = "Posting…";
+
+"Your membership renews in 2 days" = "Your membership renews in 2 days";
+
+"On %1$@ your 01 membership renews for %2$@ %3$@. To change or cancel, use Manage in App Store." = "On %1$@ your 01 membership renews for %2$@ %3$@. To change or cancel, use Manage in App Store.";
+
+"On %1$@ your 01 membership renews. To change or cancel, use Manage in App Store." = "On %1$@ your 01 membership renews. To change or cancel, use Manage in App Store.";
+
+"Remind me 2 days before I'm charged" = "Remind me 2 days before I'm charged";
+
+"Ends %1$@. Nothing more is charged." = "Ends %1$@. Nothing more is charged.";
+
+"Free until %1$@, then %2$@." = "Free until %1$@, then %2$@.";
+
+"Free until %1$@." = "Free until %1$@.";
+
+"Next charge: %1$@, %2$@." = "Next charge: %1$@, %2$@.";
+
+"Next charge: %1$@." = "Next charge: %1$@.";

@@ -1805,6 +1805,8 @@ private struct ZeroOneMountedRootContent: View {
             refreshTrialMoments()
         }
         .onChange(of: membership.access) { _, _ in refreshTrialMoments() }
+        .onChange(of: membership.nextCharge) { _, _ in refreshTrialMoments() }
+        .onReceive(NotificationCenter.default.publisher(for: .zeroOneChargeReminderChanged)) { _ in refreshTrialMoments() }
         .onChange(of: selectedTab) { _, tab in
             if tab == .today { refreshTrialMoments() }
         }
@@ -2658,11 +2660,17 @@ private struct ZeroOneMountedRootContent: View {
     /// "Your 14 days" once on the last evening when Today is in front.
     private func refreshTrialMoments() {
         if let renewal = membership.trialRenewal { trialMoments.record(renewal) }
+        // Sammy 10 Oct: a reminder 2 days before every paid renewal too, unless switched off.
+        if membership.access != .checking {
+            ChargeReminderScheduler.reconcile(ChargeReminderScheduler.plan(
+                next: membership.nextCharge, enabled: MembershipNotificationPreference.remindersOn,
+                now: .now, calendar: .current, localization: localization))
+        }
         guard let window = trialMoments.window, membership.access != .checking else { return }
         var continued = false
         if case .member = membership.access { continued = true }
         let progress = TrialProgress.make(window: window, history: trialHistory, calendar: .current)
-        TrialNotificationScheduler.reconcile(!MembershipNotificationPreference.membershipOn ? [] : TrialNotificationScheduler.plan(
+        TrialNotificationScheduler.reconcile(!MembershipNotificationPreference.remindersOn ? [] : TrialNotificationScheduler.plan(
             window: window, continuation: trialMoments.continuation, continued: continued,
             renewal: membership.trialRenewal, progress: progress, now: .now, calendar: .current,
             localization: localization))
