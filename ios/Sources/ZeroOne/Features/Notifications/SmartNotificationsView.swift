@@ -9,6 +9,8 @@ struct SmartNotificationsView: View {
     @Environment(\.openURL) private var openURL
     @State private var selectedNote: SmartNoteCandidate?
     @State private var showsReminderEditor = false
+    @AppStorage(MembershipNotificationPreference.clubKey) private var clubNotes = true
+    @AppStorage(MembershipNotificationPreference.membershipKey) private var membershipNotes = true
 
     var body: some View {
         ScrollView {
@@ -110,6 +112,16 @@ struct SmartNotificationsView: View {
                     }.modifier(NotificationThemeRow(showsSeparator:
                         kind != SmartNoteKind.allCases.sorted { $0.priority < $1.priority }.first))
                 }
+                // Proof 56: Club and membership notes sit outside the daily limit.
+                VStack(alignment: .leading, spacing: 8) {
+                    Toggle("Club", isOn: $clubNotes).zoText(.section)
+                    Text("Invites, follows, respect, your reports").zoText(.caption).foregroundStyle(theme.textSecondary)
+                }.modifier(NotificationThemeRow(showsSeparator: true))
+                VStack(alignment: .leading, spacing: 8) {
+                    Toggle("Your membership", isOn: $membershipNotes).zoText(.section)
+                        .accessibilityIdentifier("notes.membership")
+                    Text("Trial ending, payment problems, also by email").zoText(.caption).foregroundStyle(theme.textSecondary)
+                }.modifier(NotificationThemeRow(showsSeparator: true))
             }
 
             NotificationThemeGroup(title: "Your boundaries") {

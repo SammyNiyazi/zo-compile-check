@@ -327,6 +327,7 @@ private struct WorkoutRestCountdown: View {
 struct ZeroOneLiveActivityWidgets: WidgetBundle {
     var body: some Widget {
         WorkoutLiveActivityWidget()
+        WalkLiveActivityWidget()
         DailyStepsWidget()
         DailyCaloriesWidget()
         DailyWaterWidget()

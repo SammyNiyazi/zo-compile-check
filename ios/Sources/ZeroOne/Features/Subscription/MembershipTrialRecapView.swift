@@ -286,7 +286,7 @@ struct MembershipTrialRecapView: View {
                   let price = renewal.verifiedPrice, let period = renewal.verifiedPeriod else {
                 return localization.format("Your trial ends %1$@. Check the renewal price in your Apple Account.", .text(date))
             }
-            return localization.format("%1$@ %2$@ from %3$@ unless you cancel.", .text(price), .text(period), .text(date))
+            return localization.format("%1$@ %2$@ from %3$@ unless you cancel.", .text(price), .text(localization.string(period)), .text(date))
         case .unknown:
             return localization.format("Your trial ends %1$@. Check renewal details in your Apple Account.", .text(date))
         }

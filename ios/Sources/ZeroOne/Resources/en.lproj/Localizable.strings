@@ -3631,3 +3631,67 @@
 "Tap to tick it off." = "Tap to tick it off.";
 
 "Not ticked yet. " = "Not ticked yet. ";
+
+"%1$@ workout" = "%1$@ workout";
+
+"%1$@ workouts" = "%1$@ workouts";
+
+"%1$@ new best" = "%1$@ new best";
+
+"%1$@ new bests" = "%1$@ new bests";
+
+"%1$@ and %2$@" = "%1$@ and %2$@";
+
+"Your %1$@ went from %2$@ to %3$@ %4$@." = "Your %1$@ went from %2$@ to %3$@ %4$@.";
+
+"%1$@ so far." = "%1$@ so far.";
+
+"On %1$@ it becomes %2$@ %3$@." = "On %1$@ it becomes %2$@ %3$@.";
+
+"On %1$@ your card becomes yours." = "On %1$@ your card becomes yours.";
+
+"Cancel by %1$@ and nothing is charged." = "Cancel by %1$@ and nothing is charged.";
+
+"2 days left in your trial" = "2 days left in your trial";
+
+"Last day of your trial" = "Last day of your trial";
+
+"Your card is waiting" = "Your card is waiting";
+
+"Your card is held for you for %1$@ more days, with your %2$@." = "Your card is held for you for %1$@ more days, with your %2$@.";
+
+"Your card is held for you for %1$@ more days." = "Your card is held for you for %1$@ more days.";
+
+"%1$@ days in: %2$@." = "%1$@ days in: %2$@.";
+
+"On %1$@ your card becomes yours and Apple charges %2$@ %3$@. Not for you? Cancel by %4$@ and nothing is charged." = "On %1$@ your card becomes yours and Apple charges %2$@ %3$@. Not for you? Cancel by %4$@ and nothing is charged.";
+
+"On %1$@ your card becomes yours. Not for you? Cancel by %2$@ and nothing is charged." = "On %1$@ your card becomes yours. Not for you? Cancel by %2$@ and nothing is charged.";
+
+"Day %1$@ of %2$@" = "Day %1$@ of %2$@";
+
+"a month" = "a month";
+
+"a year" = "a year";
+
+"Invites, follows, respect, your reports" = "Invites, follows, respect, your reports";
+
+"Your membership" = "Your membership";
+
+"Trial ending, payment problems, also by email" = "Trial ending, payment problems, also by email";
+
+"No GPS" = "No GPS";
+
+"Finding GPS" = "Finding GPS";
+
+"Saving" = "Saving";
+
+"Pace" = "Pace";
+
+"Pause" = "Pause";
+
+"Resume" = "Resume";
+
+"Pause walk in 01" = "Pause walk in 01";
+
+"Resume walk in 01" = "Resume walk in 01";

@@ -3632,3 +3632,67 @@
 "Tap to tick it off." = "Докосни, за да го отметнеш.";
 
 "Not ticked yet. " = "Още не е отметнато. ";
+
+"%1$@ workout" = "%1$@ тренировка";
+
+"%1$@ workouts" = "%1$@ тренировки";
+
+"%1$@ new best" = "%1$@ нов рекорд";
+
+"%1$@ new bests" = "%1$@ нови рекорда";
+
+"%1$@ and %2$@" = "%1$@ и %2$@";
+
+"Your %1$@ went from %2$@ to %3$@ %4$@." = "%1$@ стигна от %2$@ до %3$@ %4$@.";
+
+"%1$@ so far." = "%1$@ досега.";
+
+"On %1$@ it becomes %2$@ %3$@." = "На %1$@ става %2$@ %3$@.";
+
+"On %1$@ your card becomes yours." = "На %1$@ картата става твоя.";
+
+"Cancel by %1$@ and nothing is charged." = "Откажи до %1$@ и нищо не се таксува.";
+
+"2 days left in your trial" = "Още 2 дни от пробния период";
+
+"Last day of your trial" = "Последен ден от пробния период";
+
+"Your card is waiting" = "Картата ти чака";
+
+"Your card is held for you for %1$@ more days, with your %2$@." = "Картата ти е запазена още %1$@ дни, с твоите %2$@.";
+
+"Your card is held for you for %1$@ more days." = "Картата ти е запазена още %1$@ дни.";
+
+"%1$@ days in: %2$@." = "%1$@ дни вътре: %2$@.";
+
+"On %1$@ your card becomes yours and Apple charges %2$@ %3$@. Not for you? Cancel by %4$@ and nothing is charged." = "На %1$@ картата става твоя и Apple таксува %2$@ %3$@. Не е за теб? Откажи до %4$@ и нищо не се таксува.";
+
+"On %1$@ your card becomes yours. Not for you? Cancel by %2$@ and nothing is charged." = "На %1$@ картата става твоя. Не е за теб? Откажи до %2$@ и нищо не се таксува.";
+
+"Day %1$@ of %2$@" = "Ден %1$@ от %2$@";
+
+"a month" = "на месец";
+
+"a year" = "на година";
+
+"Invites, follows, respect, your reports" = "Покани, последвания, уважение, твоите сигнали";
+
+"Your membership" = "Твоето членство";
+
+"Trial ending, payment problems, also by email" = "Край на пробния период, проблеми с плащането, също и по имейл";
+
+"No GPS" = "Няма GPS";
+
+"Finding GPS" = "Търси GPS";
+
+"Saving" = "Записва се";
+
+"Pace" = "Темпо";
+
+"Pause" = "Пауза";
+
+"Resume" = "Продължи";
+
+"Pause walk in 01" = "Пауза на разходката в 01";
+
+"Resume walk in 01" = "Продължи разходката в 01";

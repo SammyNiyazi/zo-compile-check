@@ -11,6 +11,8 @@ final class StoreKitMembershipStore {
     private(set) var action: MembershipActionState = .idle
     private(set) var isLoading = false
     private(set) var message: String?
+    /// Proof 53: the verified trial end, renewal switch and renewal price. nil outside a trial.
+    private(set) var trialRenewal: MembershipRecapRenewal?
     var selectedProductID: String?
 
     let configuration: MembershipConfiguration
@@ -139,6 +141,7 @@ final class StoreKitMembershipStore {
     }
 
     func refreshAccess() async {
+        trialRenewal = nil
         let ids = Set(configuration.productIDs)
         var entitlement: Transaction?
         for await result in Transaction.currentEntitlements {
@@ -172,6 +175,7 @@ final class StoreKitMembershipStore {
                           products.first(where: { $0.id == live.1.productID })?.subscription?.introductoryOffer?.paymentMode == .freeTrial,
                           let end = live.1.expirationDate {
                     access = .trial(until: end)
+                    trialRenewal = Self.renewal(end: end, transaction: live.1, statuses: statuses, products: products)
                 } else {
                     access = .member(until: live.1.expirationDate)
                 }
@@ -251,6 +255,29 @@ final class StoreKitMembershipStore {
             message = "Apple could not check purchases right now. Try again later."
         }
         return false
+    }
+
+    /// Only Apple's verified renewal info decides renews or cancelled; the price is
+    /// the product the subscription renews into, never the currently selected offer.
+    private static func renewal(end: Date, transaction: Transaction, statuses: [Product.SubscriptionInfo.Status],
+                                products: [Product]) -> MembershipRecapRenewal {
+        let info = statuses.lazy.compactMap { status -> Product.SubscriptionInfo.RenewalInfo? in
+            guard case .verified(let current) = status.transaction, current.id == transaction.id,
+                  case .verified(let info) = status.renewalInfo else { return nil }
+            return info
+        }.first
+        let continuation: MembershipRecapRenewal.Continuation = info.map { $0.willAutoRenew ? .renews : .cancelled } ?? .unknown
+        let product = products.first { $0.id == (info?.autoRenewPreference ?? transaction.productID) }
+        var period: String?
+        if let subscription = product?.subscription, subscription.subscriptionPeriod.value == 1 {
+            switch subscription.subscriptionPeriod.unit {
+            case .month: period = "a month"
+            case .year: period = "a year"
+            default: period = nil
+            }
+        }
+        return MembershipRecapRenewal(trialEnds: end, continuation: continuation,
+                                      verifiedPrice: product?.displayPrice, verifiedPeriod: period)
     }
 
     private static func twoWeekDays(_ period: Product.SubscriptionPeriod) -> Int? {

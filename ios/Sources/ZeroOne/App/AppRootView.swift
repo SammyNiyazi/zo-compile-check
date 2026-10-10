@@ -168,6 +168,8 @@ private struct ZeroOneMountedRootContent: View {
     @State private var workoutMusic: WorkoutMusicStore
     @State private var smartNotes = SmartNoteCenter()
     @State private var membership = StoreKitMembershipStore(configuration: .current)
+    @State private var trialMoments = TrialMomentStore()
+    @State private var showsTrialRecap = false
     @State private var userProfile: ZeroOneUserProfileRepository
     @State private var healthConnection: HealthConnectionRepository
     @State private var stepsDay: StepsDayRepository
@@ -334,6 +336,7 @@ private struct ZeroOneMountedRootContent: View {
     @State private var showsProgrammeVolumeError = false
     @State private var showsUnavailableVolumeReview = false
     @State private var liveActivityCoordinator = WorkoutLiveActivityCoordinator()
+    @State private var walkActivityCoordinator = WalkLiveActivityCoordinator()
     @State private var outdoorActivity: OutdoorActivityViewModel
     @State private var outdoorActivityRepository: OutdoorActivityRepository
     @State private var showsOutdoorActivityPresentationEpoch = UUID()
@@ -1787,12 +1790,25 @@ private struct ZeroOneMountedRootContent: View {
         .task(id: liveActivityProjection) {
             await liveActivityCoordinator.sync(liveActivityProjection)
         }
+        .task(id: walkActivityProjection) {
+            await walkActivityCoordinator.sync(walkActivityProjection)
+        }
         .task {
             // Screen 51: once per version after an update, after the root has settled.
             try? await Task.sleep(for: .milliseconds(900))
             guard !Task.isCancelled, whatsNew == nil, let pending = WhatsNewPolicy().pending() else { return }
             whatsNew = WhatsNewPresentation(version: pending.version, items: pending.items)
         }
+        .task {
+            // Proof 53: the trial's last days need Apple's verified trial state.
+            await membership.start()
+            refreshTrialMoments()
+        }
+        .onChange(of: membership.access) { _, _ in refreshTrialMoments() }
+        .onChange(of: selectedTab) { _, tab in
+            if tab == .today { refreshTrialMoments() }
+        }
+        .sheet(isPresented: $showsTrialRecap) { trialRecapSheet }
         .sheet(item: $whatsNew) { presentation in
             WhatsNewView(version: presentation.version, items: presentation.items) {
                 WhatsNewPolicy().markSeen()
@@ -1827,6 +1843,14 @@ private struct ZeroOneMountedRootContent: View {
             _ = await shareCoordinator?.installOutdoorOwners()
             // Sharing installation failure never suppresses normal recovery/load.
             await outdoorActivity.load()
+            // Study 36: Pause and Resume from the walk's Live Activity, for this exact session.
+            WalkActivityControl.handler = { [outdoorActivity] command, sessionID in
+                guard outdoorActivity.checkpoint?.id == sessionID else { return }
+                switch command {
+                case .pause: await outdoorActivity.pause()
+                case .resume: await outdoorActivity.startWithRoute()
+                }
+            }
             await refreshWellbeingOutdoorHistory()
         }
         .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged).receive(on: RunLoop.main)) { _ in
@@ -1939,6 +1963,7 @@ private struct ZeroOneMountedRootContent: View {
                 dailyGoals.reload()
                 wellbeing.reload()
                 workoutProgression.reviews.reload()
+                refreshTrialMoments()
                 hydrationViewModel.refreshForCurrentDay()
                 Task { await outdoorActivity.refreshLatestWalk() }
                 Task { await refreshWellbeingOutdoorHistory() }
@@ -2080,7 +2105,7 @@ private struct ZeroOneMountedRootContent: View {
                         onReviewWellbeing: { showsWellbeingReview = true },
                         programmeVolumeUnavailable: todayProgrammeVolumeUnavailable,
                         dailyStepGoal: dailyGoals.isAvailable ? dailyGoals.value.steps : nil,
-                        missedPlanCard: missedPlanCardView
+                        missedPlanCard: todayTopCardsView
                     )
                 }
             case .workout:
@@ -2581,6 +2606,67 @@ private struct ZeroOneMountedRootContent: View {
     }
 
     /// Proof 41: Do it today moves the plan to now and opens it; Move keeps the time tomorrow; Skip cancels.
+    private var todayTopCardsView: AnyView? {
+        let trial = trialEndingCardView
+        let missed = missedPlanCardView
+        guard trial != nil || missed != nil else { return nil }
+        return AnyView(VStack(spacing: ZOSpace.m) {
+            if let trial { trial }
+            if let missed { missed }
+        })
+    }
+
+    private var trialHistory: [WorkoutHistoryEntry]? {
+        workoutHistory.availability == .available ? workoutHistory.entries : nil
+    }
+
+    private func trialRenewal(_ window: TrialWindow) -> MembershipRecapRenewal {
+        if let renewal = membership.trialRenewal, renewal.trialEnds == window.end { return renewal }
+        return MembershipRecapRenewal(trialEnds: window.end, continuation: trialMoments.continuation,
+                                      verifiedPrice: nil, verifiedPeriod: nil)
+    }
+
+    /// Proof 53: day 13 and 14 of the trial, while Apple still reports the trial.
+    private var trialEndingCardView: AnyView? {
+        guard case .trial = membership.access, let window = trialMoments.window, !trialMoments.cardDismissed,
+              window.showsTodayCard(now: .now, calendar: .current) else { return nil }
+        return AnyView(TrialEndingCard(window: window, renewal: trialRenewal(window),
+            progress: TrialProgress.make(window: window, history: trialHistory, calendar: .current),
+            onGotIt: { trialMoments.dismissCard() }))
+    }
+
+    @ViewBuilder private var trialRecapSheet: some View {
+        if let window = trialMoments.window {
+            let history = trialHistory
+            let progress = TrialProgress.make(window: window, history: history, calendar: .current)
+            TrialRecapHost(
+                recap: history.flatMap { progress?.recap(window: window, history: $0, calendar: .current) },
+                renewal: trialRenewal(window), shareFacts: progress?.share,
+                onClose: { showsTrialRecap = false })
+                .zeroOneTheme(activeTheme)
+                .preferredColorScheme(selectedAppearance.preferredColorScheme)
+        }
+    }
+
+    /// Records Apple's trial state, rebuilds the two trial notifications, and opens
+    /// "Your 14 days" once on the last evening when Today is in front.
+    private func refreshTrialMoments() {
+        if let renewal = membership.trialRenewal { trialMoments.record(renewal) }
+        guard let window = trialMoments.window, membership.access != .checking else { return }
+        var continued = false
+        if case .member = membership.access { continued = true }
+        let progress = TrialProgress.make(window: window, history: trialHistory, calendar: .current)
+        TrialNotificationScheduler.reconcile(!MembershipNotificationPreference.membershipOn ? [] : TrialNotificationScheduler.plan(
+            window: window, continuation: trialMoments.continuation, continued: continued,
+            renewal: membership.trialRenewal, progress: progress, now: .now, calendar: .current,
+            localization: localization))
+        guard window.recapIsDue(now: .now, calendar: .current), !trialMoments.recapShown,
+              selectedTab == .today, scenePhase == .active, !showsTrialRecap,
+              !rootVoiceHasCompetingPresentation, whatsNew == nil else { return }
+        trialMoments.markRecapShown()
+        showsTrialRecap = true
+    }
+
     private var missedPlanCardView: AnyView? {
         guard !programmeCoordinator.route.isActive,
               let missed = MissedPlan.latest(workoutAppointments.appointments) else { return nil }
@@ -3098,6 +3184,13 @@ private struct ZeroOneMountedRootContent: View {
             .usingAccent(AccentPreference.storedValue(selectedAccentRawValue))
             .usingLanguage(localization.language)
             .usingDesignTheme(DesignThemePreference.storedValue(selectedDesignThemeRawValue).designTheme)
+    }
+
+    private var walkActivityProjection: WalkActivityProjection? {
+        WalkActivityProjection.make(surface: outdoorActivity.surface, checkpoint: outdoorActivity.checkpoint,
+            withoutGPS: outdoorActivity.isRecordingWithoutGPS,
+            accent: AccentPreference.storedValue(selectedAccentRawValue), language: localization.language,
+            theme: DesignThemePreference.storedValue(selectedDesignThemeRawValue).designTheme)
     }
 
     private var notificationWorkoutActive: Bool {

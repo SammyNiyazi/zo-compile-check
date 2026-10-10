@@ -1,4 +1,5 @@
 import ActivityKit
+import AppIntents
 import Foundation
 import SwiftUI
 
@@ -202,5 +203,117 @@ struct SharedSurfaceLocalization {
     }
     func remainingSeconds(_ value: Int) -> String {
         localization.format("%1$@ remaining", .text(seconds(value)))
+    }
+}
+
+// MARK: - Walk and run Live Activity (study 36)
+
+/// The walk as its own activity: time, distance and steps, never a route or a place.
+struct WalkActivityAttributes: ActivityAttributes {
+    let sessionID: UUID
+    /// "walk" or "run"; the title follows the activity type.
+    let kind: String
+
+    struct ContentState: Codable, Hashable, Sendable {
+        enum Phase: String, Codable, Hashable, Sendable { case finding, recording, noGPS, paused, saving, saved }
+        var phase: Phase
+        /// Recording: the clock counts up from here. Paused or saved: `frozenSeconds`.
+        var elapsedAnchor: Date
+        var frozenSeconds: Int?
+        /// nil until the first usable fix, and always nil in time-only recording.
+        var distanceMetres: Double?
+        var steps: Int?
+        var distanceIncomplete: Bool
+        var designThemeIdentifier: String?
+        var accentPreference: String?
+        var displayLanguageIdentifier: String?
+
+        init(phase: Phase, elapsedAnchor: Date, frozenSeconds: Int?, distanceMetres: Double?, steps: Int?,
+             distanceIncomplete: Bool, designThemeIdentifier: String?, accentPreference: String?, displayLanguageIdentifier: String?) {
+            self.phase = phase
+            self.elapsedAnchor = elapsedAnchor
+            self.frozenSeconds = frozenSeconds
+            self.distanceMetres = distanceMetres
+            self.steps = steps
+            self.distanceIncomplete = distanceIncomplete
+            self.designThemeIdentifier = designThemeIdentifier
+            self.accentPreference = accentPreference
+            self.displayLanguageIdentifier = displayLanguageIdentifier
+        }
+
+        /// Tolerant: a field added later never breaks an activity started by an older build.
+        init(from decoder: Decoder) throws {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            phase = (try? values.decode(Phase.self, forKey: .phase)) ?? .recording
+            elapsedAnchor = (try? values.decode(Date.self, forKey: .elapsedAnchor)) ?? .now
+            frozenSeconds = try? values.decodeIfPresent(Int.self, forKey: .frozenSeconds)
+            distanceMetres = try? values.decodeIfPresent(Double.self, forKey: .distanceMetres)
+            steps = try? values.decodeIfPresent(Int.self, forKey: .steps)
+            distanceIncomplete = (try? values.decodeIfPresent(Bool.self, forKey: .distanceIncomplete)) ?? false
+            designThemeIdentifier = try? values.decodeIfPresent(String.self, forKey: .designThemeIdentifier)
+            accentPreference = try? values.decodeIfPresent(String.self, forKey: .accentPreference)
+            displayLanguageIdentifier = try? values.decodeIfPresent(String.self, forKey: .displayLanguageIdentifier)
+        }
+
+        var displayLanguage: AppLanguage {
+            SharedSurfaceLocalization.language(displayLanguageIdentifier)
+        }
+        var localization: AppLocalization { AppLocalization(language: displayLanguage) }
+        var displayTheme: ZOTheme { designThemeIdentifier.flatMap(ZOTheme.init(rawValue:)) ?? .core }
+        var accent: AccentPreference { AccentPreference.storedValue(accentPreference) }
+        var isLive: Bool { phase == .finding || phase == .recording || phase == .noGPS }
+
+        /// Average pace from the recorded distance only: "9:48".
+        var paceText: String? {
+            guard let distanceMetres, distanceMetres >= 50, let seconds = frozenSeconds ?? liveSeconds else { return nil }
+            let perKm = Int((Double(seconds) / (distanceMetres / 1000)).rounded())
+            guard perKm > 0, perKm < 60 * 60 else { return nil }
+            return "\(perKm / 60):" + String(format: "%02d", perKm % 60)
+        }
+        private var liveSeconds: Int? {
+            let value = Date.now.timeIntervalSince(elapsedAnchor)
+            return value.isFinite && value >= 0 ? Int(value) : nil
+        }
+    }
+}
+
+enum WalkActivityCommand: String, Sendable { case pause, resume }
+
+/// The app installs the handler; the intents run in the app's process.
+@MainActor
+enum WalkActivityControl {
+    static var handler: ((WalkActivityCommand, UUID) async -> Void)?
+
+    static func run(_ command: WalkActivityCommand, sessionID: String) async {
+        guard let id = UUID(uuidString: sessionID), let handler else { return }
+        await handler(command, id)
+    }
+}
+
+struct PauseWalkIntent: LiveActivityIntent {
+    static var title: LocalizedStringResource = "Pause walk in 01"
+    static var isDiscoverable = false
+    @Parameter(title: "Session") var sessionID: String
+
+    init() { }
+    init(sessionID: UUID) { self.sessionID = sessionID.uuidString }
+
+    func perform() async throws -> some IntentResult {
+        await WalkActivityControl.run(.pause, sessionID: sessionID)
+        return .result()
+    }
+}
+
+struct ResumeWalkIntent: LiveActivityIntent {
+    static var title: LocalizedStringResource = "Resume walk in 01"
+    static var isDiscoverable = false
+    @Parameter(title: "Session") var sessionID: String
+
+    init() { }
+    init(sessionID: UUID) { self.sessionID = sessionID.uuidString }
+
+    func perform() async throws -> some IntentResult {
+        await WalkActivityControl.run(.resume, sessionID: sessionID)
+        return .result()
     }
 }
