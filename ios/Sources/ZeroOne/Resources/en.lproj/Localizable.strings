@@ -3259,3 +3259,233 @@
 "That isn't available." = "That isn't available.";
 
 "The Club can't be reached right now. Try again." = "The Club can't be reached right now. Try again.";
+
+"%1$@ · %2$lld kcal" = "%1$@ · %2$lld kcal";
+
+"%1$@ per 100" = "%1$@ per 100";
+
+"%1$@, %2$@ grams so far, plus %3$@ in this portion" = "%1$@, %2$@ grams so far, plus %3$@ in this portion";
+
+"%1$@, not listed for this food" = "%1$@, not listed for this food";
+
+"%1$lld foods" = "%1$lld foods";
+
+"%1$lld saved" = "%1$lld saved";
+
+"+%1$@ g · %2$@ so far" = "+%1$@ g · %2$@ so far";
+
+"%1$@ added to breakfast" = "%1$@ added to breakfast";
+
+"%1$@ added to lunch" = "%1$@ added to lunch";
+
+"%1$@ added to dinner" = "%1$@ added to dinner";
+
+"%1$@ added to snack" = "%1$@ added to snack";
+
+"1 bar" = "1 bar";
+
+"100 ml" = "100 ml";
+
+"01 needs the camera to read a barcode or a label, on this iPhone. You can turn it on in Settings, or type the number." = "01 needs the camera to read a barcode or a label, on this iPhone. You can turn it on in Settings, or type the number.";
+
+"Add · %1$lld kcal" = "Add · %1$lld kcal";
+
+"Add a name before saving." = "Add a name before saving.";
+
+"Add all · %1$lld kcal" = "Add all · %1$lld kcal";
+
+"Add both · %1$lld kcal" = "Add both · %1$lld kcal";
+
+"Add it · %1$lld kcal" = "Add it · %1$lld kcal";
+
+"Add the energy in kcal before saving." = "Add the energy in kcal before saving.";
+
+"Add to breakfast · %1$lld kcal" = "Add to breakfast · %1$lld kcal";
+
+"Add to dinner · %1$lld kcal" = "Add to dinner · %1$lld kcal";
+
+"Add to lunch · %1$lld kcal" = "Add to lunch · %1$lld kcal";
+
+"Add to snack · %1$lld kcal" = "Add to snack · %1$lld kcal";
+
+"Amount" = "Amount";
+
+"Barcode frame, point at the barcode" = "Barcode frame, point at the barcode";
+
+"Barcode recognised" = "Barcode recognised";
+
+"Basic food data from USDA FoodData Central" = "Basic food data from USDA FoodData Central";
+
+"Basic foods" = "Basic foods";
+
+"Basic foods come from USDA FoodData Central and live on this iPhone, so search works offline." = "Basic foods come from USDA FoodData Central and live on this iPhone, so search works offline.";
+
+"Breakfast" = "Breakfast";
+
+"Camera is off for 01" = "Camera is off for 01";
+
+"Carbohydrate" = "Carbohydrate";
+
+"Carbs" = "Carbs";
+
+"Check" = "Check";
+
+"Check %1$@: it needs a number per 100." = "Check %1$@: it needs a number per 100.";
+
+"Check the label" = "Check the label";
+
+"Check this value" = "Check this value";
+
+"Copy the values per 100 g or 100 ml from the label. It's saved to My foods." = "Copy the values per 100 g or 100 ml from the label. It's saved to My foods.";
+
+"Correct the values for yourself" = "Correct the values for yourself";
+
+"Correct the values for yourself. They are saved to My foods on this iPhone." = "Correct the values for yourself. They are saved to My foods on this iPhone.";
+
+"Dinner" = "Dinner";
+
+"Enter a meal by hand" = "Enter a meal by hand";
+
+"Enter a portion greater than zero." = "Enter a portion greater than zero.";
+
+"Fibre" = "Fibre";
+
+"Fix it" = "Fix it";
+
+"Food data from Open Food Facts, open licence" = "Food data from Open Food Facts, open licence";
+
+"Foods you photograph from a label, fix or type in are kept here." = "Foods you photograph from a label, fix or type in are kept here.";
+
+"For when you just know the number. No macros are added." = "For when you just know the number. No macros are added.";
+
+"Found" = "Found";
+
+"Log food" = "Log food";
+
+"Look up" = "Look up";
+
+"Lunch" = "Lunch";
+
+"Meal" = "Meal";
+
+"My foods" = "My foods";
+
+"Name (optional)" = "Name (optional)";
+
+"No connection. Search your foods and basic foods instead, or try again." = "No connection. Search your foods and basic foods instead, or try again.";
+
+"No connection. Your foods and basic foods still work." = "No connection. Your foods and basic foods still work.";
+
+"No products found. Try fewer words, or scan the barcode." = "No products found. Try fewer words, or scan the barcode.";
+
+"Not in the food database yet" = "Not in the food database yet";
+
+"Not listed" = "Not listed";
+
+"Not today" = "Not today";
+
+"Nutrition label" = "Nutrition label";
+
+"Open Food Facts" = "Open Food Facts";
+
+"Open Food Facts · needs a connection" = "Open Food Facts · needs a connection";
+
+"Open Food Facts didn't answer. Try again in a moment." = "Open Food Facts didn't answer. Try again in a moment.";
+
+"Options for %1$@" = "Options for %1$@";
+
+"Per 100 g" = "Per 100 g";
+
+"Per 100 g: %1$lld kcal, protein %2$@, carbs %3$@, fat %4$@" = "Per 100 g: %1$lld kcal, protein %2$@, carbs %3$@, fat %4$@";
+
+"Per 100 ml" = "Per 100 ml";
+
+"Per 100 ml: %1$lld kcal, protein %2$@, carbs %3$@, fat %4$@" = "Per 100 ml: %1$lld kcal, protein %2$@, carbs %3$@, fat %4$@";
+
+"Photo a nutrition label" = "Photo a nutrition label";
+
+"Photo the label" = "Photo the label";
+
+"Point at the barcode" = "Point at the barcode";
+
+"portion · kcal" = "portion · kcal";
+
+"Products" = "Products";
+
+"Quick add" = "Quick add";
+
+"Read from your photo" = "Read from your photo";
+
+"Read on this iPhone. Only the number is looked up." = "Read on this iPhone. Only the number is looked up.";
+
+"Read on this iPhone. The photo stays here unless you share it." = "Read on this iPhone. The photo stays here unless you share it.";
+
+"Recent" = "Recent";
+
+"Salt" = "Salt";
+
+"Same as yesterday?" = "Same as yesterday?";
+
+"Save and add" = "Save and add";
+
+"Saved to My foods on this iPhone. Nothing is sent anywhere." = "Saved to My foods on this iPhone. Nothing is sent anywhere.";
+
+"Scan" = "Scan";
+
+"Scan a barcode" = "Scan a barcode";
+
+"Search foods" = "Search foods";
+
+"Search instead" = "Search instead";
+
+"Search products for “%1$@”" = "Search products for “%1$@”";
+
+"Search, scan a barcode or add a food you had before." = "Search, scan a barcode or add a food you had before.";
+
+"Searching Open Food Facts" = "Searching Open Food Facts";
+
+"Snack" = "Snack";
+
+"Take a photo of the nutrition label and 01 reads it for you. You check the numbers, and it's saved to your foods." = "Take a photo of the nutrition label and 01 reads it for you. You check the numbers, and it's saved to your foods.";
+
+"Take the photo" = "Take the photo";
+
+"Tap any number to fix it." = "Tap any number to fix it.";
+
+"Tap any number to fix it. %1$lld need a look." = "Tap any number to fix it. %1$lld need a look.";
+
+"Tap any number to fix it. One needs a look." = "Tap any number to fix it. One needs a look.";
+
+"That isn't a barcode number. Check the digits under the bars." = "That isn't a barcode number. Check the digits under the bars.";
+
+"The digits under the barcode." = "The digits under the barcode.";
+
+"The photo couldn't be taken. Try again or type it in." = "The photo couldn't be taken. Try again or type it in.";
+
+"This food couldn't be saved. Check your meals before trying again." = "This food couldn't be saved. Check your meals before trying again.";
+
+"This iPhone can't scan barcodes" = "This iPhone can't scan barcodes";
+
+"This portion" = "This portion";
+
+"Type a label in" = "Type a label in";
+
+"Type it in" = "Type it in";
+
+"Type the number" = "Type the number";
+
+"Values per" = "Values per";
+
+"Whole pack, %1$@" = "Whole pack, %1$@";
+
+"You can type the number from under the barcode instead." = "You can type the number from under the barcode instead.";
+
+"Your food log stays on this iPhone. A barcode lookup sends only the number to Open Food Facts; basic foods are on the iPhone." = "Your food log stays on this iPhone. A barcode lookup sends only the number to Open Food Facts; basic foods are on the iPhone.";
+
+"Your label photo" = "Your label photo";
+
+"Your values, copied from a label" = "Your values, copied from a label";
+
+"of which saturates" = "of which saturates";
+
+"of which sugars" = "of which sugars";

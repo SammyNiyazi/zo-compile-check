@@ -324,6 +324,7 @@ private struct ZeroOneMountedRootContent: View {
     }
     @State private var pendingOutdoorKind: OutdoorActivityKind?
     @State private var focusHydrationInDiets = false
+    @State private var openFoodLogInDiets = false
     @State private var assistantFeedback: AssistantActionFeedback?
     @State private var assistantFeedbackTask: Task<Void, Never>?
     @State private var quickWaterToast: QuickWaterToast?
@@ -1378,6 +1379,7 @@ private struct ZeroOneMountedRootContent: View {
                     onOpenDiets: {
                         dismissMainActions()
                         focusHydrationInDiets = false
+                        openFoodLogInDiets = true
                         selectedTab = .diets
                     },
                     onOpenHistory: {
@@ -2042,7 +2044,8 @@ private struct ZeroOneMountedRootContent: View {
                                 showsHeader: false,
                                 onOpenTrackers: openTrackers,
                                 isActive: isActive,
-                                trackerSummary: { AnyView(DietTrackerChecklistView(model: dietTrackerFeature)) }
+                                trackerSummary: { AnyView(DietTrackerChecklistView(model: dietTrackerFeature)) },
+                                openFoodLog: $openFoodLogInDiets
                             )
                         },
                         trackers: { DietTrackersView(model: dietTrackerFeature) },

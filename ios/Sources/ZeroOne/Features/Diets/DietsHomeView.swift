@@ -13,6 +13,8 @@ struct DietsHomeView: View {
     var isActive = true
     /// Optional actual tracker content supplied by the owner of the tracker repository.
     var trackerSummary: (() -> AnyView)? = nil
+    /// Set by Main Action > Meals: opens Log food as soon as Diets shows.
+    var openFoodLog: Binding<Bool> = .constant(false)
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -33,9 +35,11 @@ struct DietsHomeView: View {
     @State private var canOpenCameraSettings = false
     @State private var isRequestingFoodCamera = false
     @State private var foodCameraRequest: Task<Void, Never>?
-    @State private var addedEntryForUndo: NutritionEntry?
+    @State private var addedEntriesForUndo: [NutritionEntry] = []
     @State private var mealFeedback: String?
     @State private var mealFeedbackTask: Task<Void, Never>?
+    @State private var foodLog: FoodLogModel?
+    @State private var mealLabels = FoodLogStore().labels()
 
     var body: some View {
         GeometryReader { proxy in
@@ -61,7 +65,7 @@ struct DietsHomeView: View {
                         if nutrition.availability != .unavailable {
                             entriesSection
                             DisclosureGroup("About food logging") {
-                                Text("Meals are entered manually. Your logged values stay on this iPhone.")
+                                Text("Your food log stays on this iPhone. A barcode lookup sends only the number to Open Food Facts; basic foods are on the iPhone.")
                                     .zoText(.caption)
                                     .foregroundStyle(theme.textSecondary)
                             }
@@ -117,8 +121,8 @@ struct DietsHomeView: View {
         .safeAreaInset(edge: .bottom, spacing: 0) {
             if let mealFeedback {
                 ZOToast(message: localization.string(mealFeedback),
-                    actionTitle: addedEntryForUndo == nil ? nil : localization.string("Undo"),
-                    action: addedEntryForUndo == nil ? nil : undoAddedEntry)
+                    actionTitle: addedEntriesForUndo.isEmpty ? nil : localization.string("Undo"),
+                    action: addedEntriesForUndo.isEmpty ? nil : undoAddedEntry)
                 .padding(.horizontal, ZOSpace.screenMargin)
                 .padding(.bottom, ZOSpace.s)
                 .accessibilityElement(children: .contain)
@@ -155,6 +159,24 @@ struct DietsHomeView: View {
                 showsFoodCamera = false
             }
             .ignoresSafeArea()
+        }
+        .fullScreenCover(item: $foodLog, onDismiss: { mealLabels = FoodLogStore().labels() }) { model in
+            FoodLogView(model: model, onAdded: { entries, meal in
+                foodLog = nil
+                mealLabels = FoodLogStore().labels()
+                let name = entries.count == 1 ? entries[0].title : localization.format("%1$lld foods", .integer(entries.count))
+                showMealFeedback(localization.format(meal.addedKey, .text(name)), undoEntries: entries)
+            }, onManualEntry: {
+                foodLog = nil
+                beginAddingEntry()
+            }, onClose: { foodLog = nil })
+            .zeroOneTheme(theme)
+            .preferredColorScheme(theme.colorScheme)
+        }
+        .task(id: openFoodLog.wrappedValue) {
+            guard openFoodLog.wrappedValue, isActive else { return }
+            openFoodLog.wrappedValue = false
+            beginFoodLog()
         }
         .alert("Food photo", isPresented: Binding(
             get: { foodPhotoMessage != nil }, set: { if !$0 { foodPhotoMessage = nil } }
@@ -410,11 +432,12 @@ struct DietsHomeView: View {
                 .padding(.vertical, ZOSpace.m)
                 .accessibilityElement(children: .combine)
             } else {
+                let groups = FoodMealGroup.groups(todaysEntries, labels: mealLabels)
                 VStack(spacing: 0) {
-                    ForEach(todaysEntries) { entry in
-                        entryRow(entry)
+                    ForEach(groups) { group in
+                        mealRow(group)
 
-                        if entry.id != todaysEntries.last?.id {
+                        if group.id != groups.last?.id {
                             Rectangle()
                                 .fill(theme.strokeSubtle)
                                 .frame(height: 1)
@@ -425,93 +448,71 @@ struct DietsHomeView: View {
                 .zoThemeCardSurface()
             }
 
-            Button("Log a meal", action: beginAddingEntry)
+            Button("Log a meal", action: beginFoodLog)
                 .buttonStyle(ZOButtonStyle(.primary))
-                .accessibilityHint("Opens a local manual nutrition entry form.")
+                .accessibilityHint("Search, scan a barcode or add a food you had before.")
                 .accessibilityIdentifier("diets.food.add")
-            Button(action: requestFoodCamera) {
-                Label("Take food photo", systemImage: "camera")
-            }
-            .buttonStyle(ZOButtonStyle(.secondary, isLoading: isRequestingFoodCamera))
-            .disabled(isRequestingFoodCamera)
-            .accessibilityIdentifier("diets.food.takePhoto")
-            .accessibilityHint("Opens the camera, then lets you review a picture and enter meal values. Automatic nutrition estimates are not connected.")
         }
         .padding(.top, ZOSpace.xl)
     }
 
-    private func entryRow(_ entry: NutritionEntry) -> some View {
-        Group {
-            if dynamicTypeSize.isAccessibilitySize {
-                VStack(alignment: .leading, spacing: ZOSpace.m) {
-                    entryDescription(entry)
-
-                    HStack(spacing: ZOSpace.m) {
-                        calorieValue(entry)
-                        Spacer(minLength: ZOSpace.s)
-                        entryMenu(entry)
+    /// Proof 5: one row per meal. A single food shows its own name; several show
+    /// the meal with what is in it. The subtitle is the meal and the time.
+    private func mealRow(_ group: FoodMealGroup) -> some View {
+        let time = group.firstLoggedAt.formatted(date: .omitted, time: .shortened)
+        let single = group.entries.count == 1
+        return HStack(spacing: ZOSpace.m) {
+            VStack(alignment: .leading, spacing: 3) {
+                Text(single ? group.entries[0].title : localization.string(group.meal.title))
+                    .zoText(.section)
+                    .foregroundStyle(theme.textPrimary)
+                    .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 2)
+                    .fixedSize(horizontal: false, vertical: true)
+                Text(single ? localization.string(group.meal.title) + " · " + time
+                     : group.entries.map(\.title).joined(separator: ", ") + " · " + time)
+                    .zoText(.caption)
+                    .foregroundStyle(theme.textSecondary)
+                    .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 2)
+            }
+            Spacer(minLength: ZOSpace.s)
+            Text(localization.format("%1$lld kcal", .integer(group.calories)))
+                .zoText(.label)
+                .foregroundStyle(theme.textPrimary)
+            Menu {
+                ForEach(group.entries) { entry in
+                    if single {
+                        entryActions(entry)
+                    } else {
+                        Menu(entry.title) { entryActions(entry) }
                     }
                 }
-            } else {
-                HStack(spacing: ZOSpace.m) {
-                    entryDescription(entry)
-                    Spacer(minLength: ZOSpace.s)
-                    calorieValue(entry)
-                    entryMenu(entry)
-                }
+            } label: {
+                Image(systemName: "ellipsis")
+                    .zoIcon(ZOIcon.inline)
+                    .foregroundStyle(theme.textSecondary)
+                    .frame(width: 44, height: 44)
+                    .contentShape(Rectangle())
             }
+            .accessibilityLabel(Text(localization.format("Options for %1$@", .text(single ? group.entries[0].title : localization.string(group.meal.title)))))
         }
         .padding(.vertical, ZOSpace.m)
+        .accessibilityElement(children: .combine)
     }
 
-    private func entryDescription(_ entry: NutritionEntry) -> some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text(entry.title)
-                .zoText(.section)
-                .foregroundStyle(theme.textPrimary)
-                .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 2)
-                .fixedSize(horizontal: false, vertical: true)
-
-            Text(localization.string(entry.foodEvidence?.origin.title ?? "Source type not recorded"))
-                .zoText(.caption)
-                .foregroundStyle(theme.textSecondary)
-                .fixedSize(horizontal: false, vertical: true)
-
-            Text(entrySummary(entry))
-                .zoText(.caption)
-                .foregroundStyle(theme.textSecondary)
-                .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 2)
-                .fixedSize(horizontal: false, vertical: true)
+    @ViewBuilder private func entryActions(_ entry: NutritionEntry) -> some View {
+        Button("Edit", systemImage: "pencil") { beginEditing(entry) }
+        Button("Remove", systemImage: "trash", role: .destructive) {
+            if nutrition.remove(id: entry.id) {
+                addedEntriesForUndo.removeAll { $0.id == entry.id }
+            } else {
+                showMealFeedback("Removal could not be confirmed. Check your meals before trying again.")
+            }
         }
     }
 
-    private func calorieValue(_ entry: NutritionEntry) -> some View {
-        Text(localization.format("%1$lld kcal", .integer(entry.calories)))
-            .zoText(.label)
-            .foregroundStyle(theme.textPrimary)
-            .accessibilityLabel("\(entry.calories) calories")
-    }
-
-    private func entryMenu(_ entry: NutritionEntry) -> some View {
-        Menu {
-            Button("Edit", systemImage: "pencil") {
-                beginEditing(entry)
-            }
-            Button("Remove", systemImage: "trash", role: .destructive) {
-                if nutrition.remove(id: entry.id) {
-                    if addedEntryForUndo?.id == entry.id { addedEntryForUndo = nil }
-                } else {
-                    showMealFeedback("Removal could not be confirmed. Check your meals before trying again.")
-                }
-            }
-        } label: {
-            Image(systemName: "ellipsis")
-                .zoIcon(ZOIcon.inline)
-                .foregroundStyle(theme.textSecondary)
-                .frame(width: 44, height: 44)
-                .contentShape(Rectangle())
-        }
-        .accessibilityLabel("Options for \(entry.title)")
+    private func beginFoodLog() {
+        guard foodLog == nil, !isPresentingEntry else { return }
+        foodLog = FoodLogModel(nutrition: nutrition)
     }
 
     private var unavailableState: some View {
@@ -592,15 +593,6 @@ struct DietsHomeView: View {
 
     private func grams(_ value: Double) -> String {
         value.formatted(.number.precision(.fractionLength(0 ... 1)))
-    }
-
-    private func entrySummary(_ entry: NutritionEntry) -> String {
-        let macros = [
-            entry.proteinGrams.map { "P \(grams($0)) g" },
-            entry.carbohydrateGrams.map { "C \(grams($0)) g" },
-            entry.fatGrams.map { "F \(grams($0)) g" }
-        ].compactMap { $0 }
-        return macros.isEmpty ? "Macros not added" : macros.joined(separator: "  ")
     }
 
     private func beginAddingEntry() {
@@ -686,7 +678,7 @@ struct DietsHomeView: View {
                 try nutrition.update(id: editingEntryID, with: draft)
             } else {
                 let added = try nutrition.add(draft)
-                showMealFeedback(localization.format("%1$@ added", .text(added.title)), undoEntry: added)
+                showMealFeedback(localization.format("%1$@ added", .text(added.title)), undoEntries: [added])
             }
             dismissEditor()
         } catch let error as NutritionEntryValidationError {
@@ -699,32 +691,33 @@ struct DietsHomeView: View {
     private func cancelTransientWork() {
         foodCameraRequest?.cancel()
         mealFeedbackTask?.cancel()
-        addedEntryForUndo = nil
+        addedEntriesForUndo = []
         mealFeedback = nil
     }
 
-    private func showMealFeedback(_ message: String, undoEntry: NutritionEntry? = nil) {
+    private func showMealFeedback(_ message: String, undoEntries: [NutritionEntry] = []) {
         mealFeedbackTask?.cancel()
-        addedEntryForUndo = undoEntry
+        addedEntriesForUndo = undoEntries
         mealFeedback = message
         UIAccessibility.post(notification: .announcement, argument: localization.string(message))
         mealFeedbackTask = Task { @MainActor in
             try? await Task.sleep(for: .seconds(5))
             guard !Task.isCancelled else { return }
-            addedEntryForUndo = nil
+            addedEntriesForUndo = []
             mealFeedback = nil
         }
     }
 
     private func undoAddedEntry() {
-        guard let entry = addedEntryForUndo else { return }
-        addedEntryForUndo = nil
+        let entries = addedEntriesForUndo
+        guard !entries.isEmpty else { return }
+        addedEntriesForUndo = []
         // An edited or replaced entry is no longer the addition this toast owns.
-        guard DietsPresentation.canUndoAddition(entry, current: nutrition.entries(on: entry.loggedAt)) else {
+        guard entries.allSatisfy({ DietsPresentation.canUndoAddition($0, current: nutrition.entries(on: $0.loggedAt)) }) else {
             showMealFeedback("This meal changed. Open it to review your saved entry.")
             return
         }
-        if nutrition.remove(id: entry.id) {
+        if entries.allSatisfy({ nutrition.remove(id: $0.id) }) {
             showMealFeedback("Meal undone.")
         } else {
             showMealFeedback("Undo could not be confirmed. Check your meals.")

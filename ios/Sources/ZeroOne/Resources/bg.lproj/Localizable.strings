@@ -3260,3 +3260,233 @@
 "That isn't available." = "Това не е достъпно.";
 
 "The Club can't be reached right now. Try again." = "В момента няма връзка с Club. Опитай отново.";
+
+"%1$@ · %2$lld kcal" = "%1$@ · %2$lld kcal";
+
+"%1$@ per 100" = "%1$@ на 100";
+
+"%1$@, %2$@ grams so far, plus %3$@ in this portion" = "%1$@, %2$@ грама досега, плюс %3$@ в тази порция";
+
+"%1$@, not listed for this food" = "%1$@, не е посочено за тази храна";
+
+"%1$lld foods" = "%1$lld храни";
+
+"%1$lld saved" = "%1$lld запазени";
+
+"+%1$@ g · %2$@ so far" = "+%1$@ g · %2$@ досега";
+
+"%1$@ added to breakfast" = "%1$@ е добавено към закуската";
+
+"%1$@ added to lunch" = "%1$@ е добавено към обяда";
+
+"%1$@ added to dinner" = "%1$@ е добавено към вечерята";
+
+"%1$@ added to snack" = "%1$@ е добавено към междинното";
+
+"1 bar" = "1 блокче";
+
+"100 ml" = "100 ml";
+
+"01 needs the camera to read a barcode or a label, on this iPhone. You can turn it on in Settings, or type the number." = "01 има нужда от камерата, за да разчете баркод или етикет на този iPhone. Можеш да я включиш от Настройки или да въведеш номера.";
+
+"Add · %1$lld kcal" = "Добави · %1$lld kcal";
+
+"Add a name before saving." = "Добави име, преди да запазиш.";
+
+"Add all · %1$lld kcal" = "Добави всички · %1$lld kcal";
+
+"Add both · %1$lld kcal" = "Добави двете · %1$lld kcal";
+
+"Add it · %1$lld kcal" = "Добави го · %1$lld kcal";
+
+"Add the energy in kcal before saving." = "Добави енергията в kcal, преди да запазиш.";
+
+"Add to breakfast · %1$lld kcal" = "Добави към закуската · %1$lld kcal";
+
+"Add to dinner · %1$lld kcal" = "Добави към вечерята · %1$lld kcal";
+
+"Add to lunch · %1$lld kcal" = "Добави към обяда · %1$lld kcal";
+
+"Add to snack · %1$lld kcal" = "Добави към междинното · %1$lld kcal";
+
+"Amount" = "Количество";
+
+"Barcode frame, point at the barcode" = "Рамка за баркода, насочи към баркода";
+
+"Barcode recognised" = "Баркодът е разпознат";
+
+"Basic food data from USDA FoodData Central" = "Данни за основни храни от USDA FoodData Central";
+
+"Basic foods" = "Основни храни";
+
+"Basic foods come from USDA FoodData Central and live on this iPhone, so search works offline." = "Основните храни са от USDA FoodData Central и са на този iPhone, така че търсенето работи и без интернет.";
+
+"Breakfast" = "Закуска";
+
+"Camera is off for 01" = "Камерата е изключена за 01";
+
+"Carbohydrate" = "Въглехидрати";
+
+"Carbs" = "Въглехидрати";
+
+"Check" = "Провери";
+
+"Check %1$@: it needs a number per 100." = "Провери %1$@: трябва число на 100.";
+
+"Check the label" = "Провери етикета";
+
+"Check this value" = "Провери тази стойност";
+
+"Copy the values per 100 g or 100 ml from the label. It's saved to My foods." = "Препиши стойностите на 100 g или 100 ml от етикета. Записва се в Моите храни.";
+
+"Correct the values for yourself" = "Поправи стойностите за себе си";
+
+"Correct the values for yourself. They are saved to My foods on this iPhone." = "Поправи стойностите за себе си. Записват се в Моите храни на този iPhone.";
+
+"Dinner" = "Вечеря";
+
+"Enter a meal by hand" = "Въведи хранене ръчно";
+
+"Enter a portion greater than zero." = "Въведи порция, по-голяма от нула.";
+
+"Fibre" = "Фибри";
+
+"Fix it" = "Поправи";
+
+"Food data from Open Food Facts, open licence" = "Данни от Open Food Facts, отворен лиценз";
+
+"Foods you photograph from a label, fix or type in are kept here." = "Тук се пазят храните, които снимаш от етикет, поправяш или въвеждаш.";
+
+"For when you just know the number. No macros are added." = "За когато просто знаеш числото. Без макроси.";
+
+"Found" = "Намерено";
+
+"Log food" = "Запиши храна";
+
+"Look up" = "Потърси";
+
+"Lunch" = "Обяд";
+
+"Meal" = "Хранене";
+
+"My foods" = "Моите храни";
+
+"Name (optional)" = "Име (по желание)";
+
+"No connection. Search your foods and basic foods instead, or try again." = "Няма връзка. Потърси в своите и в основните храни или опитай пак.";
+
+"No connection. Your foods and basic foods still work." = "Няма връзка. Твоите и основните храни пак работят.";
+
+"No products found. Try fewer words, or scan the barcode." = "Няма намерени продукти. Опитай с по-малко думи или сканирай баркода.";
+
+"Not in the food database yet" = "Още го няма в базата с храни";
+
+"Not listed" = "Не е посочено";
+
+"Not today" = "Не днес";
+
+"Nutrition label" = "Етикет с хранителни стойности";
+
+"Open Food Facts" = "Open Food Facts";
+
+"Open Food Facts · needs a connection" = "Open Food Facts · нужна е връзка";
+
+"Open Food Facts didn't answer. Try again in a moment." = "Open Food Facts не отговори. Опитай след малко.";
+
+"Options for %1$@" = "Опции за %1$@";
+
+"Per 100 g" = "На 100 g";
+
+"Per 100 g: %1$lld kcal, protein %2$@, carbs %3$@, fat %4$@" = "На 100 g: %1$lld kcal, белтъчини %2$@, въглехидрати %3$@, мазнини %4$@";
+
+"Per 100 ml" = "На 100 ml";
+
+"Per 100 ml: %1$lld kcal, protein %2$@, carbs %3$@, fat %4$@" = "На 100 ml: %1$lld kcal, белтъчини %2$@, въглехидрати %3$@, мазнини %4$@";
+
+"Photo a nutrition label" = "Снимай етикет с хранителни стойности";
+
+"Photo the label" = "Снимай етикета";
+
+"Point at the barcode" = "Насочи към баркода";
+
+"portion · kcal" = "порция · kcal";
+
+"Products" = "Продукти";
+
+"Quick add" = "Бързо добавяне";
+
+"Read from your photo" = "Разчетено от снимката ти";
+
+"Read on this iPhone. Only the number is looked up." = "Разчита се на този iPhone. Търси се само номерът.";
+
+"Read on this iPhone. The photo stays here unless you share it." = "Разчита се на този iPhone. Снимката остава тук, освен ако не я споделиш.";
+
+"Recent" = "Скорошни";
+
+"Salt" = "Сол";
+
+"Same as yesterday?" = "Като вчера?";
+
+"Save and add" = "Запази и добави";
+
+"Saved to My foods on this iPhone. Nothing is sent anywhere." = "Записва се в Моите храни на този iPhone. Нищо не се изпраща.";
+
+"Scan" = "Сканиране";
+
+"Scan a barcode" = "Сканирай баркод";
+
+"Search foods" = "Търси храни";
+
+"Search instead" = "Търси вместо това";
+
+"Search products for “%1$@”" = "Търси продукти за „%1$@“";
+
+"Search, scan a barcode or add a food you had before." = "Търси, сканирай баркод или добави храна, която си ял преди.";
+
+"Searching Open Food Facts" = "Търсене в Open Food Facts";
+
+"Snack" = "Междинно";
+
+"Take a photo of the nutrition label and 01 reads it for you. You check the numbers, and it's saved to your foods." = "Снимай етикета с хранителните стойности и 01 ще го разчете. Ти проверяваш числата и храната се записва при твоите.";
+
+"Take the photo" = "Снимай";
+
+"Tap any number to fix it." = "Докосни число, за да го поправиш.";
+
+"Tap any number to fix it. %1$lld need a look." = "Докосни число, за да го поправиш. %1$lld трябва да се проверят.";
+
+"Tap any number to fix it. One needs a look." = "Докосни число, за да го поправиш. Едно трябва да се провери.";
+
+"That isn't a barcode number. Check the digits under the bars." = "Това не е номер на баркод. Провери цифрите под чертите.";
+
+"The digits under the barcode." = "Цифрите под баркода.";
+
+"The photo couldn't be taken. Try again or type it in." = "Снимката не стана. Опитай пак или го въведи.";
+
+"This food couldn't be saved. Check your meals before trying again." = "Храната не се записа. Провери храненията си, преди да опиташ пак.";
+
+"This iPhone can't scan barcodes" = "Този iPhone не може да сканира баркодове";
+
+"This portion" = "Тази порция";
+
+"Type a label in" = "Въведи етикет";
+
+"Type it in" = "Въведи го";
+
+"Type the number" = "Въведи номера";
+
+"Values per" = "Стойности на";
+
+"Whole pack, %1$@" = "Цялата опаковка, %1$@";
+
+"You can type the number from under the barcode instead." = "Вместо това можеш да въведеш номера под баркода.";
+
+"Your food log stays on this iPhone. A barcode lookup sends only the number to Open Food Facts; basic foods are on the iPhone." = "Дневникът ти с храни остава на този iPhone. При търсене по баркод към Open Food Facts се изпраща само номерът; основните храни са на iPhone-а.";
+
+"Your label photo" = "Снимката на етикета";
+
+"Your values, copied from a label" = "Твоите стойности, преписани от етикет";
+
+"of which saturates" = "от които наситени";
+
+"of which sugars" = "от които захари";
