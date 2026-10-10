@@ -44,6 +44,11 @@ jobs:
             grep -n -E ': (fatal )?error: ' build/compile/build.log | sort -u > build/compile/build-errors.txt || true
             echo "Distinct compiler errors: $(wc -l < build/compile/build-errors.txt)"
             head -n 300 build/compile/build-errors.txt
+            # Annotations are readable without signing in; logs are not.
+            sed 's/%/%25/g' build/compile/build-errors.txt > build/compile/build-annotate.txt
+            head -n 10 build/compile/build-annotate.txt | while IFS= read -r line; do echo "::error::${line#*ZeroOne/}"; done
+            sed -n '11,20p' build/compile/build-annotate.txt | while IFS= read -r line; do echo "::warning::${line#*ZeroOne/}"; done
+            sed -n '21,30p' build/compile/build-annotate.txt | while IFS= read -r line; do echo "::notice::${line#*ZeroOne/}"; done
             exit "$result"
           fi
 
@@ -67,8 +72,8 @@ jobs:
           fi
 
       - name: Capture iPhone Simulator screens
-        # Twenty minutes; only worth it once the tests pass.
-        if: steps.tests.outcome == 'success'
+        # Twenty minutes, and the captures need a GitHub sign-in to download: run by hand only.
+        if: github.event_name == 'workflow_dispatch' && steps.tests.outcome == 'success'
         continue-on-error: true
         run: bash ios/scripts/capture-prototype-screens.sh
 

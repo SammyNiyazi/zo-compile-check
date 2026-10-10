@@ -10,6 +10,7 @@ struct ZeroOneApp: App {
 
     init() {
         ZeroOneFontRegistrar.registerBundledFonts()
+        WhatsNewPolicy.captureLaunchState()
     }
 
     var body: some Scene {

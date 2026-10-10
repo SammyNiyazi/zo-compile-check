@@ -325,6 +325,7 @@ private struct ZeroOneMountedRootContent: View {
     @State private var pendingOutdoorKind: OutdoorActivityKind?
     @State private var focusHydrationInDiets = false
     @State private var openFoodLogInDiets = false
+    @State private var whatsNew: WhatsNewPresentation?
     @State private var assistantFeedback: AssistantActionFeedback?
     @State private var assistantFeedbackTask: Task<Void, Never>?
     @State private var quickWaterToast: QuickWaterToast?
@@ -1739,6 +1740,24 @@ private struct ZeroOneMountedRootContent: View {
         }
         .task(id: liveActivityProjection) {
             await liveActivityCoordinator.sync(liveActivityProjection)
+        }
+        .task {
+            // Screen 51: once per version after an update, after the root has settled.
+            try? await Task.sleep(for: .milliseconds(900))
+            guard !Task.isCancelled, whatsNew == nil, let pending = WhatsNewPolicy().pending() else { return }
+            whatsNew = WhatsNewPresentation(version: pending.version, items: pending.items)
+        }
+        .sheet(item: $whatsNew) { presentation in
+            WhatsNewView(version: presentation.version, items: presentation.items) {
+                WhatsNewPolicy().markSeen()
+                whatsNew = nil
+            }
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
+            .interactiveDismissDisabled(false)
+            .onDisappear { WhatsNewPolicy().markSeen() }
+            .zeroOneTheme(activeTheme)
+            .preferredColorScheme(activeTheme.colorScheme)
         }
         .onChange(of: dailyWidgetInputs, initial: true) { _, inputs in
             publishDailyWidgetSnapshot(inputs)

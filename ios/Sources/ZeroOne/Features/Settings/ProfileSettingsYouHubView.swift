@@ -32,6 +32,7 @@ struct ProfileSettingsYouHubView: View {
     @Environment(\.zeroOneTheme) private var theme
     @Environment(\.zeroOneLocalization) private var localization
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.openURL) private var openURL
 
     var body: some View {
         ScrollView {
@@ -80,6 +81,7 @@ struct ProfileSettingsYouHubView: View {
     }
     private var hasRows: Bool {
         actions.personalDetails != nil || actions.bodyWeight != nil || actions.settings != nil
+            || actions.writeToSammy != nil || ReviewPromptPolicy.writeReviewURL != nil
     }
 
     private var actionButtons: some View {
@@ -128,8 +130,19 @@ struct ProfileSettingsYouHubView: View {
                 if actions.personalDetails != nil { separator }
                 row("Body weight", icon: "scalemass", value: weightLabel, action: weight)
             }
-            if let settings = actions.settings {
+            // Screen 29: Rate 01 and Write to Sammy are always here, above Settings.
+            if let review = ReviewPromptPolicy.writeReviewURL {
                 if actions.personalDetails != nil || actions.bodyWeight != nil { separator }
+                row("Rate 01 on the App Store", icon: "star", value: nil,
+                    subtitle: "It helps one person building this more than you think") { openURL(review) }
+            }
+            if let contact = actions.writeToSammy {
+                if actions.personalDetails != nil || actions.bodyWeight != nil || ReviewPromptPolicy.writeReviewURL != nil { separator }
+                row("Write to Sammy", icon: "bubble.left", value: nil, subtitle: "Ideas, bugs, anything", action: contact)
+            }
+            if let settings = actions.settings {
+                if actions.personalDetails != nil || actions.bodyWeight != nil || actions.writeToSammy != nil
+                    || ReviewPromptPolicy.writeReviewURL != nil { separator }
                 row("Settings", icon: "gearshape", value: nil, action: settings)
             }
         }
@@ -145,12 +158,17 @@ struct ProfileSettingsYouHubView: View {
 
     private var separator: some View { Rectangle().fill(theme.strokeSubtle).frame(height: 1) }
 
-    private func row(_ key: String, icon: String, value: String?, action: @escaping @MainActor () -> Void) -> some View {
+    private func row(_ key: String, icon: String, value: String?, subtitle: String? = nil,
+                     action: @escaping @MainActor () -> Void) -> some View {
         Button(action: action) {
             HStack(spacing: 12) {
                 Image(systemName: icon).zoIcon(20).frame(width: 28).accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(verbatim: localization.string(key)).zoText(.section)
+                    if let subtitle {
+                        Text(verbatim: localization.string(subtitle)).zoText(.caption).foregroundStyle(theme.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                     if typeSize.isAccessibilitySize, let value {
                         Text(verbatim: value).zoProofText(.body, size: 15, lineHeight: 20).foregroundStyle(theme.textSecondary)
                     }
@@ -175,12 +193,6 @@ struct ProfileSettingsYouHubView: View {
         Text(verbatim: localization.string("Made by one person who trains."))
             .zoText(.caption).foregroundStyle(theme.textSecondary)
             .fixedSize(horizontal: false, vertical: true)
-        if let contact = actions.writeToSammy {
-            Button(action: contact) {
-                Text(verbatim: localization.string("Write to Sammy")).underline().zoText(.caption)
-            }
-            .buttonStyle(.plain).frame(minHeight: 44)
-        }
     }
 }
 

@@ -6,6 +6,7 @@ import UIKit
 struct ProfileSettingsThemeView: View {
     @Binding var selectedAppearance: AppearancePreference
     @AppStorage(DesignThemePreference.storageKey) private var selectedRawValue = DesignThemePreference.core.rawValue
+    @AppStorage(DesignThemePreference.matchingIconKey) private var matchingIcon = true
     @Environment(\.zeroOneTheme) private var theme
     @Environment(\.zeroOneLocalization) private var localization
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
@@ -43,9 +44,24 @@ struct ProfileSettingsThemeView: View {
                 Text("Every theme has light and dark")
                     .zoText(.caption)
                     .foregroundStyle(theme.textSecondary)
+                Toggle(isOn: $matchingIcon) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Matching app icon").zoText(.section)
+                        Text("Your Home Screen icon changes with the theme")
+                            .zoText(.caption)
+                            .foregroundStyle(theme.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+                .toggleStyle(ZOToggleStyle())
+                .padding(ZOSpace.l)
+                .zoThemeCardSurface()
+                .accessibilityIdentifier("settings.theme.matchingIcon")
             }
             .padding(ZOSpace.l)
         }
+        .onChange(of: selectedRawValue) { Task { await ThemeAppIcon.apply(selected, matching: matchingIcon) } }
+        .onChange(of: matchingIcon) { Task { await ThemeAppIcon.apply(selected, matching: matchingIcon) } }
         .navigationTitle("Theme")
         .navigationBarTitleDisplayMode(.inline)
         .zoThemeScreenSurface()

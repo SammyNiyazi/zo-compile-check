@@ -136,6 +136,8 @@ struct WorkoutCompletionView: View {
             }
         }
         .sensoryFeedback(.impact(weight: .heavy), trigger: slamLanded) { _, landed in landed }
+        // Screen 29: a new best is a peak; Apple's prompt waits until the celebration has landed.
+        .zoReviewPeak(.personalRecord, when: personalRecord && presentsLive, after: .milliseconds(2500))
         .task {
             await presentSuccess()
         }

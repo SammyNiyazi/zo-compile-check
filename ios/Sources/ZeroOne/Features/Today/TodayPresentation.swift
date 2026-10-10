@@ -14,13 +14,41 @@ enum TodayGoalPresentation {
 struct TodayGoalRing: View {
     let progress: Double?
     let symbol: String
+    /// "steps" or "water": plays the goal moment when this ring is seen crossing its goal.
+    var momentKind: String? = nil
     @Environment(\.zeroOneTheme) private var theme
+    @State private var momentStart: Date?
+    @State private var momentFrom = 0.0
 
     private var bounded: Double? {
         progress.flatMap { $0.isFinite ? min(max($0, 0), 1) : nil }
     }
 
     var body: some View {
+        Group {
+            if let momentStart {
+                TodayGoalMomentRing(start: momentStart, fromProgress: momentFrom, symbol: symbol)
+                    .task(id: momentStart) {
+                        try? await Task.sleep(for: .seconds(StepsGoalMomentTiming.end + 0.1))
+                        if self.momentStart == momentStart { self.momentStart = nil }
+                    }
+            } else {
+                ring
+            }
+        }
+        .onChange(of: bounded) { old, new in
+            guard let momentKind, let new, new >= 1, (old ?? 0) < 1,
+                  let start = TodayGoalMomentLog.start(momentKind) else { return }
+            momentFrom = old ?? 0
+            momentStart = start
+        }
+        .sensoryFeedback(.success, trigger: momentStart) { _, new in new != nil }
+        // Screen 29: a third goal in a week is a peak for Apple's rating prompt.
+        .zoReviewPeak(.thirdGoalThisWeek, when: momentStart != nil && TodayGoalMomentLog.goalsThisWeek() >= 3,
+                      after: .milliseconds(2400))
+    }
+
+    private var ring: some View {
         ZStack {
             if let bounded {
                 Circle().stroke(theme.surfaceTertiary, lineWidth: 7)

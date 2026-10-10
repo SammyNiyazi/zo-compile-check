@@ -51,7 +51,9 @@
     <key>NSMicrophoneUsageDescription</key>
     <string>01 uses the microphone only while you hold push-to-talk so you can review a local action before confirming it.</string>
     <key>NSCameraUsageDescription</key>
-    <string>01 uses the camera only when you choose to take a progress, food or sharing photo. You review the picture before saving or sharing it.</string>
+    <string>01 uses the camera only when you choose to take a progress or sharing photo, scan a food barcode or read a nutrition label. Barcodes and labels are read on this iPhone, and you review every picture before saving or sharing it.</string>
+    <key>ZeroOneAppStoreID</key>
+    <string></string>
     <key>NSPhotoLibraryAddUsageDescription</key>
     <string>01 saves the sharing image you reviewed to Photos only when you choose Save to Photos.</string>
     <key>NSSpeechRecognitionUsageDescription</key>

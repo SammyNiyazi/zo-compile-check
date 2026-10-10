@@ -698,11 +698,11 @@ private struct TodayStepsInstrument: View {
         case let .count(steps, refreshedAt, isStale):
             ViewThatFits(in: .horizontal) {
                 HStack(spacing: ZOSpace.m) {
-                    TodayGoalRing(progress: TodayGoalPresentation.progress(value: steps, goal: goal), symbol: "01.jog")
+                    TodayGoalRing(progress: TodayGoalPresentation.progress(value: steps, goal: goal), symbol: "01.jog", momentKind: "steps")
                     stepValue(steps)
                 }
                 VStack(alignment: .leading, spacing: ZOSpace.s) {
-                    TodayGoalRing(progress: TodayGoalPresentation.progress(value: steps, goal: goal), symbol: "01.jog")
+                    TodayGoalRing(progress: TodayGoalPresentation.progress(value: steps, goal: goal), symbol: "01.jog", momentKind: "steps")
                     stepValue(steps)
                 }
             }
@@ -811,11 +811,11 @@ private struct TodayHydrationInstrument: View {
             }
             ViewThatFits(in: .horizontal) {
                 HStack(spacing: ZOSpace.m) {
-                    TodayGoalRing(progress: state.progress, symbol: "drop")
+                    TodayGoalRing(progress: state.progress, symbol: "drop", momentKind: "water")
                     hydrationCopy
                 }
                 VStack(alignment: .leading, spacing: ZOSpace.s) {
-                    TodayGoalRing(progress: state.progress, symbol: "drop")
+                    TodayGoalRing(progress: state.progress, symbol: "drop", momentKind: "water")
                     hydrationCopy
                 }
             }

@@ -443,6 +443,8 @@ struct ProgressPhotoCaptureButton: View {
     @State private var isPreparing = false
     @State private var isRequestingCamera = false
     @State private var cameraRequest: Task<Void, Never>?
+    @State private var capturedPose: ProgressPhotoPose?
+    @State private var libraryAfterCamera = false
 
     private var secondaryInk: Color { contrast == .increased ? theme.textPrimary : theme.textSecondary }
 
@@ -455,16 +457,27 @@ struct ProgressPhotoCaptureButton: View {
         }
         .fullScreenCover(isPresented: cameraPresentationBinding(expected: expectedFlowID),
             onDismiss: { prepareCapturedPhoto(flowID: expectedFlowID) }) {
-            InAppStillCamera { result in
+            // Proof 47: the 01 camera, with the last photo in the same pose as a ghost.
+            ProgressCameraView(ghost: { pose in
+                guard let record = ProgressPhotoPoseStore().ghost(for: pose, in: repository.entries),
+                      let data = repository.imageData(for: record), let image = UIImage(data: data) else { return nil }
+                return (image, record.createdAt)
+            }, onUse: { data, pose in
                 guard captureFlowID == expectedFlowID, expectedFlowID != nil else { return }
-                switch result {
-                case .captured(let data): pendingCameraData = data
-                case .cancelled: pendingCameraData = nil
-                case .failed: cameraCaptureFailed = true
-                }
+                pendingCameraData = data
+                capturedPose = pose
                 showsCamera = false
-            }
-            .ignoresSafeArea()
+            }, onLibrary: {
+                guard captureFlowID == expectedFlowID, expectedFlowID != nil else { return }
+                pendingCameraData = nil
+                libraryAfterCamera = true
+                showsCamera = false
+            }, onCancel: {
+                guard captureFlowID == expectedFlowID, expectedFlowID != nil else { return }
+                pendingCameraData = nil
+                showsCamera = false
+            })
+            .zeroOneTheme(theme)
         }
         .sheet(item: draftPresentationBinding(expected: expectedFlowID, draftID: draft?.id), onDismiss: {
             guard captureFlowID == expectedFlowID else { return }
@@ -478,7 +491,9 @@ struct ProgressPhotoCaptureButton: View {
                         guard captureFlowID == expectedFlowID, self.draft?.id == draft.id else { return false }
                         do {
                             photoShareAuthority?.revokeAll(before: .photoMutation)
-                            try repository.save(resolvedDraft)
+                            let saved = try repository.save(resolvedDraft)
+                            if let pose = capturedPose { ProgressPhotoPoseStore().set(pose, for: saved.id) }
+                            capturedPose = nil
                             self.draft = nil
                             return true
                         } catch {
@@ -701,6 +716,12 @@ struct ProgressPhotoCaptureButton: View {
             errorMessage = "The captured photo could not be prepared. Nothing was saved."
         }
         guard let data = pendingCameraData else {
+            if libraryAfterCamera {
+                // "Choose from library" inside the camera continues this same flow.
+                libraryAfterCamera = false
+                showsLibrary = true
+                return
+            }
             finishCaptureActivityIfIdle(flowID)
             return
         }
