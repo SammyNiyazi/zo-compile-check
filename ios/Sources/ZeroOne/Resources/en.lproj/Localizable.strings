@@ -3695,3 +3695,53 @@
 "Pause walk in 01" = "Pause walk in 01";
 
 "Resume walk in 01" = "Resume walk in 01";
+
+"Week in review" = "Week in review";
+
+"A full week." = "A full week.";
+
+"Nothing saved yet." = "Nothing saved yet.";
+
+"%1$@ of %2$@ so far." = "%1$@ of %2$@ so far.";
+
+"%1$@ workout so far." = "%1$@ workout so far.";
+
+"%1$@ workouts so far." = "%1$@ workouts so far.";
+
+"%1$@ of %1$@, the second full week in a row." = "%1$@ of %1$@, the second full week in a row.";
+
+"%1$@ of %1$@. Every planned day done." = "%1$@ of %1$@. Every planned day done.";
+
+"%1$@ went up." = "%1$@ went up.";
+
+"%1$@ and %2$@ both went up." = "%1$@ and %2$@ both went up.";
+
+"%1$@ had the fewest hard sets." = "%1$@ had the fewest hard sets.";
+
+"Hard sets by muscle group" = "Hard sets by muscle group";
+
+"For next week" = "For next week";
+
+"%1$@ is %2$@ set under your plan." = "%1$@ is %2$@ set under your plan.";
+
+"%1$@ is %2$@ sets under your plan." = "%1$@ is %2$@ sets under your plan.";
+
+"Your plan and your days stay the same unless you change them." = "Your plan and your days stay the same unless you change them.";
+
+"Trained" = "Trained";
+
+"Ahead" = "Ahead";
+
+"%1$@ hard sets. Your plan: %2$@ to %3$@." = "%1$@ hard sets. Your plan: %2$@ to %3$@.";
+
+"%1$@ hard sets." = "%1$@ hard sets.";
+
+"Legs" = "Legs";
+
+"Chest" = "Chest";
+
+"Shoulders" = "Shoulders";
+
+"Back (muscle group)" = "Back";
+
+"Core (muscle group)" = "Core";

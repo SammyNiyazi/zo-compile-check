@@ -3696,3 +3696,53 @@
 "Pause walk in 01" = "Пауза на разходката в 01";
 
 "Resume walk in 01" = "Продължи разходката в 01";
+
+"Week in review" = "Седмицата накратко";
+
+"A full week." = "Пълна седмица.";
+
+"Nothing saved yet." = "Още нищо записано.";
+
+"%1$@ of %2$@ so far." = "%1$@ от %2$@ досега.";
+
+"%1$@ workout so far." = "%1$@ тренировка досега.";
+
+"%1$@ workouts so far." = "%1$@ тренировки досега.";
+
+"%1$@ of %1$@, the second full week in a row." = "%1$@ от %1$@, втора пълна седмица подред.";
+
+"%1$@ of %1$@. Every planned day done." = "%1$@ от %1$@. Всеки планиран ден е изпълнен.";
+
+"%1$@ went up." = "%1$@ се качи.";
+
+"%1$@ and %2$@ both went up." = "%1$@ и %2$@ се качиха.";
+
+"%1$@ had the fewest hard sets." = "%1$@ имаше най-малко тежки серии.";
+
+"Hard sets by muscle group" = "Тежки серии по мускулна група";
+
+"For next week" = "За следващата седмица";
+
+"%1$@ is %2$@ set under your plan." = "%1$@ е с %2$@ серия под плана ти.";
+
+"%1$@ is %2$@ sets under your plan." = "%1$@ е с %2$@ серии под плана ти.";
+
+"Your plan and your days stay the same unless you change them." = "Планът и дните ти остават същите, докато не ги промениш.";
+
+"Trained" = "Тренирано";
+
+"Ahead" = "Предстои";
+
+"%1$@ hard sets. Your plan: %2$@ to %3$@." = "%1$@ тежки серии. Твоят план: от %2$@ до %3$@.";
+
+"%1$@ hard sets." = "%1$@ тежки серии.";
+
+"Legs" = "Крака";
+
+"Chest" = "Гърди";
+
+"Shoulders" = "Рамене";
+
+"Back (muscle group)" = "Гръб";
+
+"Core (muscle group)" = "Корем";

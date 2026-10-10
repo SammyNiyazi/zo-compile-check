@@ -1019,6 +1019,14 @@ private struct ProgressWeekScreen: View {
         ProgressWeekSnapshot(entries: entries, now: .now, calendar: .current)
     }
 
+    /// Proof 43: the selected plan and its weekly days give the "Your plan" band.
+    private var review: WeekInReview {
+        let id = UserDefaultsWorkoutProgrammeSelectionStore().loadSelectedID() ?? WorkoutProgrammeLibrary.recommendedID
+        let schedule = try? UserDefaultsWorkoutProgrammeScheduleStore().load()
+        return WeekInReview.make(entries: entries, programme: WorkoutProgrammeLibrary.programme(id: id),
+            scheduledDays: schedule?.programmeID == id ? schedule?.weekdays.count : nil, now: .now, calendar: .current)
+    }
+
     private var targets: [ExerciseID: RepRange] {
         Dictionary(session.exercises.filter { !$0.plan.isTimed }.map { ($0.plan.exerciseID, $0.plan.targetReps) },
                    uniquingKeysWith: { first, _ in first })
@@ -1027,18 +1035,8 @@ private struct ProgressWeekScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: ZOSpace.xl) {
-                VStack(alignment: .leading, spacing: ZOSpace.s) {
-                    Text("THIS WEEK")
-                        .zoText(.caption)
-                        .foregroundStyle(theme.textSecondary)
-                    Text("Work that stays with you")
-                        .zoText(.display)
-                        .accessibilityAddTraits(.isHeader)
-                    Text("\(week.start.formatted(.dateTime.month(.abbreviated).day()))–\(week.end.addingTimeInterval(-1).formatted(.dateTime.month(.abbreviated).day())) · Monday to Sunday")
-                        .zoText(.body)
-                        .foregroundStyle(theme.textSecondary)
-                }
-                .zeroOneReveal(hasAppeared)
+                WeekInReviewHeader(review: review)
+                    .zeroOneReveal(hasAppeared)
 
                 ViewThatFits(in: .horizontal) {
                     HStack(alignment: .firstTextBaseline, spacing: ZOSpace.xl) {
@@ -1105,7 +1103,7 @@ private struct ProgressWeekScreen: View {
         .scrollIndicators(.hidden)
         .background(theme.backgroundPrimary.ignoresSafeArea())
         .foregroundStyle(theme.textPrimary)
-        .navigationTitle("This week")
+        .navigationTitle("Week in review")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear { hasAppeared = true }
     }
