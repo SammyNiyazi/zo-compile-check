@@ -3545,3 +3545,81 @@
 "Retake" = "Retake";
 
 "Use photo" = "Use photo";
+
+"Walks" = "Walks";
+
+"Runs" = "Runs";
+
+"No sleep was recorded last night." = "No sleep was recorded last night.";
+
+"Bedtime" = "Bedtime";
+
+"this week" = "this week";
+
+"Over %1$@" = "Over %1$@";
+
+"goal %1$@" = "goal %1$@";
+
+"Change your sleep goal" = "Change your sleep goal";
+
+"Sleep goal" = "Sleep goal";
+
+"Your own goal. 01 uses it only to count nights; it does not tell you how much to sleep." = "Your own goal. 01 uses it only to count nights; it does not tell you how much to sleep.";
+
+"min" = "min";
+
+"%1$lld hours %2$lld minutes asleep" = "%1$lld hours %2$lld minutes asleep";
+
+"%1$@ to %2$@ · goal %3$@" = "%1$@ to %2$@ · goal %3$@";
+
+"Deep" = "Deep";
+
+"Core" = "Core";
+
+"REM" = "REM";
+
+"Awake" = "Awake";
+
+"Stages: deep %1$lld minutes, core %2$lld, REM %3$lld, awake %4$lld." = "Stages: deep %1$lld minutes, core %2$lld, REM %3$lld, awake %4$lld.";
+
+"Average %1$@" = "Average %1$@";
+
+"%1$@, no sleep recorded" = "%1$@, no sleep recorded";
+
+"%1$lld of %2$lld nights" = "%1$lld of %2$lld nights";
+
+"%1$lld hours" = "%1$lld hours";
+
+"%1$lld h" = "%1$lld h";
+
+"%1$lld h %2$lld" = "%1$lld h %2$lld";
+
+"Take your first photo" = "Take your first photo";
+
+"A new photo is due" = "A new photo is due";
+
+"Next photo due tomorrow" = "Next photo due tomorrow";
+
+"Next photo due in %1$lld days" = "Next photo due in %1$lld days";
+
+"Next photo due in a week" = "Next photo due in a week";
+
+"Next photo due in %1$lld weeks" = "Next photo due in %1$lld weeks";
+
+"%1$@ average this week" = "%1$@ average this week";
+
+"Yesterday at %1$@" = "Yesterday at %1$@";
+
+"%1$@ at %2$@" = "%1$@ at %2$@";
+
+"%1$@ is still waiting" = "%1$@ is still waiting";
+
+"Plans move. Your week isn't lost." = "Plans move. Your week isn't lost.";
+
+"Do it today" = "Do it today";
+
+"Move to tomorrow" = "Move to tomorrow";
+
+"Skip this one" = "Skip this one";
+
+"Last %1$@ × %2$lld" = "Last %1$@ × %2$lld";

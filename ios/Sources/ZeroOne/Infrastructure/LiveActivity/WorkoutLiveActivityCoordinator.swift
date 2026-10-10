@@ -93,6 +93,8 @@ enum WorkoutActivityProjector {
             phase = .active
         }
 
+        let coach = WorkoutActivityCoach.lines(session: session, phase: phase,
+            localization: AppLocalization(language: language ?? .english))
         return WorkoutActivityProjection(
             sessionID: session.id,
             workoutTitle: session.title,
@@ -107,7 +109,10 @@ enum WorkoutActivityProjector {
                 pausedRestSeconds: phase == .paused ? snapshot.pausedRemainingRestSeconds : nil,
                 accentPreference: accent.rawValue,
                 displayLanguageIdentifier: language?.rawValue,
-                restTotalSeconds: restTotalSeconds(for: session, phase: phase, at: date)
+                restTotalSeconds: restTotalSeconds(for: session, phase: phase, at: date),
+                coachLine: coach.coach,
+                lastTimeShort: coach.lastShort,
+                gainText: coach.gain
             )
         )
     }

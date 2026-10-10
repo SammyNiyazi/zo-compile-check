@@ -3546,3 +3546,81 @@
 "Retake" = "Отново";
 
 "Use photo" = "Използвай снимката";
+
+"Walks" = "Разходки";
+
+"Runs" = "Бягания";
+
+"No sleep was recorded last night." = "Снощи не е записан сън.";
+
+"Bedtime" = "Лягане";
+
+"this week" = "тази седмица";
+
+"Over %1$@" = "Над %1$@";
+
+"goal %1$@" = "цел %1$@";
+
+"Change your sleep goal" = "Промени целта си за сън";
+
+"Sleep goal" = "Цел за сън";
+
+"Your own goal. 01 uses it only to count nights; it does not tell you how much to sleep." = "Твоя собствена цел. 01 я използва само за да брои нощите; не ти казва колко да спиш.";
+
+"min" = "мин";
+
+"%1$lld hours %2$lld minutes asleep" = "%1$lld часа и %2$lld минути сън";
+
+"%1$@ to %2$@ · goal %3$@" = "%1$@ до %2$@ · цел %3$@";
+
+"Deep" = "Дълбок";
+
+"Core" = "Лек";
+
+"REM" = "REM";
+
+"Awake" = "Буден";
+
+"Stages: deep %1$lld minutes, core %2$lld, REM %3$lld, awake %4$lld." = "Фази: дълбок %1$lld минути, лек %2$lld, REM %3$lld, буден %4$lld.";
+
+"Average %1$@" = "Средно %1$@";
+
+"%1$@, no sleep recorded" = "%1$@, няма записан сън";
+
+"%1$lld of %2$lld nights" = "%1$lld от %2$lld нощи";
+
+"%1$lld hours" = "%1$lld часа";
+
+"%1$lld h" = "%1$lld ч";
+
+"%1$lld h %2$lld" = "%1$lld ч %2$lld";
+
+"Take your first photo" = "Направи първата си снимка";
+
+"A new photo is due" = "Време е за нова снимка";
+
+"Next photo due tomorrow" = "Следващата снимка е утре";
+
+"Next photo due in %1$lld days" = "Следващата снимка след %1$lld дни";
+
+"Next photo due in a week" = "Следващата снимка след седмица";
+
+"Next photo due in %1$lld weeks" = "Следващата снимка след %1$lld седмици";
+
+"%1$@ average this week" = "%1$@ средно тази седмица";
+
+"Yesterday at %1$@" = "Вчера в %1$@";
+
+"%1$@ at %2$@" = "%1$@ в %2$@";
+
+"%1$@ is still waiting" = "%1$@ още те чака";
+
+"Plans move. Your week isn't lost." = "Плановете се местят. Седмицата ти не е изгубена.";
+
+"Do it today" = "Направи я днес";
+
+"Move to tomorrow" = "Премести за утре";
+
+"Skip this one" = "Пропусни тази";
+
+"Last %1$@ × %2$lld" = "Последно %1$@ × %2$lld";

@@ -29,6 +29,8 @@ struct TodayView: View {
     var programmeVolumeUnavailable = false
     // App-owned reported goal, when one is available. Never substitute a fixture.
     var dailyStepGoal: Int? = nil
+    /// Proof 41: a planned workout whose time passed, waiting above today's card.
+    var missedPlanCard: AnyView? = nil
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.colorScheme) private var colorScheme
@@ -48,6 +50,9 @@ struct TodayView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     todayHeader
                         .padding(.bottom, 20)
+                    if let missedPlanCard {
+                        missedPlanCard.padding(.bottom, ZOSpace.m)
+                    }
 
                     Group {
                         if programmeVolumeUnavailable && completion == nil && !isWorkoutInProgress {

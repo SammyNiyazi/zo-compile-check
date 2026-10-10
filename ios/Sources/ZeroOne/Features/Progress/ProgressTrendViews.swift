@@ -123,9 +123,12 @@ struct ProgressWorkoutTrendCard: View {
     }
 }
 
-/// The current repository supplies one sleep duration, not stages, bedtime, a goal or weekly history.
+/// Proof 19. The week with stages comes from AppleHealthSleepReader; the single
+/// duration from the Health connection stays as the fallback.
 struct ProgressSleepSummaryView: View {
     let healthConnection: HealthConnectionRepository
+    var sleepReader: any SleepHistoryReading = AppleHealthSleepReader()
+    @State private var week: SleepWeek?
     @Environment(\.calendar) private var calendar
     @Environment(\.zeroOneTheme) private var theme
     @Environment(\.zeroOneLocalization) private var localization
@@ -142,7 +145,9 @@ struct ProgressSleepSummaryView: View {
             VStack(alignment: .leading, spacing: ZOSpace.l) {
                 Label(LocalizedStringKey(sleep.periodKey), systemImage: "moon").zoText(.caption).labelStyle(ZOIconLabelStyle())
                     .foregroundStyle(theme.textSecondary)
-                if let duration = sleep.duration {
+                if let week, week.nights.contains(where: \.hasData) {
+                    SleepWeekDetailView(week: week)
+                } else if let duration = sleep.duration {
                     Text(localization.format("%1$@ hr", .text((duration / 3_600).formatted(.number.precision(.fractionLength(1)).locale(localization.locale)))))
                         .zoProofText(.timer, size: 56, lineHeight: 56)
                 } else {
@@ -171,6 +176,9 @@ struct ProgressSleepSummaryView: View {
         }
         .background(theme.backgroundPrimary.ignoresSafeArea())
         .navigationTitle("Sleep").navigationBarTitleDisplayMode(.inline)
-        .task { await healthConnection.refreshIfConnected() }
+        .task {
+            await healthConnection.refreshIfConnected()
+            week = try? await sleepReader.readSleepWeek(endingAt: .now)
+        }
     }
 }

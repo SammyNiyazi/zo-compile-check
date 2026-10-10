@@ -32,6 +32,7 @@ struct ProgressScreen: View {
     @State private var hasAppeared = false
     @State private var insightSuccessEpoch = 0
     @State private var chartWindow = ProgressChartWindow.month
+    @State private var sleepWeek: SleepWeek?
     @AppStorage("slick.bodyWeightUnit") private var chartUnitRaw = BodyWeightUnit.kilograms.rawValue
     @Environment(\.calendar) private var calendar
     @Environment(\.dismiss) private var dismiss
@@ -83,16 +84,20 @@ struct ProgressScreen: View {
                         NavigationLink {
                             ProgressPhotosView(repository: progressPhotos, onShare: onSharePhotos)
                         } label: {
-                            progressRoute(title: "Before and after", detail: "Only on this iPhone. Never synced.", symbol: "rectangle.split.2x1")
+                            progressRoute(title: "Before and after", detail: LocalizedStringKey(photoDueText(progressPhotos)), symbol: "rectangle.split.2x1")
                         }.buttonStyle(.plain)
                     }
                     if let healthConnection {
                         NavigationLink {
                             ProgressSleepSummaryView(healthConnection: healthConnection)
                         } label: {
-                            progressRoute(title: "Sleep", detail: "From Apple Health", symbol: "moon")
+                            progressRoute(title: "Sleep", detail: LocalizedStringKey(sleepDetailText), symbol: "moon")
                         }.buttonStyle(.plain)
                     }
+                }
+                .task {
+                    guard healthConnection != nil else { return }
+                    sleepWeek = try? await AppleHealthSleepReader().readSleepWeek(endingAt: .now)
                 }
                 if showsBodyWeightOnProgress { bodyWeightLink }
                 if let entries = savedEntries { weekLink(entries: entries) }
@@ -115,6 +120,30 @@ struct ProgressScreen: View {
         }
         .foregroundStyle(theme.textPrimary)
         .onAppear { hasAppeared = true }
+    }
+
+    /// Proof 20: "Next photo due in 2 weeks". Progress photos are suggested every four weeks.
+    static let photoCadenceDays = 28
+
+    private func photoDueText(_ repository: ProgressPhotoRepository) -> String {
+        guard let last = repository.entries.map(\.createdAt).max() else { return localization.string("Take your first photo") }
+        let due = calendar.date(byAdding: .day, value: Self.photoCadenceDays, to: last) ?? last
+        let days = calendar.dateComponents([.day], from: calendar.startOfDay(for: .now), to: calendar.startOfDay(for: due)).day ?? 0
+        switch days {
+        case ..<1: return localization.string("A new photo is due")
+        case 1: return localization.string("Next photo due tomorrow")
+        case 2 ..< 7: return localization.format("Next photo due in %1$lld days", .integer(days))
+        default:
+            let weeks = (days + 3) / 7
+            return weeks == 1 ? localization.string("Next photo due in a week")
+                : localization.format("Next photo due in %1$lld weeks", .integer(weeks))
+        }
+    }
+
+    private var sleepDetailText: String {
+        guard let average = sleepWeek?.averageSeconds else { return localization.string("From Apple Health") }
+        return localization.format("%1$@ average this week",
+            .text(SleepWeekDetailView.hours(Int((average / 60).rounded()), localization: localization)))
     }
 
     private func progressRoute(title: LocalizedStringKey, detail: LocalizedStringKey, symbol: String) -> some View {

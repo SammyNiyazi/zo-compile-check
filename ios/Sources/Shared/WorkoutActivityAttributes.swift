@@ -84,6 +84,12 @@ struct WorkoutActivityAttributes: ActivityAttributes {
 
         var frozenElapsed: WorkoutActivityFrozenElapsed? = nil
 
+        // Round 4 phase 9a: the workout coach's own sentences, rendered in the app so the
+        // app and the Lock Screen never disagree. Nil on older payloads.
+        var coachLine: String? = nil
+        var lastTimeShort: String? = nil
+        var gainText: String? = nil
+
         var pausedElapsed: WorkoutActivityFrozenElapsed? {
             guard phase == .paused, let frozenElapsed, frozenElapsed.state == .paused,
                   frozenElapsed.wholeSeconds != nil else { return nil }
@@ -104,6 +110,7 @@ struct WorkoutActivityAttributes: ActivityAttributes {
             case exerciseName, currentSet, plannedSetsForExercise, completedSets, totalSets
             case phase, restEndsAt, pausedRestSeconds, accentPreference, displayLanguageIdentifier, designThemeIdentifier
             case restTotalSeconds, frozenElapsed
+            case coachLine, lastTimeShort, gainText
         }
 
         func usingLanguage(_ language: AppLanguage) -> Self {
@@ -163,7 +170,10 @@ extension WorkoutActivityAttributes.ContentState {
                   displayLanguageIdentifier: try? values.decode(String.self, forKey: .displayLanguageIdentifier),
                   designThemeIdentifier: try? values.decode(String.self, forKey: .designThemeIdentifier),
                   restTotalSeconds: try? values.decode(TimeInterval.self, forKey: .restTotalSeconds),
-                  frozenElapsed: try? values.decode(WorkoutActivityFrozenElapsed.self, forKey: .frozenElapsed))
+                  frozenElapsed: try? values.decode(WorkoutActivityFrozenElapsed.self, forKey: .frozenElapsed),
+                  coachLine: try? values.decode(String.self, forKey: .coachLine),
+                  lastTimeShort: try? values.decode(String.self, forKey: .lastTimeShort),
+                  gainText: try? values.decode(String.self, forKey: .gainText))
         if let elapsed = frozenElapsed {
             let compatible = elapsed.state == .paused ? phase == .paused
                 : (phase == .readyToFinish || phase == .saving)

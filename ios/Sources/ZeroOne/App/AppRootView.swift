@@ -1694,6 +1694,7 @@ private struct ZeroOneMountedRootContent: View {
     private var rootLifecycle: some View {
         rootPresentations
         .environment(\.photoComparisonShareHostAuthority, photoShareAuthority)
+        .environment(\.zeroOneOutdoorRepository, outdoorActivityRepository)
         .onDisappear {
             if isCurrentShareRoot && !showsProfile && !showsOutdoorActivity && savedWorkoutShare == nil {
                 invalidateRootShareRoutes()
@@ -2033,7 +2034,8 @@ private struct ZeroOneMountedRootContent: View {
                         wellbeingAssessment: wellbeingAssessment,
                         onReviewWellbeing: { showsWellbeingReview = true },
                         programmeVolumeUnavailable: todayProgrammeVolumeUnavailable,
-                        dailyStepGoal: dailyGoals.isAvailable ? dailyGoals.value.steps : nil
+                        dailyStepGoal: dailyGoals.isAvailable ? dailyGoals.value.steps : nil,
+                        missedPlanCard: missedPlanCardView
                     )
                 }
             case .workout:
@@ -2531,6 +2533,26 @@ private struct ZeroOneMountedRootContent: View {
         guard workoutViewModel.isCompletionSaved else { return }
         showWorkoutLibrary()
         selectedTab = .today
+    }
+
+    /// Proof 41: Do it today moves the plan to now and opens it; Move keeps the time tomorrow; Skip cancels.
+    private var missedPlanCardView: AnyView? {
+        guard !programmeCoordinator.route.isActive,
+              let missed = MissedPlan.latest(workoutAppointments.appointments) else { return nil }
+        return AnyView(MissedPlanCard(appointment: missed, onDoToday: {
+            var moved = missed
+            moved.startsAt = Date.now.addingTimeInterval(60)
+            guard workoutAppointments.save(moved, expectedRevision: missed.revision) else { return }
+            reconcileWorkoutAppointments()
+            openScheduledWorkout(missed.reference, missed.id)
+        }, onMoveToTomorrow: {
+            guard let tomorrow = MissedPlan.tomorrow(at: missed.startsAt) else { return }
+            var moved = missed
+            moved.startsAt = tomorrow
+            if workoutAppointments.save(moved, expectedRevision: missed.revision) { reconcileWorkoutAppointments() }
+        }, onSkip: {
+            if workoutAppointments.cancel(id: missed.id, expectedRevision: missed.revision) { reconcileWorkoutAppointments() }
+        }))
     }
 
     private func openScheduledWorkout(_ reference: ScheduledWorkoutReference, _ id: UUID) {

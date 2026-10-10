@@ -134,6 +134,19 @@ private struct WorkoutActivityCard: View {
     private var phase: String {
         stale && state.phase == .rest ? state.localization.string("Ready for next set") : state.phaseTitle
     }
+    /// Island: "Goblet squat · Last 16 × 10" (no room for the full coach line).
+    private var exerciseLine: String {
+        let name = state.phase == .warmUp
+            ? state.localization.format("Next: %1$@", .text(state.exerciseName)) : state.exerciseName
+        if island, let last = state.lastTimeShort { return name + " · " + last }
+        return name
+    }
+    /// Lock Screen: "Set 1/2 · Last time 16 kg × 10. Target today: 8–12 reps."
+    private var setLine: String {
+        let set = state.localization.format("Set %1$lld/%2$lld", .integer(state.currentSet), .integer(state.plannedSetsForExercise))
+        if !island, let coach = state.coachLine { return set + " · " + coach }
+        return set
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -192,16 +205,27 @@ private struct WorkoutActivityCard: View {
             }
             ViewThatFits(in: .vertical) {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(state.phase == .warmUp
-                         ? state.localization.format("Next: %1$@", .text(state.exerciseName)) : state.exerciseName)
+                    Text(exerciseLine)
                         .zoProofText(.caption, size: 13, lineHeight: 18, weight: 500).lineLimit(1)
-                    Text(state.localization.format("Set %1$lld/%2$lld", .integer(state.currentSet), .integer(state.plannedSetsForExercise)))
-                        .zoText(.mini).monospacedDigit().foregroundStyle(secondary)
+                    Text(setLine)
+                        .zoText(.mini).monospacedDigit().foregroundStyle(secondary).lineLimit(island ? 1 : 2)
                 }
                 Text(state.exerciseName).zoText(.mini).lineLimit(1)
             }
             if state.phase == .rest || state.phase == .paused {
-                Text(phase).zoText(.mini).foregroundStyle(secondary).lineLimit(1)
+                HStack(spacing: 6) {
+                    Text(phase).zoText(.mini).foregroundStyle(secondary).lineLimit(1)
+                    // Round 4: the ink pill when the saved set beat last time. No room on the Island.
+                    if !island, let gain = state.gainText {
+                        Text(gain)
+                            .zoProofText(.caption, size: 12, lineHeight: 18, weight: 700)
+                            .monospacedDigit()
+                            .padding(.horizontal, 7)
+                            .frame(height: 18)
+                            .foregroundStyle(themed?.canvas ?? ZOColor.resolved(ZOColor.canvas, in: scheme))
+                            .background(ink, in: Capsule())
+                    }
+                }
             }
         }
         .foregroundStyle(ink)

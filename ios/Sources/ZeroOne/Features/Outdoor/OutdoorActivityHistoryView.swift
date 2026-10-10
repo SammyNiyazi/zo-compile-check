@@ -27,12 +27,17 @@ struct OutdoorActivityHistoryView: View {
     private let repository: OutdoorActivityRepository
     private let onShare: ((OutdoorActivityRecord) -> Void)?
     private let canExportSavedRecord: (@MainActor (OutdoorActivityRecord) async -> Bool)?
+    /// Inside History's Workouts / Walks and runs selector (proof 40): no own
+    /// navigation stack or Done, and this month's summary on top.
+    private let embedded: Bool
 
     init(repository: OutdoorActivityRepository, onShare: ((OutdoorActivityRecord) -> Void)? = nil,
-         canExportSavedRecord: (@MainActor (OutdoorActivityRecord) async -> Bool)? = nil) {
+         canExportSavedRecord: (@MainActor (OutdoorActivityRecord) async -> Bool)? = nil,
+         embedded: Bool = false) {
         self.repository = repository
         self.onShare = onShare
         self.canExportSavedRecord = canExportSavedRecord
+        self.embedded = embedded
     }
 
     private struct SelectionSnapshot {
@@ -66,9 +71,42 @@ struct OutdoorActivityHistoryView: View {
     private var secondaryInk: Color { contrast == .increased ? theme.textPrimary : theme.textSecondary }
 
     var body: some View {
+        if embedded {
+            historyContent
+        } else {
+            NavigationStack { historyContent }
+        }
+    }
+
+    @ViewBuilder private var monthSummary: some View {
+        if embedded, let summary = OutdoorMonthSummary.make(records, now: .now, calendar: calendar) {
+            HStack(spacing: ZOSpace.s) {
+                summaryTile(summary.month.formatted(.dateTime.month(.wide).locale(localization.locale)),
+                            value: Measurement(value: summary.meters / 1_000, unit: UnitLength.kilometers)
+                                .formatted(.measurement(width: .abbreviated, usage: .asProvided,
+                                    numberFormatStyle: .number.precision(.fractionLength(1))).locale(localization.locale)))
+                summaryTile(localization.string("Walks"), value: summary.walks.formatted())
+                summaryTile(localization.string("Runs"), value: summary.runs.formatted())
+            }
+            .padding(.horizontal, ZOSpace.screenMargin)
+            .padding(.bottom, ZOSpace.s)
+        }
+    }
+
+    private func summaryTile(_ title: String, value: String) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title).zoText(.caption).foregroundStyle(secondaryInk)
+            Text(value).zoThemeText(.metric).lineLimit(1).minimumScaleFactor(0.6)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(ZOSpace.m)
+        .zoThemeCardSurface()
+        .accessibilityElement(children: .combine)
+    }
+
+    private var historyContent: some View {
         let capturedSelection = selectionSnapshot
-        NavigationStack {
-            Group {
+        return Group {
                 if loadState == .loading {
                     if showsLoadingPlaceholder { historyPlaceholder }
                 } else if loadState == .unavailable && records.isEmpty {
@@ -92,6 +130,7 @@ struct OutdoorActivityHistoryView: View {
                     }
                 } else {
                     VStack(spacing: 0) {
+                        monthSummary
                         if loadState == .unavailable {
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("outdoor.design.history.stale").zoThemeText(.body)
@@ -146,11 +185,13 @@ struct OutdoorActivityHistoryView: View {
             }
             .zoThemeScreenSurface()
             .background(theme.backgroundPrimary)
-            .navigationTitle("outdoor.design.history")
+            .navigationTitle(embedded ? LocalizedStringKey("History") : LocalizedStringKey("outdoor.design.history"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") { rootShareCoordinator?.revokeBeforeRouteChange(); dismiss() }
+                if !embedded {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("Done") { rootShareCoordinator?.revokeBeforeRouteChange(); dismiss() }
+                    }
                 }
             }
             .sheet(item: selectedRecordBinding(expected: capturedSelection)) { record in
@@ -175,7 +216,6 @@ struct OutdoorActivityHistoryView: View {
                 defer { placeholder.cancel() }
                 await reload()
             }
-        }
     }
 
     private func detail(_ record: OutdoorActivityRecord, selection: SelectionSnapshot) -> some View {

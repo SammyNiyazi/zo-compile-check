@@ -2288,8 +2288,23 @@ private struct WorkoutHistoryView: View {
     @Environment(\.calendar) private var calendar
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     private var copy: WorkoutHistoryFactsPresentation { .init(localization: localization) }
+    // Proof 40: one History with Workouts and Walks and runs.
+    @Environment(\.zeroOneOutdoorRepository) private var outdoorRepository
+    @State private var kind: HistoryKind = .workouts
 
     var body: some View {
+        VStack(spacing: 0) {
+        if outdoorRepository != nil {
+            ZOSegmentedControl("History", selection: $kind, options: [
+                ZOSegment(value: HistoryKind.workouts, label: Text(verbatim: localization.string("Workouts"))),
+                ZOSegment(value: HistoryKind.outdoor, label: Text(verbatim: localization.string("Walks and runs")))
+            ])
+            .padding(.horizontal, ZOSpace.screenMargin)
+            .padding(.vertical, ZOSpace.s)
+        }
+        if kind == .outdoor, let outdoorRepository {
+            OutdoorActivityHistoryView(repository: outdoorRepository, embedded: true)
+        } else {
         Group {
             switch state {
             case .empty:
@@ -2346,6 +2361,9 @@ private struct WorkoutHistoryView: View {
                 .scrollIndicators(.hidden)
             }
         }
+        }
+        }
+        .frame(maxHeight: .infinity, alignment: .top)
         .navigationTitle(localization.string("History"))
         .navigationBarTitleDisplayMode(.inline)
         .zoThemeScreenSurface()
