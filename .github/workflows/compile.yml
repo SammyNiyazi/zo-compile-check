@@ -27,6 +27,19 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Media optimizer self-test
+        continue-on-error: true
+        run: |
+          status=0
+          out=$(xcrun swift ios/scripts/optimize-bundled-media.swift --self-test 2>&1) || status=$?
+          out2=$(xcrun swift ios/scripts/optimize-bundled-media.swift ios/Sources/ZeroOne/Resources/ExerciseVideos 2>&1 | tail -n 3) || status=$?
+          printf '%s\n%s\n' "$out" "$out2"
+          # Annotations are readable without signing in; logs are not.
+          printf '%s\n%s\n' "$out" "$out2" | tail -n 12 | sed 's/%/%25/g' | while IFS= read -r line; do
+            if [ "$status" -eq 0 ]; then echo "::notice::media: $line"; else echo "::error::media: $line"; fi
+          done
+          exit "$status"
+
       - name: Bootstrap pinned XcodeGen
         run: sh ios/scripts/bootstrap-xcodegen.sh
 
