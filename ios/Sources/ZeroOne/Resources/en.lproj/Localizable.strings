@@ -3905,3 +3905,69 @@
 "That name breaks the Club rules. Pick another." = "That name breaks the Club rules. Pick another.";
 
 "Pick a goal between 1 and 1,000." = "Pick a goal between 1 and 1,000.";
+
+"Add a friend" = "Add a friend";
+
+"Week code for member number %1$@" = "Week code for member number %1$@";
+
+"Hold your iPhone level over your friend's week code." = "Hold your iPhone level over your friend's week code.";
+
+"Let a friend scan this at the gym. It only works in 01, and only finds your card." = "Let a friend scan this at the gym. It only works in 01, and only finds your card.";
+
+"Open iPhone Settings" = "Open iPhone Settings";
+
+"Stop scanning" = "Stop scanning";
+
+"Scan a friend's code" = "Scan a friend's code";
+
+"01 needs the camera to read a week code." = "01 needs the camera to read a week code.";
+
+"That's your own code." = "That's your own code.";
+
+"No member with that code. It may be someone who left the Club." = "No member with that code. It may be someone who left the Club.";
+
+"Shared a workout" = "Shared a workout";
+
+"Train together · %1$@" = "Train together · %1$@";
+
+"Follow each other to message, or start a crew to chat together." = "Follow each other to message, or start a crew to chat together.";
+
+"%1$lld unread" = "%1$lld unread";
+
+"Messages" = "Messages";
+
+"Not sent yet. This looks like it breaks the Club rules. Edit it, then send." = "Not sent yet. This looks like it breaks the Club rules. Edit it, then send.";
+
+"This looks like it breaks the Club rules. Edit it, then send." = "This looks like it breaks the Club rules. Edit it, then send.";
+
+"Share a workout" = "Share a workout";
+
+"Train together" = "Train together";
+
+"Share a workout or train together" = "Share a workout or train together";
+
+"Message" = "Message";
+
+"Send" = "Send";
+
+"Delete" = "Delete";
+
+"In: %1$@" = "In: %1$@";
+
+"I'm in" = "I'm in";
+
+"Not this time" = "Not this time";
+
+"Finish a workout to share it." = "Finish a workout to share it.";
+
+"When" = "When";
+
+"Workout, e.g. Upper body A" = "Workout, e.g. Upper body A";
+
+"Gym (optional)" = "Gym (optional)";
+
+"What's wrong with this message?" = "What's wrong with this message?";
+
+"No reported messages." = "No reported messages.";
+
+"%1$@ · %2$lld reports" = "%1$@ · %2$lld reports";

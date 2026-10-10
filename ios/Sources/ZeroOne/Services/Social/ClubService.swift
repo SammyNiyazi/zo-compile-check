@@ -8,6 +8,8 @@ enum ClubServiceError: Error, Equatable {
 /// A JSON value a Club action may send. Nothing else can be put in a request.
 enum ClubValue: Encodable, Equatable, Sendable {
     case string(String), bool(Bool), number(Double), strings([String]), sets([ZeroOneSocialSelectedSet])
+    /// A nested object, e.g. a chat message's payload.
+    case object([String: ClubValue])
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
@@ -17,12 +19,15 @@ enum ClubValue: Encodable, Equatable, Sendable {
         case .number(let value): try container.encode(value)
         case .strings(let value): try container.encode(value)
         case .sets(let value): try container.encode(value)
+        case .object(let value): try container.encode(value)
         }
     }
 }
 
 /// The two database entry points: Codex's social_execute (follow, block, publish, delete) and club_execute.
-enum ClubEndpoint: String, Sendable { case social = "social_execute", club = "club_execute", crew = "crew_execute" }
+enum ClubEndpoint: String, Sendable {
+    case social = "social_execute", club = "club_execute", crew = "crew_execute", chat = "chat_execute"
+}
 
 protocol ClubServicing: Sendable {
     func execute(_ endpoint: ClubEndpoint, _ action: String, payload: [String: ClubValue],

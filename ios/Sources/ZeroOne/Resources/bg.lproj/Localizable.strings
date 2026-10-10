@@ -3906,3 +3906,69 @@
 "That name breaks the Club rules. Pick another." = "Това име нарушава правилата на Club. Избери друго.";
 
 "Pick a goal between 1 and 1,000." = "Избери цел между 1 и 1000.";
+
+"Add a friend" = "Добави приятел";
+
+"Week code for member number %1$@" = "Седмичен код за членски номер %1$@";
+
+"Hold your iPhone level over your friend's week code." = "Дръж iPhone-а хоризонтално над седмичния код на приятеля си.";
+
+"Let a friend scan this at the gym. It only works in 01, and only finds your card." = "Нека приятел го сканира във фитнеса. Работи само в 01 и намира само картата ти.";
+
+"Open iPhone Settings" = "Отвори настройките на iPhone";
+
+"Stop scanning" = "Спри сканирането";
+
+"Scan a friend's code" = "Сканирай кода на приятел";
+
+"01 needs the camera to read a week code." = "01 има нужда от камерата, за да прочете седмичен код.";
+
+"That's your own code." = "Това е твоят код.";
+
+"No member with that code. It may be someone who left the Club." = "Няма член с този код. Може да е някой, който е напуснал Club.";
+
+"Shared a workout" = "Сподели тренировка";
+
+"Train together · %1$@" = "Тренираме заедно · %1$@";
+
+"Follow each other to message, or start a crew to chat together." = "Последвайте се взаимно, за да си пишете, или създай екип, за да чатите заедно.";
+
+"%1$lld unread" = "%1$lld непрочетени";
+
+"Messages" = "Съобщения";
+
+"Not sent yet. This looks like it breaks the Club rules. Edit it, then send." = "Още не е изпратено. Това изглежда нарушава правилата на Club. Редактирай го и тогава изпрати.";
+
+"This looks like it breaks the Club rules. Edit it, then send." = "Това изглежда нарушава правилата на Club. Редактирай го и тогава изпрати.";
+
+"Share a workout" = "Сподели тренировка";
+
+"Train together" = "Тренираме заедно";
+
+"Share a workout or train together" = "Сподели тренировка или тренирайте заедно";
+
+"Message" = "Съобщение";
+
+"Send" = "Изпрати";
+
+"Delete" = "Изтрий";
+
+"In: %1$@" = "Идват: %1$@";
+
+"I'm in" = "Идвам";
+
+"Not this time" = "Не този път";
+
+"Finish a workout to share it." = "Завърши тренировка, за да я споделиш.";
+
+"When" = "Кога";
+
+"Workout, e.g. Upper body A" = "Тренировка, напр. Горна част A";
+
+"Gym (optional)" = "Фитнес (по желание)";
+
+"What's wrong with this message?" = "Какъв е проблемът с това съобщение?";
+
+"No reported messages." = "Няма сигнализирани съобщения.";
+
+"%1$@ · %2$lld reports" = "%1$@ · %2$lld сигнала";

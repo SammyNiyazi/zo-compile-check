@@ -14,6 +14,8 @@ struct ClubFeedSection: View {
     @State private var joining = false
     @State private var showingSettings = false
     @State private var showingPeople = false
+    @State private var showingAddFriend = false
+    @State private var showingMessages = false
     @State private var showingActivity = false
     @State private var showingReports = false
     @State private var composing = false
@@ -26,8 +28,12 @@ struct ClubFeedSection: View {
                 memberHeader
                 if let home = club.home {
                     trainedRow(home.trained)
-                    Button { composing = true } label: { Label("Post a workout", systemImage: "plus") }
-                        .buttonStyle(ZOButtonStyle(.secondary))
+                    HStack(spacing: ZOSpace.s) {
+                        Button { composing = true } label: { Label("Post a workout", systemImage: "plus") }
+                            .buttonStyle(ZOButtonStyle(.secondary))
+                        Button { showingAddFriend = true } label: { Label("Add a friend", systemImage: "person.badge.plus") }
+                            .buttonStyle(ZOButtonStyle(.secondary))
+                    }
                     if home.feed.isEmpty {
                         ClubNote(title: "Nothing here yet.",
                                  text: "Follow people from People, or post your own workout. Posts from people you follow show here.")
@@ -69,6 +75,11 @@ struct ClubFeedSection: View {
             NavigationStack { ClubPeopleView(club: club) }.zeroOneTheme(theme).zoSheet(theme)
         }
         .sheet(isPresented: $showingActivity) { NavigationStack { ClubActivityView(club: club) }.zeroOneTheme(theme).zoSheet(theme) }
+        .sheet(isPresented: $showingAddFriend) { NavigationStack { ClubAddFriendView(club: club) }.zeroOneTheme(theme).zoSheet(theme) }
+        .sheet(isPresented: $showingMessages) {
+            NavigationStack { ClubMessagesView(club: club, history: history) }.zeroOneTheme(theme).zoSheet(theme)
+        }
+        .task(id: club.phase) { await club.loadInbox() }
         .sheet(isPresented: $showingReports) { NavigationStack { ClubModerationView(club: club) }.zeroOneTheme(theme).zoSheet(theme) }
         .sheet(isPresented: $composing) {
             NavigationStack { ClubComposeView(club: club, history: history) }.zeroOneTheme(theme).zoSheet(theme)
@@ -90,6 +101,12 @@ struct ClubFeedSection: View {
                 }
             }
             Spacer()
+            iconButton("bubble.left.and.bubble.right", "Messages") { showingMessages = true }
+                .overlay(alignment: .topTrailing) {
+                    if club.unreadMessages > 0 {
+                        Circle().fill(theme.textPrimary).frame(width: 10, height: 10).accessibilityHidden(true)
+                    }
+                }
             iconButton("person.2", "People") { showingPeople = true }
             iconButton("bell", "Activity") { showingActivity = true }
             if club.isAdmin { iconButton("flag", "Reports") { showingReports = true } }
@@ -744,6 +761,7 @@ struct ClubModerationView: View {
             } else {
                 ProgressView()
             }
+            if showOpen { ClubMessageModerationSection(club: club) }
             Section { Text("Only you see this. Reporters stay anonymous to the people they report.").font(.caption) }
         }
         .navigationTitle(Text("Reports"))

@@ -17,6 +17,9 @@ final class ClubStore {
     private(set) var home: ClubHome?
     /// Proof 12 and 48: the crews this member is in.
     private(set) var crews: [ClubCrew] = []
+    /// Proof 25: crew chats and friends, newest first.
+    private(set) var inbox: [ClubConversation] = []
+    var unreadMessages: Int { inbox.reduce(0) { $0 + $1.unread } }
     private(set) var isWorking = false
     /// One short line for the last failed action; never raw server text.
     var notice: String?
@@ -41,7 +44,7 @@ final class ClubStore {
     func accountChanged(to id: UUID?) {
         guard id != accountID else { return }
         accountID = id
-        me = nil; home = nil; isAdmin = false; notice = nil; crews = []
+        me = nil; home = nil; isAdmin = false; notice = nil; crews = []; inbox = []
         WidgetMemberCard.save(nil)
         reportedTrained.removeAll()
         phase = service == nil ? .notConfigured : (id == nil ? .signedOut : .loading)
@@ -266,6 +269,68 @@ final class ClubStore {
         guard await act(.crew, "leave", ["crew": .string(crew.id.uuidString)]) else { return false }
         await loadCrews()
         return true
+    }
+
+    // MARK: Chat (proof 25, 50)
+
+    private func chatPayload(_ target: ClubChatTarget) -> [String: ClubValue] {
+        switch target {
+        case let .crew(id): ["crew": .string(id.uuidString)]
+        case let .person(id): ["person": .string(id.uuidString)]
+        }
+    }
+
+    func loadInbox() async {
+        guard phase == .member else { inbox = []; return }
+        if let value: ClubInbox = try? await read(.chat, "read_inbox") { inbox = value.conversations }
+    }
+
+    /// Reading a thread also marks it read on the server.
+    func messages(_ target: ClubChatTarget) async -> [ClubMessage]? {
+        (try? await read(.chat, "read_thread", chatPayload(target)) as ClubThread)?.messages
+    }
+
+    /// A text line passes the word filter first (proof 50); a held line is never sent.
+    @discardableResult
+    func send(_ target: ClubChatTarget, id: UUID, kind: ClubMessage.Kind, body: String = "",
+              payload: [String: ClubValue] = [:]) async -> Bool {
+        let line = body.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard ClubWordFilter.isClean(line) else { notice = "This looks like it breaks the Club rules. Edit it, then send."; return false }
+        var request = chatPayload(target)
+        request["id"] = .string(id.uuidString)
+        request["kind"] = .string(kind.rawValue)
+        request["body"] = .string(line)
+        if !payload.isEmpty { request["payload"] = .object(payload) }
+        return await act(.chat, "send", request)
+    }
+
+    @discardableResult
+    func deleteMessage(_ message: ClubMessage) async -> Bool {
+        await act(.chat, "delete", ["id": .string(message.id.uuidString)])
+    }
+
+    @discardableResult
+    func reportMessage(_ message: ClubMessage, category: String, details: String) async -> Bool {
+        var payload: [String: ClubValue] = ["id": .string(message.id.uuidString), "category": .string(category)]
+        let trimmed = details.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !trimmed.isEmpty { payload["details"] = .string(String(trimmed.prefix(1000))) }
+        return await act(.chat, "report", payload)
+    }
+
+    func messageReports() async -> [ClubMessageReport] {
+        guard isAdmin else { return [] }
+        return (try? await read(.chat, "admin_reports") as ClubMessageReports)?.reports ?? []
+    }
+
+    @discardableResult
+    func resolveMessageReport(_ id: UUID, remove: Bool) async -> Bool {
+        await act(.chat, "admin_resolve", ["id": .string(id.uuidString), "decision": .string(remove ? "removed" : "dismissed")])
+    }
+
+    /// Proof 33: the member behind a scanned week code.
+    func member(number: Int) async -> ClubPerson? {
+        guard (1 ... 0xFF_FFFF).contains(number) else { return nil }
+        return try? await read(.crew, "member_by_number", ["number": .number(Double(number))])
     }
 
     func crewInvite(token: String) async -> ClubCrewInvitePreview? {
