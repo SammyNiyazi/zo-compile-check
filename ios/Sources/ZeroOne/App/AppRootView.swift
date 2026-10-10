@@ -1835,6 +1835,12 @@ private struct ZeroOneMountedRootContent: View {
             workoutViewModel.progressionRecommendationsAllowed = progressionAdviceAllowed
         }
         .onOpenURL { url in
+            // Proof 48: a crew invite link opens the Club, which shows the invite.
+            if let token = ClubCrewLink.token(from: url) {
+                UserDefaults.standard.set(token, forKey: ClubCrewLink.pendingKey)
+                selectedTab = .social
+                return
+            }
             guard let route = DailyWidgetRoute(url: url) else { return }
             openWidgetDestination(route)
         }
@@ -3388,8 +3394,45 @@ private struct ZeroOneMountedRootContent: View {
             ),
             goals: dailyGoals.isAvailable ? dailyGoals.value : nil,
             accent: AccentPreference.storedValue(selectedAccentRawValue),
-            designTheme: DesignThemePreference.storedValue(selectedDesignThemeRawValue).designTheme
+            designTheme: DesignThemePreference.storedValue(selectedDesignThemeRawValue).designTheme,
+            training: widgetTraining,
+            memberCard: WidgetMemberCard.load()
         ).usingLanguage(localization.language)
+    }
+
+    /// Study 36: what the Today and This week widgets show, from saved History and the schedule.
+    private var widgetTraining: DailyWidgetSnapshot.Training? {
+        guard workoutHistory.availability == .available else { return nil }
+        let calendar = Calendar.current
+        var weekCalendar = calendar
+        weekCalendar.firstWeekday = 2
+        weekCalendar.minimumDaysInFirstWeek = 4
+        let now = Date.now
+        guard let week = weekCalendar.dateInterval(of: .weekOfYear, for: now) else { return nil }
+        let entries = workoutHistory.entries.filter { $0.completedSetCount > 0 }
+        let weekdays = Set(programmeCoordinator.activeSchedule?.weekdays ?? [])
+        let today = calendar.startOfDay(for: now)
+        let days: [DailyWidgetSnapshot.Training.Day] = (0 ..< 7).compactMap { offset in
+            guard let day = weekCalendar.date(byAdding: .day, value: offset, to: week.start),
+                  let next = weekCalendar.date(byAdding: .day, value: 1, to: day) else { return nil }
+            return DailyWidgetSnapshot.Training.Day(
+                trained: entries.contains { $0.completedAt >= day && $0.completedAt < next },
+                planned: weekdays.contains(calendar.component(.weekday, from: day)), isToday: day == today)
+        }
+        let thisWeek = entries.filter { $0.completedAt >= week.start && $0.completedAt < week.end }
+        let lastStart = weekCalendar.date(byAdding: .day, value: -7, to: week.start) ?? week.start
+        let lastWeek = entries.filter { $0.completedAt >= lastStart && $0.completedAt < week.start }.count
+        let state: DailyWidgetSnapshot.Training.State
+        if programmeCoordinator.route.isActive { state = .inProgress }
+        else if entries.contains(where: { calendar.isDateInToday($0.completedAt) }) { state = .done }
+        else if !weekdays.isEmpty, !weekdays.contains(calendar.component(.weekday, from: now)) { state = .restDay }
+        else { state = .next }
+        let session = todayDisplaySession
+        return DailyWidgetSnapshot.Training(state: state, workoutTitle: session.title,
+            exerciseCount: session.exercises.count,
+            minutes: WorkoutTimeEstimator().estimate(for: session)?.maximumMinutes, days: days,
+            workoutsThisWeek: thisWeek.count, plannedThisWeek: weekdays.isEmpty ? nil : weekdays.count,
+            setsThisWeek: thisWeek.reduce(0) { $0 + $1.completedSetCount }, workoutsLastWeek: lastWeek)
     }
 
     private func executeAssistantResolution(_ resolution: AssistantActionResolution) {

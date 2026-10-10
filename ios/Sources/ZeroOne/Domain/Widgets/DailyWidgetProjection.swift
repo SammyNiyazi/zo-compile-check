@@ -18,6 +18,8 @@ struct DailyWidgetInputs: Equatable {
     var accent: AccentPreference = .yellow
     var language: AppLanguage? = nil
     var designTheme: ZOTheme? = nil
+    var training: DailyWidgetSnapshot.Training? = nil
+    var memberCard: DailyWidgetSnapshot.Card? = nil
 
     func usingLanguage(_ language: AppLanguage) -> Self {
         var copy = self
@@ -33,6 +35,8 @@ struct DailyWidgetInputs: Equatable {
             waterDayStart: waterDayStart, hydrationAvailable: hydrationAvailable, latestWalk: latestWalk, goals: goals, accent: accent, language: language
         )
         if let designTheme { snapshot = snapshot.usingDesignTheme(designTheme) }
+        snapshot.training = training
+        snapshot.memberCard = memberCard
         return snapshot
     }
 }

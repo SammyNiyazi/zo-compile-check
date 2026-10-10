@@ -148,7 +148,9 @@ struct ProfileSettingsYouCardView: View {
 
     @ViewBuilder private var membershipLabel: some View {
         if case let .trial(days)? = membershipState?.status {
-            Text(verbatim: localization.format("Temporary · %1$lld days left", .integer(days)))
+            // Round 4: "Temporary · last day", never "1 days left".
+            Text(verbatim: days <= 1 ? localization.string("Temporary · last day")
+                 : localization.format("Temporary · %1$lld days left", .integer(days)))
                 .youCardText(size: width * 0.0312, line: 1.2, style: .section)
                 .padding(.horizontal, width * 0.023).padding(.vertical, 3 * scale)
                 .overlay(Capsule().strokeBorder(material.mark, lineWidth: 1))

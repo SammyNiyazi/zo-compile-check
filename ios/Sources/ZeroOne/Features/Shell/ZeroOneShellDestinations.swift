@@ -14,6 +14,8 @@ struct SocialHomeView: View {
     @Environment(ZeroOneAccountStore.self) private var account
     /// Club core v1 (Sammy, 10 Oct): the real Club when this build has the account service.
     @State private var club: ClubStore?
+    /// A crew invite link opened 01; it waits here until the Club is ready.
+    @AppStorage(ClubCrewLink.pendingKey) private var pendingCrewInvite = ""
 
     private var composeAvailability: SocialComposeAvailability {
         if !workoutStateAvailable { return .unavailable }
@@ -58,8 +60,13 @@ struct SocialHomeView: View {
                         }
                         followingContent
                     } else if section == .clubs {
-                        // Sammy, 9 Oct: the Club runs locally until its service is live.
-                        LocalCrewSection(history: history)
+                        if let club, account.isConfigured, club.phase == .member {
+                            // Proof 12, 48: real crews once you are in the Club.
+                            ClubCrewsSection(club: club)
+                        } else {
+                            // Sammy, 9 Oct: the Club runs locally until its service is live.
+                            LocalCrewSection(history: history)
+                        }
                     } else {
                         SocialServiceGate(section: section)
                     }
@@ -80,6 +87,12 @@ struct SocialHomeView: View {
         .onChange(of: account.identity?.id) { _, id in
             club?.accountChanged(to: id)
             Task { await club?.refresh(history: history.entries) }
+        }
+        .sheet(isPresented: Binding(get: { !pendingCrewInvite.isEmpty && club?.phase == .member },
+                                    set: { if !$0 { pendingCrewInvite = "" } })) {
+            if let club {
+                ClubCrewInviteView(club: club, token: pendingCrewInvite).zeroOneTheme(theme).zoSheet(theme)
+            }
         }
         .fullScreenCover(item: $selectedWorkout) { workout in
             Group {

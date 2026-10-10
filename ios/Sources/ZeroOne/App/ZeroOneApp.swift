@@ -514,18 +514,34 @@ struct ZeroOneOnboardingView: View {
         }
     }
 
+    /// Proof 27: the permission card first; iOS asks only after "Turn on reminders".
+    /// Each kind and its limits stay in Settings, Notifications.
     private var setupRemindersStep: some View {
-        Group {
-            if let notes = setupNotes { SmartNotificationsView(notes: notes) }
-            else { ProgressView() }
+        ScrollView {
+            NotificationPermissionCard()
+                .padding(.horizontal, ZOSpace.screenMargin)
+                .padding(.top, ZOSpace.xl)
         }
         .safeAreaInset(edge: .top, spacing: 0) {
             ZeroOneSetupProgressHeader(progress: ZeroOneOnboardingFlow.progress(for: 9), onBack: goBack)
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            Button("See my plan") { move(to: 6) }.buttonStyle(ZOButtonStyle(.primary))
-                .padding(.horizontal, ZOSpace.screenMargin).padding(.vertical, ZOSpace.m)
-                .background(theme.backgroundPrimary)
+            VStack(spacing: ZOSpace.xs) {
+                if let notes = setupNotes, notes.authorization == .notDetermined {
+                    Button("Turn on reminders") {
+                        Task {
+                            await notes.enable(quietly: false)
+                            move(to: 6)
+                        }
+                    }
+                    .buttonStyle(ZOButtonStyle(.primary))
+                    Button("Not now") { move(to: 6) }.buttonStyle(ZOButtonStyle(.quiet))
+                } else {
+                    Button("See my plan") { move(to: 6) }.buttonStyle(ZOButtonStyle(.primary))
+                }
+            }
+            .padding(.horizontal, ZOSpace.screenMargin).padding(.vertical, ZOSpace.m)
+            .background(theme.backgroundPrimary)
         }
         .task { if setupNotes == nil { setupNotes = SmartNoteCenter() } }
     }

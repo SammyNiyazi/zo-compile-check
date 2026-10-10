@@ -3790,3 +3790,119 @@
 "This looks like it breaks the Club rules. Edit it, then post." = "Това изглежда нарушава правилата на Club. Редактирай го и тогава публикувай.";
 
 "That name or handle breaks the Club rules. Pick another." = "Това име или потребителско име нарушава правилата на Club. Избери друго.";
+
+"You are in" = "Вътре си";
+
+"Welcome to the Club" = "Добре дошъл в Club";
+
+"Your card counts every workout you save. Show it, share it, or let a friend scan it at the gym." = "Картата ти брои всяка записана тренировка. Покажи я, сподели я или остави приятел да я сканира във фитнеса.";
+
+"Thanks for being one of the first. I read every message." = "Благодаря, че си сред първите. Чета всяко съобщение.";
+
+"Show me the Club" = "Покажи ми Club";
+
+"Temporary · last day" = "Временна · последен ден";
+
+"Open 01 to see today's workout." = "Отвори 01, за да видиш днешната тренировка.";
+
+"Recovery is part of the plan." = "Възстановяването е част от плана.";
+
+"Open 01" = "Отвори 01";
+
+"Done today" = "Готово за днес";
+
+"%1$lld workouts this week" = "%1$lld тренировки тази седмица";
+
+"Open 01 to see your week." = "Отвори 01, за да видиш седмицата си.";
+
+"Last week" = "Миналата седмица";
+
+"%1$lld of %2$lld workouts" = "%1$lld от %2$lld тренировки";
+
+"%1$lld workout" = "%1$lld тренировка";
+
+"%1$lld workouts" = "%1$lld тренировки";
+
+"Join the Club in 01 to get your card." = "Влез в Club в 01, за да получиш картата си.";
+
+"Planned" = "Планирано";
+
+"Upper body A is ready when you are. About 40 min." = "Горна част A те чака, когато си готов. Около 40 мин.";
+
+"Big week for legs" = "Голяма седмица за краката";
+
+"16 hard sets since Monday. An easy walk today helps." = "16 тежки серии от понеделник. Лека разходка днес помага.";
+
+"Did you know" = "Знаеше ли";
+
+"Under 6 hours of sleep can cost you reps. 2 min read." = "Под 6 часа сън може да ти струва повторения. 2 мин четене.";
+
+"Reminders worth getting" = "Напомняния, които си струват";
+
+"Your training days, a recovery tip after a big week, and now and then something worth knowing. Never during a workout, never guilt." = "Тренировъчните ти дни, съвет за възстановяване след голяма седмица и от време на време нещо полезно. Никога по време на тренировка, никога вина.";
+
+"Turn on reminders" = "Включи напомнянията";
+
+"Start a crew" = "Създай екип";
+
+"A few people who train. You see who trained this week and chase one goal together." = "Няколко души, които тренират. Виждаш кой е тренирал тази седмица и гоните една цел заедно.";
+
+"%1$lld of %2$lld trained this week" = "%1$lld от %2$lld тренираха тази седмица";
+
+"%1$lld of %2$lld crew workouts this month" = "%1$lld от %2$lld тренировки на екипа този месец";
+
+"Who can join" = "Кой може да се присъедини";
+
+"Invite only: you send the link" = "Само с покана: ти пращаш линка";
+
+"Anyone with the link: it can be shared on" = "Всеки с линка: може да се препраща";
+
+"Monthly goal" = "Месечна цел";
+
+"Crew workouts a month: %1$lld" = "Тренировки на екипа за месец: %1$lld";
+
+"Create crew" = "Създай екип";
+
+"Join %1$@ on 01" = "Присъедини се към %1$@ в 01";
+
+"Share the invite link" = "Сподели линка за покана";
+
+"The link works until %1$@." = "Линкът работи до %1$@.";
+
+"Turn the link off" = "Изключи линка";
+
+"Make an invite link" = "Направи линк за покана";
+
+"Invite" = "Покана";
+
+"A link lasts 7 days. People in the same room can also use the week code." = "Линкът е валиден 7 дни. Хората в същата стая могат да ползват и седмичния код.";
+
+"Members" = "Членове";
+
+"This crew isn't available." = "Този екип не е наличен.";
+
+"Leave this crew?" = "Да напуснеш ли екипа?";
+
+"Your workouts stay yours. If you started the crew, the next member takes it over." = "Тренировките ти остават твои. Ако ти си създал екипа, следващият член го поема.";
+
+"%1$@ invited you to %2$@" = "%1$@ те покани в %2$@";
+
+"%1$lld members · %2$lld of %3$lld crew workouts this month" = "%1$lld членове · %2$lld от %3$lld тренировки на екипа този месец";
+
+"What your crew sees" = "Какво вижда екипът ти";
+
+"That you trained this week, your card, and what you post. Never your body weight, food or progress photos." = "Че си тренирал тази седмица, картата ти и какво публикуваш. Никога теглото, храната или снимките на напредъка ти.";
+
+"This invite isn't available." = "Тази покана не е налична.";
+
+"It may have expired or been turned off. Ask for a new link." = "Може да е изтекла или изключена. Поискай нов линк.";
+
+"Join the crew" = "Влез в екипа";
+
+"You're already in this crew" = "Вече си в този екип";
+
+"Give the crew a name." = "Дай име на екипа.";
+
+"That name breaks the Club rules. Pick another." = "Това име нарушава правилата на Club. Избери друго.";
+
+"Pick a goal between 1 and 1,000." = "Избери цел между 1 и 1000.";

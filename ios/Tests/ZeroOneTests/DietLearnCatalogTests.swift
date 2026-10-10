@@ -4,7 +4,9 @@ import XCTest
 final class DietLearnCatalogTests: XCTestCase {
     func testAllFiveDraftsAreValidSourcedAndMarkedUnreviewed() {
         XCTAssertEqual(DietLearnCatalog.lessons.map(\.id), [
-            "diet-balanced-plate", "diet-water", "diet-protein", "diet-labels", "diet-supplements-medicines"
+            "diet-balanced-plate", "diet-water", "diet-protein", "diet-labels", "diet-supplements-medicines",
+            // Proof 24 trend articles, 10 Oct.
+            "diet-glp1", "diet-intermittent-fasting", "diet-peptides"
         ])
         XCTAssertFalse(DietLearnCatalog.isReviewed)
         for lesson in DietLearnCatalog.lessons {

@@ -72,6 +72,33 @@ struct DailyWidgetSnapshot: Codable, Equatable, Sendable {
         }
     }
 
+    /// Study 36 Today and This week widgets: today's workout and the week, from saved History.
+    struct Training: Codable, Equatable, Sendable {
+        enum State: String, Codable, Sendable { case next, restDay, inProgress, done }
+        struct Day: Codable, Equatable, Sendable {
+            var trained: Bool
+            var planned: Bool
+            var isToday: Bool
+        }
+        var state: State
+        var workoutTitle: String?
+        var exerciseCount: Int?
+        var minutes: Int?
+        /// Monday to Sunday.
+        var days: [Day]
+        var workoutsThisWeek: Int
+        var plannedThisWeek: Int?
+        var setsThisWeek: Int
+        var workoutsLastWeek: Int?
+    }
+
+    /// Study 36 Club card widget: name, number and workouts. No photo, no QR.
+    struct Card: Codable, Equatable, Sendable {
+        var holderName: String
+        var number: String
+        var workouts: Int
+    }
+
     let version: Int
     let generatedAt: Date
     let dayStart: Date
@@ -94,11 +121,14 @@ struct DailyWidgetSnapshot: Codable, Equatable, Sendable {
     // Presentation only. Unknown raw values round-trip while resolving to Core.
     var designThemeIdentifier: String? = nil
     var displayTheme: ZOTheme { designThemeIdentifier.flatMap(ZOTheme.init(rawValue:)) ?? .core }
+    var training: Training? = nil
+    var memberCard: Card? = nil
 
     private enum CodingKeys: String, CodingKey {
         case version, generatedAt, dayStart, steps, eatenKilocalories, burnedKilocalories
         case waterMilliliters, waterGoalMilliliters, latestWalk, stepGoal, foodGoalKilocalories
         case accentPreference, displayLanguageIdentifier, designThemeIdentifier
+        case training, memberCard
     }
 
     func usingLanguage(_ language: AppLanguage) -> Self {
@@ -167,6 +197,8 @@ extension DailyWidgetSnapshot {
         accentPreference = try values.decodeIfPresent(String.self, forKey: .accentPreference)
         displayLanguageIdentifier = try? values.decode(String.self, forKey: .displayLanguageIdentifier)
         designThemeIdentifier = try? values.decode(String.self, forKey: .designThemeIdentifier)
+        training = try? values.decode(Training.self, forKey: .training)
+        memberCard = try? values.decode(Card.self, forKey: .memberCard)
     }
 }
 

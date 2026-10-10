@@ -22,7 +22,7 @@ enum ClubValue: Encodable, Equatable, Sendable {
 }
 
 /// The two database entry points: Codex's social_execute (follow, block, publish, delete) and club_execute.
-enum ClubEndpoint: String, Sendable { case social = "social_execute", club = "club_execute" }
+enum ClubEndpoint: String, Sendable { case social = "social_execute", club = "club_execute", crew = "crew_execute" }
 
 protocol ClubServicing: Sendable {
     func execute(_ endpoint: ClubEndpoint, _ action: String, payload: [String: ClubValue],

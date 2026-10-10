@@ -15,6 +15,8 @@ final class ClubStore {
     private(set) var me: ClubSelf?
     private(set) var isAdmin = false
     private(set) var home: ClubHome?
+    /// Proof 12 and 48: the crews this member is in.
+    private(set) var crews: [ClubCrew] = []
     private(set) var isWorking = false
     /// One short line for the last failed action; never raw server text.
     var notice: String?
@@ -39,7 +41,8 @@ final class ClubStore {
     func accountChanged(to id: UUID?) {
         guard id != accountID else { return }
         accountID = id
-        me = nil; home = nil; isAdmin = false; notice = nil
+        me = nil; home = nil; isAdmin = false; notice = nil; crews = []
+        WidgetMemberCard.save(nil)
         reportedTrained.removeAll()
         phase = service == nil ? .notConfigured : (id == nil ? .signedOut : .loading)
     }
@@ -52,6 +55,7 @@ final class ClubStore {
             let state: ClubMe = try await read(.club, "read_me")
             isAdmin = state.isAdmin
             me = state.member
+            WidgetMemberCard.save(state.member)
             guard let member = state.member else { phase = .notJoined; home = nil; return }
             if member.suspended { phase = .suspended; home = nil; return }
             if member.showTrained { await reportTrained(history) }
@@ -209,6 +213,71 @@ final class ClubStore {
         case .suspended: phase = .suspended
         default: phase = .unavailable
         }
+    }
+
+    // MARK: Crews (proof 12, 48)
+
+    func loadCrews() async {
+        guard phase == .member else { crews = []; return }
+        if let list: ClubCrewList = try? await read(.crew, "read_crews") { crews = list.crews }
+    }
+
+    @discardableResult
+    func createCrew(name: String, anyoneWithLink: Bool, monthlyGoal: Int) async -> Bool {
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard (1 ... 40).contains(trimmed.count) else { notice = "Give the crew a name."; return false }
+        guard ClubWordFilter.isClean(trimmed) else { notice = "That name breaks the Club rules. Pick another."; return false }
+        guard (1 ... 1000).contains(monthlyGoal) else { notice = "Pick a goal between 1 and 1,000."; return false }
+        guard await act(.crew, "create", ["name": .string(trimmed), "join_policy": .string(anyoneWithLink ? "link" : "invite"),
+                                           "monthly_goal": .number(Double(monthlyGoal))]) else { return false }
+        await loadCrews()
+        return true
+    }
+
+    /// A fresh 7-day link; the previous one stops working.
+    func inviteLink(for crew: ClubCrew) async -> URL? {
+        do {
+            let invite: ClubCrewInviteToken = try await read(.crew, "invite", ["crew": .string(crew.id.uuidString)])
+            await loadCrews()
+            return ClubCrewLink.url(token: invite.token)
+        } catch {
+            notice = Self.message((error as? ClubServiceError) ?? .unavailable)
+            return nil
+        }
+    }
+
+    @discardableResult
+    func turnOffInvite(for crew: ClubCrew) async -> Bool {
+        guard await act(.crew, "revoke_invite", ["crew": .string(crew.id.uuidString)]) else { return false }
+        await loadCrews()
+        return true
+    }
+
+    @discardableResult
+    func setGoal(_ goal: Int, for crew: ClubCrew) async -> Bool {
+        guard (1 ... 1000).contains(goal),
+              await act(.crew, "set_goal", ["crew": .string(crew.id.uuidString), "monthly_goal": .number(Double(goal))]) else { return false }
+        await loadCrews()
+        return true
+    }
+
+    @discardableResult
+    func leave(_ crew: ClubCrew) async -> Bool {
+        guard await act(.crew, "leave", ["crew": .string(crew.id.uuidString)]) else { return false }
+        await loadCrews()
+        return true
+    }
+
+    func crewInvite(token: String) async -> ClubCrewInvitePreview? {
+        guard ClubCrewLink.isToken(token) else { return nil }
+        return try? await read(.crew, "read_invite", ["token": .string(token)])
+    }
+
+    @discardableResult
+    func joinCrew(token: String) async -> Bool {
+        guard ClubCrewLink.isToken(token), await act(.crew, "join", ["token": .string(token)]) else { return false }
+        await loadCrews()
+        return true
     }
 
     private func read<Value: Decodable>(_ endpoint: ClubEndpoint, _ action: String,

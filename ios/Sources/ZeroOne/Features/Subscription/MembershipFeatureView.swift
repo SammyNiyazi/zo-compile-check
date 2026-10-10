@@ -521,7 +521,8 @@ private struct MembershipStatusScreen: View {
                 }
                 TimelineView(.periodic(from: .now, by: 60)) { context in
                     if let days = MembershipTrialPresentation.daysLeft(access: store.access, now: context.date) {
-                        MembershipNotice(text: localization.format("Temporary · %1$lld days left", .integer(days)))
+                        MembershipNotice(text: days <= 1 ? localization.string("Temporary · last day")
+                    : localization.format("Temporary · %1$lld days left", .integer(days)))
                     }
                 }
                 MembershipNotice(text: "Your local training data is not changed by membership or Restore.")

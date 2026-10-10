@@ -290,8 +290,18 @@ struct ClubJoinView: View {
     @State private var sixteen = false
     @State private var showingRules = false
     @State private var nameHeld = false
+    @State private var welcomed = false
 
     var body: some View {
+        // Proof 30: a successful join turns into Welcome to the Club.
+        if welcomed, let me = club.me {
+            ClubWelcomeView(me: me) { dismiss() }
+        } else {
+            joinForm
+        }
+    }
+
+    private var joinForm: some View {
         NavigationStack {
             Form {
                 Section {
@@ -329,7 +339,9 @@ struct ClubJoinView: View {
                         }
                         Task {
                             if await club.join(handle: handle, displayName: name, findable: findable,
-                                               showTrained: showTrained, confirmedSixteen: sixteen) { dismiss() }
+                                               showTrained: showTrained, confirmedSixteen: sixteen) {
+                                if club.me != nil { welcomed = true } else { dismiss() }
+                            }
                         }
                     }
                     .disabled(!sixteen || club.isWorking || ClubStore.validHandle(handle) == nil

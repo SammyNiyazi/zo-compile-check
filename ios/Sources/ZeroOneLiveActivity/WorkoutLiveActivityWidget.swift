@@ -332,6 +332,7 @@ struct ZeroOneLiveActivityWidgets: WidgetBundle {
         DailyCaloriesWidget()
         DailyWaterWidget()
         DailyTogetherWidget()
+        TrainingWidgets().body
         if #available(iOS 18.0, *) {
             WorkoutControl()
             WaterControl()
