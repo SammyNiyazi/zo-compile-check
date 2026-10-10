@@ -306,7 +306,8 @@ private struct MembershipPeriodPicker: View {
     private func periodLabel(_ product: Product) -> some View {
         VStack(alignment: .leading, spacing: ZOSpace.xs) {
             Text(product.membershipPeriodTitle(localization)).zoText(.section)
-            Text("Cancel any time").zoText(.caption).foregroundStyle(theme.textSecondary)
+            Text(localization.string(product.isLifetime ? "Pay once, yours for good" : "Cancel any time"))
+                .zoText(.caption).foregroundStyle(theme.textSecondary)
         }
         .fixedSize(horizontal: false, vertical: true)
     }
@@ -337,6 +338,10 @@ private struct MembershipPriceSummary: View {
     }
 
     private var summary: String {
+        if product.isLifetime {
+            return localization.format("%1$@ once. No subscription: nothing renews and there is nothing to cancel.",
+                                       .text(product.displayPrice))
+        }
         if MembershipTrialPresentation.approvedDays(product: product, eligibility: eligibility) != nil {
             return localization.format("Two weeks free, then %1$@ %2$@. Renews automatically until you cancel.",
                                        .text(product.displayPrice), .text(product.membershipPeriodPhrase(localization)))
@@ -414,10 +419,15 @@ private struct MembershipTermsScreen: View {
                                 MembershipFact(icon: "calendar", title: localization.format("Estimated payment starts %1$@", .text(date.formatted(.dateTime.day().month(.abbreviated).year().locale(localization.locale)))),
                                                detail: localization.format("Apple charges %1$@ when the trial ends unless you cancel. Apple confirms the actual date.", .text(product.displayPrice)))
                             }
-                            MembershipFact(icon: "arrow.triangle.2.circlepath", title: "Renews automatically",
-                                           detail: localization.format("%1$@ %2$@ until you cancel.", .text(product.displayPrice), .text(product.membershipPeriodPhrase(localization))))
-                            MembershipFact(icon: "xmark.circle", title: "Cancel in your Apple Account",
-                                           detail: "Manage your subscription in Settings or the App Store. Cancellation stops the next renewal.")
+                            if product.isLifetime {
+                                MembershipFact(icon: "infinity", title: "One payment",
+                                               detail: "Nothing renews and there is nothing to cancel. Restore it on any iPhone with the same Apple Account.")
+                            } else {
+                                MembershipFact(icon: "arrow.triangle.2.circlepath", title: "Renews automatically",
+                                               detail: localization.format("%1$@ %2$@ until you cancel.", .text(product.displayPrice), .text(product.membershipPeriodPhrase(localization))))
+                                MembershipFact(icon: "xmark.circle", title: "Cancel in your Apple Account",
+                                               detail: "Manage your subscription in Settings or the App Store. Cancellation stops the next renewal.")
+                            }
                             MembershipFact(icon: "square.and.arrow.down", title: "Your training stays stored",
                                            detail: "Membership changes do not delete local workouts or history on this iPhone.")
                         }
@@ -440,7 +450,9 @@ private struct MembershipTermsScreen: View {
             .safeAreaInset(edge: .bottom) {
                 if let product = store.selectedProduct {
                     MembershipPrimaryButton(
-                        title: hasTrial ? localization.string("Start 2 weeks free") : localization.format("Subscribe · %1$@", .text(product.displayPrice)),
+                        title: hasTrial ? localization.string("Start 2 weeks free")
+                            : product.isLifetime ? localization.format("Buy Lifetime · %1$@", .text(product.displayPrice))
+                            : localization.format("Subscribe · %1$@", .text(product.displayPrice)),
                         subtitle: "Apple asks you to confirm next",
                         disabled: !store.canPurchase,
                         showsProgress: store.action != .idle
@@ -740,7 +752,10 @@ private struct MembershipPrimaryButton: View {
 }
 
 private extension Product {
+    var isLifetime: Bool { type == .nonConsumable }
+
     func membershipPeriodTitle(_ localization: AppLocalization) -> String {
+        if isLifetime { return localization.string("Lifetime") }
         guard let period = subscription?.subscriptionPeriod else { return localization.string("Plan") }
         if period.unit == .month && period.value == 1 { return localization.string("Monthly") }
         if period.unit == .year && period.value == 1 { return localization.string("Yearly") }
@@ -748,6 +763,7 @@ private extension Product {
     }
 
     func membershipPeriodPhrase(_ localization: AppLocalization) -> String {
+        if isLifetime { return localization.string("once") }
         guard let period = subscription?.subscriptionPeriod else { return localization.string("per period") }
         if period.unit == .month && period.value == 1 { return localization.string("per month") }
         if period.unit == .year && period.value == 1 { return localization.string("per year") }

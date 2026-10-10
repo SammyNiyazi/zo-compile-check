@@ -4012,3 +4012,17 @@
 "Next charge: %1$@, %2$@." = "Следващо плащане: %1$@, %2$@.";
 
 "Next charge: %1$@." = "Следващо плащане: %1$@.";
+
+"Lifetime" = "Завинаги";
+
+"once" = "еднократно";
+
+"Pay once, yours for good" = "Плащаш веднъж, твое е завинаги";
+
+"%1$@ once. No subscription: nothing renews and there is nothing to cancel." = "%1$@ еднократно. Без абонамент: нищо не се подновява и няма какво да отказваш.";
+
+"One payment" = "Едно плащане";
+
+"Nothing renews and there is nothing to cancel. Restore it on any iPhone with the same Apple Account." = "Нищо не се подновява и няма какво да отказваш. Възстанови го на всеки iPhone със същия Apple акаунт.";
+
+"Buy Lifetime · %1$@" = "Купи Завинаги · %1$@";

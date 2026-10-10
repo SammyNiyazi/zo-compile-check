@@ -29,7 +29,7 @@ struct MembershipConfiguration {
     }
 
     static let appStore = MembershipConfiguration(
-        productIDs: ["app.the01.membership.monthly", "app.the01.membership.yearly"],
+        productIDs: ["app.the01.membership.monthly", "app.the01.membership.yearly", "app.the01.membership.lifetime"],
         subscriptionGroupID: nil,
         termsURL: URL(string: "https://the01.app/terms"),
         privacyURL: URL(string: "https://the01.app/privacy"),
@@ -37,6 +37,9 @@ struct MembershipConfiguration {
     )
 
     static let storeKitTest = appStore
+
+    /// Lifetime (Sammy 11 Oct): a one-time purchase beside the subscriptions; nothing renews.
+    var lifetimeProductID: String? { productIDs.first { $0.hasSuffix(".lifetime") } }
 
     var hasLegalLinks: Bool {
         [termsURL, privacyURL].allSatisfy { $0?.scheme == "https" && $0?.host != nil }

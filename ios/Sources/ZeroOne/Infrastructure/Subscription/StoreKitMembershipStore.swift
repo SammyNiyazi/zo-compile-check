@@ -91,9 +91,11 @@ final class StoreKitMembershipStore {
         await refreshAccess()
         do {
             let loaded = try await Product.products(for: configuration.productIDs)
-            let groupID = configuration.subscriptionGroupID ?? loaded.first?.subscription?.subscriptionGroupID
+            let groupID = configuration.subscriptionGroupID
+                ?? loaded.first(where: { $0.subscription != nil })?.subscription?.subscriptionGroupID
             products = loaded.filter {
-                $0.type == .autoRenewable && $0.subscription?.subscriptionGroupID == groupID
+                ($0.type == .autoRenewable && $0.subscription?.subscriptionGroupID == groupID
+                    || $0.type == .nonConsumable && $0.id == configuration.lifetimeProductID)
                     && configuration.productIDs.contains($0.id)
             }
                 .sorted { lhs, rhs in
@@ -125,6 +127,11 @@ final class StoreKitMembershipStore {
     }
 
     func refreshEligibility() async {
+        // Lifetime has no trial: it is bought outright.
+        if selectedProduct?.type == .nonConsumable {
+            eligibility = .ineligible
+            return
+        }
         guard let product = selectedProduct, let subscription = product.subscription else {
             eligibility = .unavailable
             return
@@ -158,7 +165,8 @@ final class StoreKitMembershipStore {
             }
         }
 
-        let groupID = configuration.subscriptionGroupID ?? selectedProduct?.subscription?.subscriptionGroupID
+        let groupID = configuration.subscriptionGroupID
+            ?? products.first(where: { $0.subscription != nil })?.subscription?.subscriptionGroupID
         guard let groupID else {
             access = entitlement.map { .member(until: $0.expirationDate) } ?? .unknown
             return

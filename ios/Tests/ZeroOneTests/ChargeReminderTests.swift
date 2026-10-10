@@ -37,7 +37,8 @@ final class ChargeReminderTests: XCTestCase {
 
     func testReleaseUsesTheAppStoreProducts() {
         XCTAssertEqual(MembershipConfiguration.appStore.productIDs,
-                       ["app.the01.membership.monthly", "app.the01.membership.yearly"])
+                       ["app.the01.membership.monthly", "app.the01.membership.yearly", "app.the01.membership.lifetime"])
+        XCTAssertEqual(MembershipConfiguration.appStore.lifetimeProductID, "app.the01.membership.lifetime")
         XCTAssertFalse(MembershipConfiguration.appStore.isBeta)
         XCTAssertTrue(MembershipConfiguration.appStore.hasLegalLinks)
     }

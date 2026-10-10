@@ -4011,3 +4011,17 @@
 "Next charge: %1$@, %2$@." = "Next charge: %1$@, %2$@.";
 
 "Next charge: %1$@." = "Next charge: %1$@.";
+
+"Lifetime" = "Lifetime";
+
+"once" = "once";
+
+"Pay once, yours for good" = "Pay once, yours for good";
+
+"%1$@ once. No subscription: nothing renews and there is nothing to cancel." = "%1$@ once. No subscription: nothing renews and there is nothing to cancel.";
+
+"One payment" = "One payment";
+
+"Nothing renews and there is nothing to cancel. Restore it on any iPhone with the same Apple Account." = "Nothing renews and there is nothing to cancel. Restore it on any iPhone with the same Apple Account.";
+
+"Buy Lifetime · %1$@" = "Buy Lifetime · %1$@";
