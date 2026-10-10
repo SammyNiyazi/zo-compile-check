@@ -53,12 +53,15 @@ final class ClubCoreTests: XCTestCase {
     func testJoinNeedsSixteenAndAValidHandleBeforeAnyRequest() async {
         let service = FakeClubService()
         let club = store(service)
-        XCTAssertFalse(await club.join(handle: "maya_l", displayName: "Maya", findable: true, showTrained: true, confirmedSixteen: false))
-        XCTAssertFalse(await club.join(handle: "M!", displayName: "Maya", findable: true, showTrained: true, confirmedSixteen: true))
+        let underSixteen = await club.join(handle: "maya_l", displayName: "Maya", findable: true, showTrained: true, confirmedSixteen: false)
+        let badHandle = await club.join(handle: "M!", displayName: "Maya", findable: true, showTrained: true, confirmedSixteen: true)
+        XCTAssertFalse(underSixteen)
+        XCTAssertFalse(badHandle)
         XCTAssertTrue(service.calls.isEmpty, "Nothing is sent before the member confirms 16+ and picks a valid handle")
         XCTAssertEqual(ClubStore.validHandle(" Maya_L "), "maya_l")
         XCTAssertNil(ClubStore.validHandle("ab"))
-        XCTAssertTrue(await club.join(handle: "maya_l", displayName: " Maya ", findable: false, showTrained: true, confirmedSixteen: true))
+        let joined = await club.join(handle: "maya_l", displayName: " Maya ", findable: false, showTrained: true, confirmedSixteen: true)
+        XCTAssertTrue(joined)
         let join = service.calls.first { $0.action == "join" }
         XCTAssertEqual(join?.payload["age_confirmed"], .bool(true))
         XCTAssertEqual(join?.payload["display_name"], .string("Maya"))
@@ -125,13 +128,15 @@ final class ClubCoreTests: XCTestCase {
         let service = FakeClubService()
         let club = store(service)
         let id = UUID()
-        XCTAssertTrue(await club.publish(id: id, text: "Legs done", sets: sets))
+        let published = await club.publish(id: id, text: "Legs done", sets: sets)
+        XCTAssertTrue(published)
         let publish = try XCTUnwrap(service.calls.first { $0.action == "publish" })
         XCTAssertEqual(publish.endpoint, .social)
         XCTAssertEqual(publish.payload["audience"], .string("followers"))
         XCTAssertEqual(publish.payload["id"], .string(id.uuidString))
         XCTAssertEqual(publish.payload["confirmed"], .bool(true))
-        XCTAssertFalse(await club.publish(id: UUID(), text: "   ", sets: []), "Nothing to post is refused locally")
+        let empty = await club.publish(id: UUID(), text: "   ", sets: [])
+        XCTAssertFalse(empty, "Nothing to post is refused locally")
     }
 
     func testReportsQueueIsOnlyAskedForByModerators() async {
