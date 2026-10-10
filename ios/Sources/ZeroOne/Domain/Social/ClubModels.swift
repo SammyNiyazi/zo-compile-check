@@ -82,9 +82,25 @@ struct ClubPost: Decodable, Equatable, Identifiable, Sendable {
     let createdAt: Date
     var respectCount: Int
     var respected: Bool
+    /// Up to four photos (202610100004_club_live_photos.sql); empty before that migration.
+    let photos: [ClubPhotoKey]
 
     private enum CodingKeys: String, CodingKey {
-        case id, author, text, sets, createdAt = "created_at", respectCount = "respect_count", respected
+        case id, author, text, sets, createdAt = "created_at", respectCount = "respect_count", respected, photos
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(UUID.self, forKey: .id)
+        author = try values.decodeIfPresent(ClubPerson.self, forKey: .author)
+        text = try values.decode(String.self, forKey: .text)
+        sets = try values.decode([ZeroOneSocialSelectedSet].self, forKey: .sets)
+        createdAt = try values.decode(Date.self, forKey: .createdAt)
+        respectCount = try values.decode(Int.self, forKey: .respectCount)
+        respected = try values.decode(Bool.self, forKey: .respected)
+        // A key this build can't read is skipped rather than hiding the whole post.
+        let raw = (try? values.decodeIfPresent([String].self, forKey: .photos)) ?? nil
+        photos = (raw ?? []).compactMap(ClubPhotoKey.init)
     }
 }
 

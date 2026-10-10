@@ -1,3 +1,4 @@
+import PhotosUI
 import SwiftUI
 
 /// Proof 25 "Messages": crew chats and friends (people who follow each other),
@@ -48,11 +49,13 @@ struct ClubMessagesView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } } }
         .task { await club.loadInbox() }
+        // The doorbell refreshes this list (ClubStore.loadInbox) whenever a conversation changes.
+        .task { await club.stayLive() }
         .refreshable { await club.loadInbox() }
     }
 }
 
-/// One conversation. Refreshes while open; text passes the word filter first.
+/// One conversation. New messages arrive through the doorbell; text passes the word filter first.
 @MainActor
 struct ClubChatView: View {
     let club: ClubStore
@@ -66,6 +69,9 @@ struct ClubChatView: View {
     @State private var sharingWorkout = false
     @State private var planningTogether = false
     @State private var reporting: ClubMessage?
+    @State private var pickingPhoto = false
+    @State private var pickedPhoto: PhotosPickerItem?
+    @State private var openedPhoto: ClubPhotoKey?
 
     private var target: ClubChatTarget? {
         if let crew = conversation.crewID { return .crew(crew) }
@@ -90,14 +96,31 @@ struct ClubChatView: View {
         .safeAreaInset(edge: .bottom, spacing: 0) { composer }
         .navigationTitle(Text(verbatim: conversation.name))
         .navigationBarTitleDisplayMode(.inline)
+        .task { await club.stayLive() }
         .task {
-            // Refresh every 8 seconds while the chat is open; reading marks it read.
+            // The doorbell brings new messages at once; this slow refresh is only a safety net
+            // (20 s while the doorbell is not connected). Reading marks the chat read.
             while !Task.isCancelled {
                 await reload()
-                try? await Task.sleep(for: .seconds(8))
+                try? await Task.sleep(for: .seconds(club.isLive ? 120 : 20))
             }
         }
+        .onChange(of: club.doorbell) { _, _ in
+            if club.lastRang == conversation.id.lowercased() { Task { await reload() } }
+        }
         .onDisappear { Task { await club.loadInbox() } }
+        .photosPicker(isPresented: $pickingPhoto, selection: $pickedPhoto, matching: .images)
+        .onChange(of: pickedPhoto) { _, item in
+            guard let item, let target else { return }
+            pickedPhoto = nil
+            Task {
+                guard let data = await ClubPhotoPicking.data(item) else { return }
+                if await club.sendPhoto(target, data: data) { await reload() }
+            }
+        }
+        .fullScreenCover(item: $openedPhoto) { key in
+            ClubPhotoViewer(club: club, photos: [key], index: 0)
+        }
         .sheet(isPresented: $sharingWorkout) {
             NavigationStack { ClubChatWorkoutPicker(history: history) { sets in send(.workout, payload: ["sets": .sets(sets)]) } }
                 .zeroOneTheme(theme).zoSheet(theme)
@@ -138,15 +161,25 @@ struct ClubChatView: View {
                     .font(.caption).foregroundStyle(theme.textSecondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
+            if club.isUploadingPhoto {
+                Label { Text("Sending photo…") } icon: { ProgressView() }
+                    .font(.caption).foregroundStyle(theme.textSecondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            } else if let notice = club.notice {
+                Text(verbatim: localization.string(notice)).font(.caption).foregroundStyle(theme.textSecondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
             HStack(spacing: ZOSpace.s) {
                 Menu {
+                    Button { pickingPhoto = true } label: { Label("Photo", systemImage: "photo") }
                     Button { sharingWorkout = true } label: { Label("Share a workout", systemImage: "dumbbell") }
                     Button { planningTogether = true } label: { Label("Train together", systemImage: "calendar") }
                 } label: {
                     Image(systemName: "plus").font(.body.weight(.semibold)).frame(width: 40, height: 40)
                         .background(theme.surfaceSecondary, in: Circle())
                 }
-                .accessibilityLabel(Text("Share a workout or train together"))
+                .accessibilityLabel(Text("Send a photo, share a workout or train together"))
+                .disabled(club.isUploadingPhoto)
                 TextField("Message", text: $draft, axis: .vertical)
                     .lineLimit(1 ... 4)
                     .padding(.horizontal, ZOSpace.m).padding(.vertical, 10)
@@ -202,6 +235,14 @@ struct ClubChatView: View {
             .zoThemeCardSurface()
         case .together:
             togetherCard(message)
+        case .photo:
+            if let key = message.payload.photo {
+                let ratio = max(0.5, min(2, (message.payload.w ?? 4) / max(1, message.payload.h ?? 3)))
+                ClubPhotoThumb(club: club, key: key) { openedPhoto = key }
+                    .aspectRatio(ratio, contentMode: .fit)
+                    .frame(maxWidth: 240)
+                    .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+            }
         default:
             Text(verbatim: message.body)
                 .padding(.horizontal, ZOSpace.m).padding(.vertical, 10)

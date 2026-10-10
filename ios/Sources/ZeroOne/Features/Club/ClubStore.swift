@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import UIKit
 
 /// The Club on this iPhone: one owner for every Club request and what the screens show.
 /// Each request borrows a current session from the account store and never keeps it.
@@ -24,20 +25,38 @@ final class ClubStore {
     /// One short line for the last failed action; never raw server text.
     var notice: String?
 
+    /// Chat doorbell (202610100004): bumps when a conversation changed; `lastRang` says which one,
+    /// lowercased "crew:<id>" or "dm:<other account id>". Views reload when it changes.
+    private(set) var doorbell = 0
+    private(set) var lastRang: String?
+    /// True while the doorbell channel is joined; chats then refresh slowly as a safety net only.
+    private(set) var isLive = false
+    /// A photo is being shrunk and uploaded.
+    private(set) var isUploadingPhoto = false
+
     @ObservationIgnored private let service: (any ClubServicing)?
     @ObservationIgnored private let sessions: @MainActor () async -> ZeroOneAccountSession?
+    @ObservationIgnored private let photoStorage: ClubPhotoStorage?
+    @ObservationIgnored private let liveConfiguration: ZeroOneAccountConfiguration?
     @ObservationIgnored private var accountID: UUID?
     @ObservationIgnored private var reportedTrained = Set<UUID>()
+    @ObservationIgnored private var liveUsers = 0
+    @ObservationIgnored private var liveTask: Task<Void, Never>?
 
-    init(service: (any ClubServicing)?, sessions: @escaping @MainActor () async -> ZeroOneAccountSession?) {
+    init(service: (any ClubServicing)?, sessions: @escaping @MainActor () async -> ZeroOneAccountSession?,
+         photoStorage: ClubPhotoStorage? = nil, liveConfiguration: ZeroOneAccountConfiguration? = nil) {
         self.service = service
         self.sessions = sessions
+        self.photoStorage = photoStorage
+        self.liveConfiguration = liveConfiguration
         if service == nil { phase = .notConfigured }
     }
 
     static func live(account: ZeroOneAccountStore) -> ClubStore {
         ClubStore(service: account.configuration.map { SupabaseClubService(configuration: $0) },
-                  sessions: { [weak account] in await account?.sessionForRequest() })
+                  sessions: { [weak account] in await account?.sessionForRequest() },
+                  photoStorage: account.configuration.map { ClubPhotoStorage(configuration: $0) },
+                  liveConfiguration: account.configuration)
     }
 
     /// Call when the signed-in identity changes: nothing from another account survives.
@@ -45,6 +64,9 @@ final class ClubStore {
         guard id != accountID else { return }
         accountID = id
         me = nil; home = nil; isAdmin = false; notice = nil; crews = []; inbox = []
+        lastRang = nil; isLive = false
+        // The next loop turn reconnects with the new account's session.
+        if liveTask != nil { liveTask?.cancel(); liveTask = nil; if liveUsers > 0 { startLiveLoop() } }
         WidgetMemberCard.save(nil)
         reportedTrained.removeAll()
         phase = service == nil ? .notConfigured : (id == nil ? .signedOut : .loading)
@@ -159,13 +181,105 @@ final class ClubStore {
 
     /// Publishes exactly the selected sets and text to your followers. The ID is the one explicit
     /// Publish action, so a retry can never post twice.
+    /// Photos (already uploaded with `uploadPhoto`) are attached right after, once.
     @discardableResult
-    func publish(id: UUID, text: String, sets: [ZeroOneSocialSelectedSet]) async -> Bool {
+    func publish(id: UUID, text: String, sets: [ZeroOneSocialSelectedSet], photos: [ClubPhotoKey] = []) async -> Bool {
         let selection = ZeroOneSocialPostSelection(id: id, text: text, sets: sets, audience: .followers,
                                                    recipients: [], publishConfirmed: true)
         do { try selection.validate() } catch { notice = "Pick at least one set or write something."; return false }
-        return await act(.social, "publish", ["id": .string(id.uuidString), "text": .string(text), "sets": .sets(sets),
-            "audience": .string("followers"), "recipients": .strings([]), "confirmed": .bool(true)], refreshAfter: true)
+        guard await act(.social, "publish", ["id": .string(id.uuidString), "text": .string(text), "sets": .sets(sets),
+            "audience": .string("followers"), "recipients": .strings([]), "confirmed": .bool(true)],
+            refreshAfter: photos.isEmpty) else { return false }
+        guard !photos.isEmpty else { return true }
+        let attached = await act(.photo, "attach", ["id": .string(id.uuidString),
+                                                    "photos": .strings(photos.prefix(4).map(\.value))], refreshAfter: true)
+        if !attached { notice = "Your post is up, but its photos didn't attach. Try posting again." }
+        return attached
+    }
+
+    // MARK: Photos (202610100004)
+
+    /// Shrinks one photo on this iPhone and uploads it with its thumbnail. Returns its key and pixel size.
+    func uploadPhoto(_ data: Data) async -> (key: ClubPhotoKey, width: Int, height: Int)? {
+        guard let photoStorage, phase == .member else { notice = Self.message(.unavailable); return nil }
+        isUploadingPhoto = true
+        defer { isUploadingPhoto = false }
+        notice = nil
+        let prepared = await Task.detached(priority: .userInitiated) { ClubPhotoEncoder.prepare(data) }.value
+        guard let prepared else { notice = "This photo couldn't be prepared. Try another one."; return nil }
+        guard let session = await currentSession(),
+              let user = ClubLiveProtocol.authUserID(fromToken: session.accessToken),
+              let key = ClubPhotoKey(user + "/" + prepared.hash) else { notice = Self.message(.signedOut); return nil }
+        do {
+            try await photoStorage.upload(prepared.full, name: key.objectName(thumbnail: false), session: session)
+            try await photoStorage.upload(prepared.thumbnail, name: key.objectName(thumbnail: true), session: session)
+        } catch let error as ClubServiceError {
+            notice = Self.message(error); return nil
+        } catch {
+            notice = Self.message(.unavailable); return nil
+        }
+        // The sender never downloads their own photo.
+        ClubPhotoCache.shared.store(prepared.full, name: key.objectName(thumbnail: false))
+        ClubPhotoCache.shared.store(prepared.thumbnail, name: key.objectName(thumbnail: true))
+        return (key, prepared.width, prepared.height)
+    }
+
+    /// A Club photo from the cache, downloading it once if this iPhone hasn't seen it.
+    func photo(_ key: ClubPhotoKey, thumbnail: Bool, maxSide: CGFloat) async -> UIImage? {
+        let name = key.objectName(thumbnail: thumbnail)
+        let storage = photoStorage
+        return await ClubPhotoCache.shared.image(name, maxSide: maxSide) { [weak self] in
+            guard let storage, let session = await self?.currentSession() else { return nil }
+            return try? await storage.download(name: name, session: session)
+        }
+    }
+
+    @discardableResult
+    func sendPhoto(_ target: ClubChatTarget, data: Data) async -> Bool {
+        guard let photo = await uploadPhoto(data) else { return false }
+        return await send(target, id: UUID(), kind: .photo, payload: [
+            "photo": .string(photo.key.value), "w": .number(Double(photo.width)), "h": .number(Double(photo.height))])
+    }
+
+    // MARK: Live chat doorbell (202610100004)
+
+    /// Keeps the doorbell connected while a Club chat screen is open. Call from `.task`; returns when cancelled.
+    func stayLive() async {
+        liveUsers += 1
+        if liveTask == nil { startLiveLoop() }
+        while !Task.isCancelled {
+            do { try await Task.sleep(for: .seconds(3600)) } catch { break }
+        }
+        liveUsers -= 1
+        if liveUsers == 0 { liveTask?.cancel(); liveTask = nil; isLive = false }
+    }
+
+    private func startLiveLoop() {
+        guard let liveConfiguration else { return }
+        liveTask = Task { [weak self] in
+            var failures = 0
+            while !Task.isCancelled {
+                guard let store = self else { return }
+                guard store.phase == .member, let session = await store.currentSession() else {
+                    try? await Task.sleep(for: .seconds(30))
+                    continue
+                }
+                let owner = store.accountID
+                let joined = await ClubLiveConnection(configuration: liveConfiguration).run(
+                    token: session.accessToken,
+                    onJoined: { [weak store] in store?.isLive = true },
+                    onDoorbell: { [weak store] conversation in
+                        guard let store, store.accountID == owner else { return }
+                        store.lastRang = conversation
+                        store.doorbell &+= 1
+                        Task { await store.loadInbox() }
+                    })
+                store.isLive = false
+                // Back off when the channel is refused (e.g. before the migration): 10 s up to about 5 minutes.
+                failures = joined ? 0 : min(failures + 1, 5)
+                try? await Task.sleep(for: .seconds(joined ? 2 : 5 * (1 << failures)))
+            }
+        }
     }
 
     @discardableResult
@@ -374,17 +488,21 @@ final class ClubStore {
     private func send(_ endpoint: ClubEndpoint, _ action: String, _ payload: [String: ClubValue]) async throws -> Data {
         guard let service else { throw ClubServiceError.unavailable }
         let owner = accountID
-        // Another account operation may hold the session briefly; wait a moment rather than race it.
+        guard let session = await currentSession() else { throw ClubServiceError.signedOut }
+        let data = try await service.execute(endpoint, action, payload: payload, session: session)
+        // A reply for an account that is no longer signed in is dropped.
+        guard owner == accountID else { throw ClubServiceError.signedOut }
+        return data
+    }
+
+    /// Another account operation may hold the session briefly; wait a moment rather than race it.
+    private func currentSession() async -> ZeroOneAccountSession? {
         var session = await sessions()
         for _ in 0..<3 where session == nil {
             try? await Task.sleep(for: .milliseconds(400))
             session = await sessions()
         }
-        guard let session else { throw ClubServiceError.signedOut }
-        let data = try await service.execute(endpoint, action, payload: payload, session: session)
-        // A reply for an account that is no longer signed in is dropped.
-        guard owner == accountID else { throw ClubServiceError.signedOut }
-        return data
+        return session
     }
 
     static func message(_ error: ClubServiceError) -> String {

@@ -2,13 +2,17 @@ import Foundation
 
 /// Proof 25: decoded projections of supabase/migrations/202610100003_club_chat.sql.
 struct ClubMessage: Decodable, Equatable, Identifiable, Sendable {
-    enum Kind: String, Decodable, Sendable { case text, workout, together, answer }
+    enum Kind: String, Decodable, Sendable { case text, workout, together, answer, photo }
 
     struct Payload: Decodable, Equatable, Sendable {
         var sets: [ZeroOneSocialSelectedSet]?
         var title: String?
         var when: Date?
         var place: String?
+        /// A photo message (202610100004_club_live_photos.sql): the stored key and its pixel size.
+        var photo: ClubPhotoKey?
+        var w: Double?
+        var h: Double?
     }
 
     struct Answer: Decodable, Equatable, Sendable {
@@ -49,6 +53,7 @@ struct ClubMessage: Decodable, Equatable, Identifiable, Sendable {
         case .text: body
         case .workout: localization.string("Shared a workout")
         case .together: localization.format("Train together · %1$@", .text(payload.title ?? ""))
+        case .photo: localization.string("Photo")
         case .answer: ""
         }
     }

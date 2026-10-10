@@ -27,6 +27,7 @@ enum ClubValue: Encodable, Equatable, Sendable {
 /// The two database entry points: Codex's social_execute (follow, block, publish, delete) and club_execute.
 enum ClubEndpoint: String, Sendable {
     case social = "social_execute", club = "club_execute", crew = "crew_execute", chat = "chat_execute"
+    case photo = "club_photo_execute"
 }
 
 protocol ClubServicing: Sendable {

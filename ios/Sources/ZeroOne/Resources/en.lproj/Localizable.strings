@@ -3971,3 +3971,25 @@
 "No reported messages." = "No reported messages.";
 
 "%1$@ · %2$lld reports" = "%1$@ · %2$lld reports";
+
+"Photos" = "Photos";
+
+"Sign in or create an account" = "Sign in or create an account";
+
+"The Club needs a free 01 account. Your training works without one and stays on this iPhone." = "The Club needs a free 01 account. Your training works without one and stays on this iPhone.";
+
+"This photo couldn't be prepared. Try another one." = "This photo couldn't be prepared. Try another one.";
+
+"Your post is up, but its photos didn't attach. Try posting again." = "Your post is up, but its photos didn't attach. Try posting again.";
+
+"Sending photo…" = "Sending photo…";
+
+"Send a photo, share a workout or train together" = "Send a photo, share a workout or train together";
+
+"Add photos" = "Add photos";
+
+"Change photos" = "Change photos";
+
+"Up to 4. Each one is shrunk on this iPhone before upload, and its location and camera details are removed." = "Up to 4. Each one is shrunk on this iPhone before upload, and its location and camera details are removed.";
+
+"Posting…" = "Posting…";

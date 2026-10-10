@@ -1,3 +1,4 @@
+import PhotosUI
 import SwiftUI
 
 // Club core v1 (Sammy, 10 Oct 2026), drawn from study 30 proof screens 48 and 50:
@@ -12,6 +13,7 @@ struct ClubFeedSection: View {
     @Environment(\.zeroOneTheme) private var theme
     @Environment(\.zeroOneLocalization) private var localization
     @State private var joining = false
+    @State private var signingIn = false
     @State private var showingSettings = false
     @State private var showingPeople = false
     @State private var showingAddFriend = false
@@ -49,8 +51,17 @@ struct ClubFeedSection: View {
                          text: "Follow people who train, see who trained this week and give Respect. Your card gets its own number. Body weight, food and progress photos are never shared.")
                 Button("Join the Club") { joining = true }.buttonStyle(ZOButtonStyle(.primary))
             case .signedOut:
+                // The Club is the one place that needs an account: sign in or create one right here.
                 ClubNote(title: "Sign in to join the Club.",
-                         text: "The Club needs an 01 account. Sign in from Profile. Your training works without it.")
+                         text: "The Club needs a free 01 account. Your training works without one and stays on this iPhone.")
+                Button("Sign in or create an account") { signingIn = true }
+                    .buttonStyle(ZOButtonStyle(.primary))
+                    .sheet(isPresented: $signingIn) {
+                        NavigationStack { ZeroOneLoginView() }
+                            .zeroOneTheme(theme)
+                            .preferredColorScheme(theme.colorScheme)
+                            .zoSheet(theme)
+                    }
             case .closed:
                 ClubNote(title: "The Club opens soon.", text: "Your account is ready. Following and posts switch on when the Club opens.")
             case .suspended:
@@ -238,6 +249,9 @@ struct ClubPostCard: View {
                         Text(verbatim: ClubPostCard.setLine(set)).zoText(.section).foregroundStyle(theme.textPrimary)
                     }
                 }
+            }
+            if !post.photos.isEmpty {
+                ClubPhotoGrid(club: club, photos: post.photos)
             }
             HStack {
                 Button {
@@ -780,12 +794,16 @@ struct ClubComposeView: View {
     let club: ClubStore
     let history: WorkoutHistoryRepository
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.zeroOneLocalization) private var localization
     @State private var selected: WorkoutHistoryEntry?
     @State private var text = ""
     /// Proof 50: the line as held by the filter, abusive words masked.
     @State private var heldLine: String?
     /// One ID per Publish, kept across retries so a post is never made twice.
     @State private var actionID = UUID()
+    @State private var photoItems: [PhotosPickerItem] = []
+    @State private var photoPreviews: [UIImage] = []
+    @State private var posting = false
 
     private var sessions: [WorkoutHistoryEntry] {
         Array(history.entries.filter { $0.exercises?.contains(where: { !$0.completedSets.isEmpty }) == true }.prefix(12))
@@ -803,6 +821,40 @@ struct ClubComposeView: View {
                     TextField("Say something (optional)", text: $text, axis: .vertical).lineLimit(1...4)
                         .onChange(of: text) { _, _ in heldLine = nil }
                 } footer: { Text("Only the sets above and your line are posted. Nothing else from this workout leaves your iPhone.") }
+                Section {
+                    PhotosPicker(selection: $photoItems, maxSelectionCount: 4, matching: .images) {
+                        Label(photoItems.isEmpty ? "Add photos" : "Change photos", systemImage: "photo.on.rectangle")
+                    }
+                    if !photoPreviews.isEmpty {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 8) {
+                                ForEach(Array(photoPreviews.enumerated()), id: \.offset) { _, image in
+                                    Image(uiImage: image).resizable().scaledToFill()
+                                        .frame(width: 72, height: 72)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                                }
+                            }
+                        }
+                    }
+                } header: { Text("Photos") } footer: {
+                    Text("Up to 4. Each one is shrunk on this iPhone before upload, and its location and camera details are removed.")
+                }
+                .onChange(of: photoItems) { _, items in
+                    Task {
+                        var previews: [UIImage] = []
+                        for item in items {
+                            if let data = await ClubPhotoPicking.data(item), let image = ClubPhotoCache.decode(data, maxSide: 216) {
+                                previews.append(image)
+                            }
+                        }
+                        photoPreviews = previews
+                    }
+                }
+                if posting {
+                    Section { Label { Text("Posting…") } icon: { ProgressView() } }
+                } else if let notice = club.notice {
+                    Section { Text(verbatim: localization.string(notice)).foregroundStyle(.secondary) }
+                }
                 if let heldLine {
                     Section {
                         Label("Not sent yet", systemImage: "exclamationmark.circle").font(.headline)
@@ -842,10 +894,19 @@ struct ClubComposeView: View {
                             return
                         }
                         Task {
-                            if await club.publish(id: actionID, text: line, sets: sets) { dismiss() }
+                            posting = true
+                            defer { posting = false }
+                            // Photos go up first; a failed upload stops before anything is posted.
+                            var keys: [ClubPhotoKey] = []
+                            for item in photoItems {
+                                guard let data = await ClubPhotoPicking.data(item),
+                                      let photo = await club.uploadPhoto(data) else { return }
+                                keys.append(photo.key)
+                            }
+                            if await club.publish(id: actionID, text: line, sets: sets, photos: keys) { dismiss() }
                         }
                     }
-                    .disabled(club.isWorking)
+                    .disabled(club.isWorking || posting)
                 }
             }
         }

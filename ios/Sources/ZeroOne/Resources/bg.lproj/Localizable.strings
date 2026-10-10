@@ -3972,3 +3972,25 @@
 "No reported messages." = "Няма сигнализирани съобщения.";
 
 "%1$@ · %2$lld reports" = "%1$@ · %2$lld сигнала";
+
+"Photos" = "Снимки";
+
+"Sign in or create an account" = "Влез или създай акаунт";
+
+"The Club needs a free 01 account. Your training works without one and stays on this iPhone." = "Club изисква безплатен акаунт в 01. Тренировките ти работят и без него и остават на този iPhone.";
+
+"This photo couldn't be prepared. Try another one." = "Тази снимка не можа да се подготви. Опитай с друга.";
+
+"Your post is up, but its photos didn't attach. Try posting again." = "Публикацията ти е качена, но снимките не се прикачиха. Публикувай отново.";
+
+"Sending photo…" = "Снимката се изпраща…";
+
+"Send a photo, share a workout or train together" = "Изпрати снимка, сподели тренировка или тренирайте заедно";
+
+"Add photos" = "Добави снимки";
+
+"Change photos" = "Смени снимките";
+
+"Up to 4. Each one is shrunk on this iPhone before upload, and its location and camera details are removed." = "До 4. Всяка се смалява на този iPhone преди качване, а местоположението и данните за камерата се премахват.";
+
+"Posting…" = "Публикуване…";
