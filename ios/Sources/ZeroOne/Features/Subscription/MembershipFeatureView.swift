@@ -303,11 +303,28 @@ private struct MembershipPeriodPicker: View {
         ZOThemeComponentShape(theme: theme.designTheme, role: .card).resolvedRadius
     }
 
+    /// Study 30 screen 18: Monthly "Best to start", Yearly "$3.33 a month · save 33%" (from Apple's own
+    /// prices in the person's currency), Lifetime "Pay once, today".
+    private func planNote(_ product: Product) -> String {
+        if product.isLifetime { return localization.string("Pay once, today") }
+        guard let period = product.subscription?.subscriptionPeriod, period.value == 1 else {
+            return localization.string("Cancel any time")
+        }
+        if period.unit == .month { return localization.string("Best to start") }
+        guard period.unit == .year else { return localization.string("Cancel any time") }
+        let monthly = (product.price / 12).formatted(product.priceFormatStyle)
+        guard let month = store.products.first(where: {
+            $0.subscription?.subscriptionPeriod.unit == .month && $0.subscription?.subscriptionPeriod.value == 1
+        }), month.price > 0 else { return localization.format("%1$@ a month", .text(monthly)) }
+        let saving = NSDecimalNumber(decimal: (month.price * 12 - product.price) / (month.price * 12) * 100).intValue
+        guard saving >= 5 else { return localization.format("%1$@ a month", .text(monthly)) }
+        return localization.format("%1$@ a month · save %2$lld%%", .text(monthly), .integer(saving))
+    }
+
     private func periodLabel(_ product: Product) -> some View {
         VStack(alignment: .leading, spacing: ZOSpace.xs) {
             Text(product.membershipPeriodTitle(localization)).zoText(.section)
-            Text(localization.string(product.isLifetime ? "Pay once, yours for good" : "Cancel any time"))
-                .zoText(.caption).foregroundStyle(theme.textSecondary)
+            Text(planNote(product)).zoText(.caption).foregroundStyle(theme.textSecondary)
         }
         .fixedSize(horizontal: false, vertical: true)
     }
@@ -391,6 +408,7 @@ private struct MembershipTermsScreen: View {
     @Environment(\.zeroOneTheme) private var theme
     @Environment(\.zeroOneLocalization) private var localization
     @Environment(\.dismiss) private var dismiss
+    @State private var redeemingCode = false
 
     private var hasTrial: Bool { MembershipTrialPresentation.approvedDays(product: store.selectedProduct, eligibility: store.eligibility) != nil }
 
@@ -439,6 +457,11 @@ private struct MembershipTermsScreen: View {
                         .disabled(store.action != .idle)
                         .zoText(.section)
                         .frame(minHeight: ZOSpace.hitTarget)
+                    // Creator and partner codes (1 month free) go through Apple's own sheet.
+                    Button("Have a code?") { redeemingCode = true }
+                        .disabled(store.action != .idle)
+                        .zoText(.section)
+                        .frame(minHeight: ZOSpace.hitTarget)
                     if let message = store.message { MembershipNotice(text: message) }
                 }
                 .foregroundStyle(theme.textPrimary)
@@ -451,7 +474,7 @@ private struct MembershipTermsScreen: View {
                 if let product = store.selectedProduct {
                     MembershipPrimaryButton(
                         title: hasTrial ? localization.string("Start 2 weeks free")
-                            : product.isLifetime ? localization.format("Buy Lifetime · %1$@", .text(product.displayPrice))
+                            : product.isLifetime ? localization.format("Pay %1$@ once", .text(product.displayPrice))
                             : localization.format("Subscribe · %1$@", .text(product.displayPrice)),
                         subtitle: "Apple asks you to confirm next",
                         disabled: !store.canPurchase,
@@ -460,6 +483,9 @@ private struct MembershipTermsScreen: View {
                 }
             }
             .accessibilityAction(.escape) { dismiss() }
+        }
+        .offerCodeRedemption(isPresented: $redeemingCode) { _ in
+            Task { await store.refreshAccess() }
         }
         .navigationBarBackButtonHidden()
     }

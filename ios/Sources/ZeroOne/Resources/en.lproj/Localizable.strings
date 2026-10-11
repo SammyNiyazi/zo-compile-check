@@ -4025,3 +4025,15 @@
 "Nothing renews and there is nothing to cancel. Restore it on any iPhone with the same Apple Account." = "Nothing renews and there is nothing to cancel. Restore it on any iPhone with the same Apple Account.";
 
 "Buy Lifetime · %1$@" = "Buy Lifetime · %1$@";
+
+"Pay once, today" = "Pay once, today";
+
+"Best to start" = "Best to start";
+
+"%1$@ a month" = "%1$@ a month";
+
+"%1$@ a month · save %2$lld%%" = "%1$@ a month · save %2$lld%%";
+
+"Pay %1$@ once" = "Pay %1$@ once";
+
+"Have a code?" = "Have a code?";

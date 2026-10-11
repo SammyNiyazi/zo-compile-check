@@ -31,14 +31,14 @@ struct MoveKitExercise: Identifiable, Codable, Equatable, Sendable {
         ).flatMap { UIImage(contentsOfFile: $0.path) }
     }
 
-    /// The licensed catalog is generated from the canonical 412-item metadata. Keep the
+    /// The licensed catalog is generated from the canonical 582-item metadata (golden release). Keep the
     /// first shipped demonstrations' reviewed copy and poster choices when merging it.
     static let all: [MoveKitExercise] = {
         guard let url = Bundle.main.url(forResource: "catalog", withExtension: "json", subdirectory: "ExerciseVideos")
                 ?? Bundle.main.url(forResource: "catalog", withExtension: "json"),
               let data = try? Data(contentsOf: url),
               let packaged = try? JSONDecoder().decode([MoveKitExercise].self, from: data),
-              packaged.count == 412,
+              packaged.count == 582,
               Set(packaged.map(\.id)).count == packaged.count else {
             return curated
         }

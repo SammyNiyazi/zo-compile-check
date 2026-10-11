@@ -96,8 +96,8 @@ final class MoveKitExerciseTests: XCTestCase {
     }
 
     func testCompleteLicensedCatalogIsAvailableWithoutDroppingExercises() {
-        XCTAssertEqual(MoveKitExercise.all.count, 412)
-        XCTAssertEqual(Set(MoveKitExercise.all.map(\.id)).count, 412)
+        XCTAssertEqual(MoveKitExercise.all.count, 582)
+        XCTAssertEqual(Set(MoveKitExercise.all.map(\.id)).count, 582)
         XCTAssertTrue(MoveKitExercise.all.allSatisfy { !$0.name.isEmpty })
     }
 

@@ -4026,3 +4026,15 @@
 "Nothing renews and there is nothing to cancel. Restore it on any iPhone with the same Apple Account." = "Нищо не се подновява и няма какво да отказваш. Възстанови го на всеки iPhone със същия Apple акаунт.";
 
 "Buy Lifetime · %1$@" = "Купи Завинаги · %1$@";
+
+"Pay once, today" = "Плащаш веднъж, днес";
+
+"Best to start" = "Най-добро за начало";
+
+"%1$@ a month" = "%1$@ на месец";
+
+"%1$@ a month · save %2$lld%%" = "%1$@ на месец · спестяваш %2$lld%%";
+
+"Pay %1$@ once" = "Плати %1$@ веднъж";
+
+"Have a code?" = "Имаш код?";

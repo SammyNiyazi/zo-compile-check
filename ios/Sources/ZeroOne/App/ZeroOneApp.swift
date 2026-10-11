@@ -1,4 +1,5 @@
 import Foundation
+import StoreKit
 import SwiftUI
 import UserNotifications
 import UIKit
@@ -223,6 +224,8 @@ struct ZeroOneOnboardingView: View {
     @State private var showsSetupNotifications = false
     @State private var showsSetupHealth = false
     @State private var showsLogin = false
+    /// Welcome "I have a code": Apple's own offer-code sheet (creator codes: 1 month free, Sammy 11 Oct).
+    @State private var redeemingCode = false
     @State private var showsSetupLanguage = false
     @State private var setupPermissionBusy = false
     @State private var didRequestSetupHealth = false
@@ -328,6 +331,7 @@ struct ZeroOneOnboardingView: View {
         .zeroOneTheme(theme)
         .preferredColorScheme(mode == .firstRun ? selectedAppearance.preferredColorScheme : nil)
         .toolbar(.hidden, for: .navigationBar)
+        .offerCodeRedemption(isPresented: $redeemingCode) { _ in }
         .sheet(isPresented: $showsLogin) {
             Group {
                 NavigationStack {
@@ -578,7 +582,7 @@ struct ZeroOneOnboardingView: View {
                 guard !isSavingPlan, !isImportingBodyWeight, !setupPermissionBusy else { return }
                 move(to: 0)
             },
-            onCode: nil,
+            onCode: { redeemingCode = true },
             carriesLaunchTargets: true,
             isBusy: isSavingPlan || isImportingBodyWeight || setupPermissionBusy
         ) {

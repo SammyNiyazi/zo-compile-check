@@ -21,7 +21,7 @@ final class CustomWorkoutTests: XCTestCase {
 
     @MainActor
     func testEveryLicensedExerciseCanStartACustomSession() throws {
-        XCTAssertEqual(MoveKitExercise.all.count, 412)
+        XCTAssertEqual(MoveKitExercise.all.count, 582)
         for exercise in MoveKitExercise.all {
             let workout = CustomWorkout(
                 name: "My session",

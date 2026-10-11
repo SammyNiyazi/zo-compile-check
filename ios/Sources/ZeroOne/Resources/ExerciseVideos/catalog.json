@@ -1,5 +1,16 @@
 [
   {
+    "id": "90-90-hip-switches",
+    "name": "90/90 Hip Switches",
+    "videoResource": "90-90-hip-switches",
+    "posterResource": "90-90-hip-switches",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "abdominals-stretch-variation-four",
     "name": "Abdominals Stretch Variation Four",
     "videoResource": "abdominals-stretch-variation-four",
@@ -44,12 +55,67 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "adductor-groin-stretch",
+    "name": "Adductor / Groin Stretch",
+    "videoResource": "adductor-groin-stretch",
+    "posterResource": "adductor-groin-stretch",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Adductors",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "alternating-hammer-curl",
+    "name": "Alternate Hammer Curl",
+    "videoResource": "alternating-hammer-curl",
+    "posterResource": "alternating-hammer-curl",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Biceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "anti-gravity-press",
+    "name": "Anti-Gravity Press",
+    "videoResource": "anti-gravity-press",
+    "posterResource": "anti-gravity-press",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "arc-trainer",
     "name": "Arc Trainer",
     "videoResource": "arc-trainer",
     "posterResource": "arc-trainer",
     "equipment": "Machine",
     "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "archer-push-up",
+    "name": "Archer Push-Up",
+    "videoResource": "archer-push-up",
+    "posterResource": "archer-push-up",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "arm-circles-front-back",
+    "name": "Arm Circles (Front & Back)",
+    "videoResource": "arm-circles-front-back",
+    "posterResource": "arm-circles-front-back",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Shoulders",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -77,6 +143,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "assisted-pistol-squat",
+    "name": "Pistol Squat (Assisted)",
+    "videoResource": "assisted-pistol-squat",
+    "posterResource": "assisted-pistol-squat",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps, Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "b-stance-hip-thrust",
     "name": "B-Stance Hip Thrust",
     "videoResource": "b-stance-hip-thrust",
@@ -94,6 +171,28 @@
     "posterResource": "back-extension",
     "equipment": "Bodyweight",
     "muscleFocus": "Lower Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "backpack-curls",
+    "name": "Backpack Curls",
+    "videoResource": "backpack-curls",
+    "posterResource": "backpack-curls",
+    "equipment": "Backpack",
+    "muscleFocus": "Biceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "backpack-row",
+    "name": "Backpack Row",
+    "videoResource": "backpack-row",
+    "posterResource": "backpack-row",
+    "equipment": "Backpack",
+    "muscleFocus": "Back",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -149,6 +248,17 @@
     "posterResource": "band-glute-bridge",
     "equipment": "Band",
     "muscleFocus": "Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "band-good-morning",
+    "name": "Band Good Morning",
+    "videoResource": "band-good-morning",
+    "posterResource": "band-good-morning",
+    "equipment": "Band",
+    "muscleFocus": "Glutes, Hamstrings",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -220,6 +330,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "band-pull-through",
+    "name": "Band Pull-Through",
+    "videoResource": "band-pull-through",
+    "posterResource": "band-pull-through",
+    "equipment": "Band",
+    "muscleFocus": "Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "band-pullover",
     "name": "Band Pullover",
     "videoResource": "band-pullover",
@@ -264,6 +385,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "band-shoulder-dislocates",
+    "name": "Band Shoulder Dislocates",
+    "videoResource": "band-shoulder-dislocates",
+    "posterResource": "band-shoulder-dislocates",
+    "equipment": "Band",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "band-shrug",
     "name": "Band Shrug",
     "videoResource": "band-shrug",
@@ -297,12 +429,67 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "band-straight-arm-pulldown",
+    "name": "Band Straight Arm Pulldown",
+    "videoResource": "band-straight-arm-pulldown",
+    "posterResource": "band-straight-arm-pulldown",
+    "equipment": "Band",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "band-tricep-kickbacks",
+    "name": "Band Tricep Kickbacks",
+    "videoResource": "band-tricep-kickbacks",
+    "posterResource": "band-tricep-kickbacks",
+    "equipment": "Band",
+    "muscleFocus": "Triceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "band-wood-chopper",
     "name": "Band Wood Chopper",
     "videoResource": "band-wood-chopper",
     "posterResource": "band-wood-chopper",
     "equipment": "Band",
     "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "banded-ankle-dorsiflexion-mobilization",
+    "name": "Banded Ankle Dorsiflexion Mobilization",
+    "videoResource": "banded-ankle-dorsiflexion-mobilization",
+    "posterResource": "banded-ankle-dorsiflexion-mobilization",
+    "equipment": "Band",
+    "muscleFocus": "Tibialis",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "banded-clamshell",
+    "name": "Banded Clamshell",
+    "videoResource": "banded-clamshell",
+    "posterResource": "banded-clamshell",
+    "equipment": "Band",
+    "muscleFocus": "Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "banded-eccentric-tibialis-raise",
+    "name": "Banded Eccentric Tibialis Raise",
+    "videoResource": "banded-eccentric-tibialis-raise",
+    "posterResource": "banded-eccentric-tibialis-raise",
+    "equipment": "Band",
+    "muscleFocus": "Tibialis",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -358,6 +545,17 @@
     "posterResource": "barbell-bent-over-row-overhand",
     "equipment": "Barbell",
     "muscleFocus": "Back, Trapezius",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "barbell-clean-and-jerk",
+    "name": "Barbell Clean And Jerk",
+    "videoResource": "barbell-clean-and-jerk",
+    "posterResource": "barbell-clean-and-jerk",
+    "equipment": "Barbell",
+    "muscleFocus": "Quadriceps, Glutes, Shoulders",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -440,6 +638,28 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "barbell-glute-bridge",
+    "name": "Barbell Glute Bridge",
+    "videoResource": "barbell-glute-bridge",
+    "posterResource": "barbell-glute-bridge",
+    "equipment": "Barbell",
+    "muscleFocus": "Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "barbell-hack-squat",
+    "name": "Barbell Hack Squat",
+    "videoResource": "barbell-hack-squat",
+    "posterResource": "barbell-hack-squat",
+    "equipment": "Barbell",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "barbell-high-incline-bench-press",
     "name": "Barbell High Incline Bench Press",
     "videoResource": "barbell-high-incline-bench-press",
@@ -468,6 +688,28 @@
     "posterResource": "barbell-incline-bench-press",
     "equipment": "Barbell",
     "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "barbell-landmine-row",
+    "name": "Barbell Landmine Row",
+    "videoResource": "barbell-landmine-row",
+    "posterResource": "barbell-landmine-row",
+    "equipment": "Barbell",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "barbell-lunge",
+    "name": "Barbell Lunge",
+    "videoResource": "barbell-lunge",
+    "posterResource": "barbell-lunge",
+    "equipment": "Barbell",
+    "muscleFocus": "Quadriceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -528,6 +770,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "barbell-rear-delt-row",
+    "name": "Barbell Rear Delt Row",
+    "videoResource": "barbell-rear-delt-row",
+    "posterResource": "barbell-rear-delt-row",
+    "equipment": "Barbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "barbell-reverse-lunge",
     "name": "Barbell Reverse Lunge",
     "videoResource": "barbell-reverse-lunge",
@@ -556,6 +809,17 @@
     "posterResource": "barbell-shrug",
     "equipment": "Barbell",
     "muscleFocus": "Trapezius",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "barbell-skullcrusher",
+    "name": "Barbell Skullcrusher",
+    "videoResource": "barbell-skullcrusher",
+    "posterResource": "barbell-skullcrusher",
+    "equipment": "Barbell",
+    "muscleFocus": "Triceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -649,6 +913,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "barbell-walking-lunge",
+    "name": "Barbell Walking Lunge",
+    "videoResource": "barbell-walking-lunge",
+    "posterResource": "barbell-walking-lunge",
+    "equipment": "Barbell",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "barbell-wrist-curl",
     "name": "Barbell Wrist Curl",
     "videoResource": "barbell-wrist-curl",
@@ -682,6 +957,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "bear-crawl",
+    "name": "Bear Crawl",
+    "videoResource": "bear-crawl",
+    "posterResource": "bear-crawl",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "behind-the-neck-press",
     "name": "Behind-the-Neck Press",
     "videoResource": "behind-the-neck-press",
@@ -710,6 +996,28 @@
     "posterResource": "bench-dips",
     "equipment": "Bodyweight",
     "muscleFocus": "Triceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "bent-knee-soleus-raise",
+    "name": "Bent-Knee Soleus Raise",
+    "videoResource": "bent-knee-soleus-raise",
+    "posterResource": "bent-knee-soleus-raise",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Calves",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "bicycle-crunches",
+    "name": "Bicycle Crunches",
+    "videoResource": "bicycle-crunches",
+    "posterResource": "bicycle-crunches",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Core",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -765,6 +1073,17 @@
     "posterResource": "bodyweight-deadlift",
     "equipment": "Bodyweight",
     "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "bodyweight-deficit-reverse-lunge",
+    "name": "Bodyweight Deficit Reverse Lunge",
+    "videoResource": "bodyweight-deficit-reverse-lunge",
+    "posterResource": "bodyweight-deficit-reverse-lunge",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Glutes",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -858,6 +1177,28 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "bodyweight-squat-to-stand",
+    "name": "Bodyweight Squat to Stand",
+    "videoResource": "bodyweight-squat-to-stand",
+    "posterResource": "bodyweight-squat-to-stand",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Hamstrings, Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "bounds",
+    "name": "Bounds",
+    "videoResource": "bounds",
+    "posterResource": "bounds",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "box-jump",
     "name": "Box Jump",
     "videoResource": "box-jump",
@@ -869,12 +1210,45 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "bradford-press",
+    "name": "Bradford/Rocky Presses",
+    "videoResource": "bradford-press",
+    "posterResource": "bradford-press",
+    "equipment": "Barbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "breaststroke-swim",
     "name": "Breaststroke Swim",
     "videoResource": "breaststroke-swim",
     "posterResource": "breaststroke-swim",
     "equipment": "Bodyweight",
     "muscleFocus": "Back, Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "broad-jump",
+    "name": "Broad Jump",
+    "videoResource": "broad-jump",
+    "posterResource": "broad-jump",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "broomstick-pass-throughs",
+    "name": "Broomstick Pass-Throughs",
+    "videoResource": "broomstick-pass-throughs",
+    "posterResource": "broomstick-pass-throughs",
+    "equipment": "Dowel",
+    "muscleFocus": "Shoulders",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -1001,6 +1375,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "cable-chop",
+    "name": "Cable Chop",
+    "videoResource": "cable-chop",
+    "posterResource": "cable-chop",
+    "equipment": "Cable Machine",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "cable-decline-bench-press",
     "name": "Cable Decline Bench Press",
     "videoResource": "cable-decline-bench-press",
@@ -1106,6 +1491,28 @@
     "posterResource": "cable-overhead-press",
     "equipment": "Cable Machine",
     "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "cable-overhead-straight-bar-extensions",
+    "name": "Cable Overhead Straight Bar Extensions",
+    "videoResource": "cable-overhead-straight-bar-extensions",
+    "posterResource": "cable-overhead-straight-bar-extensions",
+    "equipment": "Cable Machine",
+    "muscleFocus": "Triceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "cable-pallof-press",
+    "name": "Cable Pallof Press",
+    "videoResource": "cable-pallof-press",
+    "posterResource": "cable-pallof-press",
+    "equipment": "Cable Machine",
+    "muscleFocus": "Core",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -1232,6 +1639,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "cable-single-arm-rear-delt-row",
+    "name": "Cable Single Arm Rear Delt Row",
+    "videoResource": "cable-single-arm-rear-delt-row",
+    "posterResource": "cable-single-arm-rear-delt-row",
+    "equipment": "Cable Machine",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "cable-single-arm-rope-pushdown",
     "name": "Cable Single Arm Rope Pushdown",
     "videoResource": "cable-single-arm-rope-pushdown",
@@ -1298,6 +1716,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "cable-tricep-kickback",
+    "name": "Cable Tricep Kickback",
+    "videoResource": "cable-tricep-kickback",
+    "posterResource": "cable-tricep-kickback",
+    "equipment": "Cable Machine",
+    "muscleFocus": "Triceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "cable-wood-chopper",
     "name": "Cable Wood Chopper",
     "videoResource": "cable-wood-chopper",
@@ -1326,6 +1755,17 @@
     "posterResource": "captains-chair-knee-raise",
     "equipment": "Bodyweight",
     "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "cat-camel",
+    "name": "Cat-Camel",
+    "videoResource": "cat-camel",
+    "posterResource": "cat-camel",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Lower Back, Core",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -1375,6 +1815,39 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "close-grip-incline-push-up",
+    "name": "Incline Push-Up Close-Grip",
+    "videoResource": "close-grip-incline-push-up",
+    "posterResource": "close-grip-incline-push-up",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "controlled-forearm-pronation-supination",
+    "name": "Controlled Forearm Pronation and Supination",
+    "videoResource": "controlled-forearm-pronation-supination",
+    "posterResource": "controlled-forearm-pronation-supination",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Forearms",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "copenhagen-plank",
+    "name": "Copenhagen Plank",
+    "videoResource": "copenhagen-plank",
+    "posterResource": "copenhagen-plank",
+    "equipment": "Bench",
+    "muscleFocus": "Adductors",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "cossack-squat",
     "name": "Cossack Squat",
     "videoResource": "cossack-squat",
@@ -1386,12 +1859,34 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "cross-body-cable-tricep-extension",
+    "name": "Cross-Body Cable Tricep Extension",
+    "videoResource": "cross-body-cable-tricep-extension",
+    "posterResource": "cross-body-cable-tricep-extension",
+    "equipment": "Cable Machine",
+    "muscleFocus": "Triceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "cross-body-hammer-curl",
     "name": "Cross-Body Hammer Curl",
     "videoResource": "cross-body-hammer-curl",
     "posterResource": "cross-body-hammer-curl",
     "equipment": "Dumbbell",
     "muscleFocus": "Biceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "crunches",
+    "name": "Crunches",
+    "videoResource": "crunches",
+    "posterResource": "crunches",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Core",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -1412,7 +1907,7 @@
     "name": "Cycling Cooldown",
     "videoResource": "cycling-cooldown",
     "posterResource": "cycling-cooldown",
-    "equipment": "Bodyweight",
+    "equipment": "Bicycle",
     "muscleFocus": "Quadriceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
@@ -1445,7 +1940,7 @@
     "name": "Cycling Warmup",
     "videoResource": "cycling-warmup",
     "posterResource": "cycling-warmup",
-    "equipment": "Bodyweight",
+    "equipment": "Bicycle",
     "muscleFocus": "Quadriceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
@@ -1457,6 +1952,17 @@
     "videoResource": "dead-bug",
     "posterResource": "dead-bug",
     "equipment": "Bodyweight",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dead-bug-weighted",
+    "name": "Dead Bug (Weighted)",
+    "videoResource": "dead-bug-weighted",
+    "posterResource": "dead-bug-weighted",
+    "equipment": "Dumbbell",
     "muscleFocus": "Core",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
@@ -1529,6 +2035,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "deficit-barbell-romanian-deadlift",
+    "name": "Romanian Deadlift from Deficit",
+    "videoResource": "deficit-barbell-romanian-deadlift",
+    "posterResource": "deficit-barbell-romanian-deadlift",
+    "equipment": "Barbell",
+    "muscleFocus": "Hamstrings, Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "deficit-deadlift",
     "name": "Deficit Deadlift",
     "videoResource": "deficit-deadlift",
@@ -1557,6 +2074,17 @@
     "posterResource": "diamond-push-ups",
     "equipment": "Bodyweight",
     "muscleFocus": "Triceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "double-kettlebell-clean-and-press",
+    "name": "Kettlebell Clean & Press (Double)",
+    "videoResource": "double-kettlebell-clean-and-press",
+    "posterResource": "double-kettlebell-clean-and-press",
+    "equipment": "Kettlebell",
+    "muscleFocus": "Shoulders, Glutes",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -1612,6 +2140,17 @@
     "posterResource": "dumbbell-chest-fly",
     "equipment": "Dumbbell",
     "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-close-grip-push-up",
+    "name": "Close-Grip Push-Up off a Dumbbell",
+    "videoResource": "dumbbell-close-grip-push-up",
+    "posterResource": "dumbbell-close-grip-push-up",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Triceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -1694,12 +2233,34 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "dumbbell-decline-crunch-behind-head",
+    "name": "Dumbbell Decline Crunch (Behind Head)",
+    "videoResource": "dumbbell-decline-crunch-behind-head",
+    "posterResource": "dumbbell-decline-crunch-behind-head",
+    "equipment": "Dumbbell, Bench",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "dumbbell-decline-skullcrusher",
     "name": "Dumbbell Decline Skullcrusher",
     "videoResource": "dumbbell-decline-skullcrusher",
     "posterResource": "dumbbell-decline-skullcrusher",
     "equipment": "Dumbbell",
     "muscleFocus": "Triceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-farmer-carry",
+    "name": "Dumbbell Farmer Carry",
+    "videoResource": "dumbbell-farmer-carry",
+    "posterResource": "dumbbell-farmer-carry",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Forearms, Trapezius",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -1826,10 +2387,32 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "dumbbell-halo",
+    "name": "Dumbbell Halo",
+    "videoResource": "dumbbell-halo",
+    "posterResource": "dumbbell-halo",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "dumbbell-hammer-curl",
     "name": "Dumbbell Hammer Curl",
     "videoResource": "dumbbell-hammer-curl",
     "posterResource": "dumbbell-hammer-curl",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Biceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-hammer-preacher-curl",
+    "name": "Dumbbell Hammer Preacher Curl",
+    "videoResource": "dumbbell-hammer-preacher-curl",
+    "posterResource": "dumbbell-hammer-preacher-curl",
     "equipment": "Dumbbell",
     "muscleFocus": "Biceps",
     "sets": "Follow your workout",
@@ -1903,6 +2486,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "dumbbell-incline-row",
+    "name": "Dumbbell Incline Row",
+    "videoResource": "dumbbell-incline-row",
+    "posterResource": "dumbbell-incline-row",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "dumbbell-lateral-lunge",
     "name": "Dumbbell Lateral Lunge",
     "videoResource": "dumbbell-lateral-lunge",
@@ -1947,6 +2541,39 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "dumbbell-lying-single-arm-rear-lateral-raise",
+    "name": "Dumbbell Lying One-Arm Rear Lateral Raise",
+    "videoResource": "dumbbell-lying-single-arm-rear-lateral-raise",
+    "posterResource": "dumbbell-lying-single-arm-rear-lateral-raise",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-neutral-grip-bent-over-row",
+    "name": "Bent Over Two-Dumbbell Row Palms In",
+    "videoResource": "dumbbell-neutral-grip-bent-over-row",
+    "posterResource": "dumbbell-neutral-grip-bent-over-row",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Back, Trapezius",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-neutral-high-incline-bench-press",
+    "name": "Dumbbell Neutral High Incline Bench Press",
+    "videoResource": "dumbbell-neutral-high-incline-bench-press",
+    "posterResource": "dumbbell-neutral-high-incline-bench-press",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "dumbbell-overhead-squat",
     "name": "Dumbbell Overhead Squat",
     "videoResource": "dumbbell-overhead-squat",
@@ -1969,6 +2596,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "dumbbell-pullover",
+    "name": "Dumbbell Pullover",
+    "videoResource": "dumbbell-pullover",
+    "posterResource": "dumbbell-pullover",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "dumbbell-push-press",
     "name": "Dumbbell Push Press",
     "videoResource": "dumbbell-push-press",
@@ -1986,6 +2624,17 @@
     "posterResource": "dumbbell-rear-delt-fly",
     "equipment": "Dumbbell",
     "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-reverse-lunge",
+    "name": "Dumbbell Rear Lunge",
+    "videoResource": "dumbbell-reverse-lunge",
+    "posterResource": "dumbbell-reverse-lunge",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Quadriceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -2019,6 +2668,28 @@
     "posterResource": "dumbbell-russian-twist",
     "equipment": "Dumbbell",
     "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-seated-full-lateral-raise",
+    "name": "Dumbbell Seated Full Lateral Raise",
+    "videoResource": "dumbbell-seated-full-lateral-raise",
+    "posterResource": "dumbbell-seated-full-lateral-raise",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-seated-lateral-raises",
+    "name": "Dumbbell Seated Lateral Raises",
+    "videoResource": "dumbbell-seated-lateral-raises",
+    "posterResource": "dumbbell-seated-lateral-raises",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -2090,6 +2761,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "dumbbell-side-plank",
+    "name": "Dumbbell Side Plank",
+    "videoResource": "dumbbell-side-plank",
+    "posterResource": "dumbbell-side-plank",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "dumbbell-single-arm-chest-press",
     "name": "Dumbbell Single Arm Chest Press",
     "videoResource": "dumbbell-single-arm-chest-press",
@@ -2112,12 +2794,45 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "dumbbell-single-arm-incline-bench-preacher-curl",
+    "name": "Single-Arm Dumbbell Preacher Curl on an Incline Bench Backrest",
+    "videoResource": "dumbbell-single-arm-incline-bench-preacher-curl",
+    "posterResource": "dumbbell-single-arm-incline-bench-preacher-curl",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Biceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-single-arm-neutral-overhead-press",
+    "name": "Dumbbell Single Arm Neutral Overhead Press",
+    "videoResource": "dumbbell-single-arm-neutral-overhead-press",
+    "posterResource": "dumbbell-single-arm-neutral-overhead-press",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "dumbbell-single-arm-row",
     "name": "Dumbbell Single Arm Row",
     "videoResource": "dumbbell-single-arm-row",
     "posterResource": "dumbbell-single-arm-row",
     "equipment": "Dumbbell",
     "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-single-arm-upright-row",
+    "name": "Dumbbell Single Arm Upright Row",
+    "videoResource": "dumbbell-single-arm-upright-row",
+    "posterResource": "dumbbell-single-arm-upright-row",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders, Trapezius",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -2178,6 +2893,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "dumbbell-squat",
+    "name": "Dumbbell Squat",
+    "videoResource": "dumbbell-squat",
+    "posterResource": "dumbbell-squat",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "dumbbell-standing-single-arm-curl",
     "name": "Dumbbell Standing Single Arm Curl",
     "videoResource": "dumbbell-standing-single-arm-curl",
@@ -2206,6 +2932,28 @@
     "posterResource": "dumbbell-step-up-low",
     "equipment": "Dumbbell",
     "muscleFocus": "Quadriceps, Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-stiff-leg-deadlift",
+    "name": "Stiff-Legged Dumbbell Deadlift",
+    "videoResource": "dumbbell-stiff-leg-deadlift",
+    "posterResource": "dumbbell-stiff-leg-deadlift",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Hamstrings",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-suitcase-carry",
+    "name": "Dumbbell Suitcase Carry",
+    "videoResource": "dumbbell-suitcase-carry",
+    "posterResource": "dumbbell-suitcase-carry",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Core",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -2244,6 +2992,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "dumbbell-tibialis-raise",
+    "name": "Dumbbell Tibialis Raise",
+    "videoResource": "dumbbell-tibialis-raise",
+    "posterResource": "dumbbell-tibialis-raise",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Tibialis",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "dumbbell-tricep-kickback",
     "name": "Dumbbell Tricep Kickback",
     "videoResource": "dumbbell-tricep-kickback",
@@ -2255,12 +3014,45 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "dumbbell-turkish-get-up",
+    "name": "Turkish Get-Up (Dumbbell)",
+    "videoResource": "dumbbell-turkish-get-up",
+    "posterResource": "dumbbell-turkish-get-up",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Core, Shoulders, Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "dumbbell-upright-row",
     "name": "Dumbbell Upright Row",
     "videoResource": "dumbbell-upright-row",
     "posterResource": "dumbbell-upright-row",
     "equipment": "Dumbbell",
     "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-walking-lunges",
+    "name": "Dumbbell Walking Lunges",
+    "videoResource": "dumbbell-walking-lunges",
+    "posterResource": "dumbbell-walking-lunges",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "dumbbell-windmill",
+    "name": "Dumbbell Windmill",
+    "videoResource": "dumbbell-windmill",
+    "posterResource": "dumbbell-windmill",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Core, Shoulders",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -2283,6 +3075,17 @@
     "posterResource": "dumbbell-wrist-extension",
     "equipment": "Dumbbell",
     "muscleFocus": "Forearms",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "eccentric-calf-lowers",
+    "name": "Eccentric Calf Lowers",
+    "videoResource": "eccentric-calf-lowers",
+    "posterResource": "eccentric-calf-lowers",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Calves",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -2332,6 +3135,28 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "ez-bar-skullcrusher",
+    "name": "EZ Bar Skullcrusher",
+    "videoResource": "ez-bar-skullcrusher",
+    "posterResource": "ez-bar-skullcrusher",
+    "equipment": "Barbell",
+    "muscleFocus": "Triceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "fire-hydrants",
+    "name": "Fire Hydrants",
+    "videoResource": "fire-hydrants",
+    "posterResource": "fire-hydrants",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "floor-press",
     "name": "Floor Press",
     "videoResource": "floor-press",
@@ -2376,6 +3201,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "frog-rock-backs",
+    "name": "Frog Rock-Backs",
+    "videoResource": "frog-rock-backs",
+    "posterResource": "frog-rock-backs",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Adductors",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "front-foot-elevated-split-squat",
     "name": "Front-Foot-Elevated Split Squat",
     "videoResource": "front-foot-elevated-split-squat",
@@ -2393,6 +3229,17 @@
     "posterResource": "front-plank",
     "equipment": "Bodyweight",
     "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "front-raise-and-pullover",
+    "name": "Front Raise And Pullover",
+    "videoResource": "front-raise-and-pullover",
+    "posterResource": "front-raise-and-pullover",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Chest",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -2431,12 +3278,34 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "goblet-squat-prying-hold",
+    "name": "Goblet Squat Prying Hold",
+    "videoResource": "goblet-squat-prying-hold",
+    "posterResource": "goblet-squat-prying-hold",
+    "equipment": "Kettlebell",
+    "muscleFocus": "Quadriceps, Adductors",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "good-mornings",
     "name": "Good Mornings",
     "videoResource": "good-mornings",
     "posterResource": "good-mornings",
     "equipment": "Bodyweight",
     "muscleFocus": "Glutes, Hamstrings",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "half-kneeling-hip-flexor-rock",
+    "name": "Half-Kneeling Hip Flexor Rock",
+    "videoResource": "half-kneeling-hip-flexor-rock",
+    "posterResource": "half-kneeling-hip-flexor-rock",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -2530,6 +3399,28 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "heel-and-toe-walks",
+    "name": "Heel and Toe Walks",
+    "videoResource": "heel-and-toe-walks",
+    "posterResource": "heel-and-toe-walks",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Calves, Tibialis",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "heel-elevated-dumbbell-front-squat",
+    "name": "Heel Elevated Dumbbell Front Squat",
+    "videoResource": "heel-elevated-dumbbell-front-squat",
+    "posterResource": "heel-elevated-dumbbell-front-squat",
+    "equipment": "Dumbbell, Weight Plate",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "hiking",
     "name": "Hiking",
     "videoResource": "hiking",
@@ -2547,6 +3438,28 @@
     "posterResource": "hill-climb-repeats",
     "equipment": "Bicycle",
     "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "hip-circles",
+    "name": "Hip Circles",
+    "videoResource": "hip-circles",
+    "posterResource": "hip-circles",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Glutes, Adductors",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "hip-hinge-drill",
+    "name": "Hip Hinge Drill",
+    "videoResource": "hip-hinge-drill",
+    "posterResource": "hip-hinge-drill",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Glutes",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -2574,6 +3487,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "incline-dumbbell-fly-with-twist",
+    "name": "Incline Dumbbell Flyes With A Twist",
+    "videoResource": "incline-dumbbell-fly-with-twist",
+    "posterResource": "incline-dumbbell-fly-with-twist",
+    "equipment": "Dumbbell, Bench",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "incline-machine-chest-press",
     "name": "Incline Machine Chest Press",
     "videoResource": "incline-machine-chest-press",
@@ -2589,6 +3513,17 @@
     "name": "Incline Push Up",
     "videoResource": "incline-push-up",
     "posterResource": "incline-push-up",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "incline-push-up-depth-jump",
+    "name": "Incline Push-Up Depth Jump",
+    "videoResource": "incline-push-up-depth-jump",
+    "posterResource": "incline-push-up-depth-jump",
     "equipment": "Bodyweight",
     "muscleFocus": "Chest",
     "sets": "Follow your workout",
@@ -2783,6 +3718,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "kettlebell-halo",
+    "name": "Kettlebell Halo",
+    "videoResource": "kettlebell-halo",
+    "posterResource": "kettlebell-halo",
+    "equipment": "Kettlebell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "kettlebell-hip-thrust",
     "name": "Kettlebell Hip Thrust",
     "videoResource": "kettlebell-hip-thrust",
@@ -2811,6 +3757,17 @@
     "posterResource": "kettlebell-push-press",
     "equipment": "Kettlebell",
     "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "kettlebell-renegade-rows",
+    "name": "Kettlebell Renegade Rows",
+    "videoResource": "kettlebell-renegade-rows",
+    "posterResource": "kettlebell-renegade-rows",
+    "equipment": "Kettlebell",
+    "muscleFocus": "Back",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -2893,6 +3850,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "kettlebell-suitcase-carry",
+    "name": "Kettlebell Suitcase Carry",
+    "videoResource": "kettlebell-suitcase-carry",
+    "posterResource": "kettlebell-suitcase-carry",
+    "equipment": "Kettlebell",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "kettlebell-sumo-deadlift",
     "name": "Kettlebell Sumo Deadlift",
     "videoResource": "kettlebell-sumo-deadlift",
@@ -2932,6 +3900,17 @@
     "posterResource": "kettlebell-turkish-get-up",
     "equipment": "Kettlebell",
     "muscleFocus": "Core, Shoulders, Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "kettlebell-walking-lunges",
+    "name": "Kettlebell Walking Lunges",
+    "videoResource": "kettlebell-walking-lunges",
+    "posterResource": "kettlebell-walking-lunges",
+    "equipment": "Kettlebell",
+    "muscleFocus": "Quadriceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3003,12 +3982,89 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "lateral-raise-to-front-raise",
+    "name": "Side Laterals to Front Raise",
+    "videoResource": "lateral-raise-to-front-raise",
+    "posterResource": "lateral-raise-to-front-raise",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "leaning-cable-lateral-raise",
     "name": "Leaning Cable Lateral Raise",
     "videoResource": "leaning-cable-lateral-raise",
     "posterResource": "leaning-cable-lateral-raise",
     "equipment": "Cable Machine",
     "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "leaning-single-arm-dumbbell-lateral-raise",
+    "name": "Leaning Single Arm Lateral Raise",
+    "videoResource": "leaning-single-arm-dumbbell-lateral-raise",
+    "posterResource": "leaning-single-arm-dumbbell-lateral-raise",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "leg-press-calf-raise",
+    "name": "Leg Press Calf Raise",
+    "videoResource": "leg-press-calf-raise",
+    "posterResource": "leg-press-calf-raise",
+    "equipment": "Machine",
+    "muscleFocus": "Calves",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "leg-swings-front-to-back",
+    "name": "Leg Swings (Front-to-Back)",
+    "videoResource": "leg-swings-front-to-back",
+    "posterResource": "leg-swings-front-to-back",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Hamstrings",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "lever-lateral-wide-pulldown",
+    "name": "Lever Lateral Wide Pulldown",
+    "videoResource": "lever-lateral-wide-pulldown",
+    "posterResource": "lever-lateral-wide-pulldown",
+    "equipment": "Machine",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "loaded-wrist-extensor-eccentric",
+    "name": "Loaded Wrist-Extensor Eccentric",
+    "videoResource": "loaded-wrist-extensor-eccentric",
+    "posterResource": "loaded-wrist-extensor-eccentric",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Forearms",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "loaded-wrist-flexor-eccentric",
+    "name": "Loaded Wrist-Flexor Eccentric",
+    "videoResource": "loaded-wrist-flexor-eccentric",
+    "posterResource": "loaded-wrist-flexor-eccentric",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Forearms",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3025,6 +4081,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "lunge-sprint",
+    "name": "Lunge Sprint",
+    "videoResource": "lunge-sprint",
+    "posterResource": "lunge-sprint",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "lunge-walking",
     "name": "Walking Lunge",
     "videoResource": "lunge-walking",
@@ -3036,12 +4103,34 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "lying-cambered-barbell-row",
+    "name": "Lying Cambered Barbell Row",
+    "videoResource": "lying-cambered-barbell-row",
+    "posterResource": "lying-cambered-barbell-row",
+    "equipment": "Barbell",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "lying-leg-curl",
     "name": "Lying Leg Curl",
     "videoResource": "lying-leg-curl",
     "posterResource": "lying-leg-curl",
     "equipment": "Machine",
     "muscleFocus": "Hamstrings",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "lying-single-arm-lateral-raise",
+    "name": "Lying One-Arm Lateral Raise",
+    "videoResource": "lying-single-arm-lateral-raise",
+    "posterResource": "lying-single-arm-lateral-raise",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3064,6 +4153,17 @@
     "posterResource": "machine-assisted-pull-up",
     "equipment": "Machine",
     "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "machine-back-extension",
+    "name": "Machine Back Extension",
+    "videoResource": "machine-back-extension",
+    "posterResource": "machine-back-extension",
+    "equipment": "Machine",
+    "muscleFocus": "Lower Back",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3130,6 +4230,17 @@
     "posterResource": "machine-front-military-press",
     "equipment": "Machine",
     "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "machine-goblet-sissy-squat",
+    "name": "Machine Goblet Sissy Squat",
+    "videoResource": "machine-goblet-sissy-squat",
+    "posterResource": "machine-goblet-sissy-squat",
+    "equipment": "Bench, Dumbbell",
+    "muscleFocus": "Quadriceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3355,12 +4466,34 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "medicine-ball-throw",
+    "name": "MB Throw",
+    "videoResource": "medicine-ball-throw",
+    "posterResource": "medicine-ball-throw",
+    "equipment": "Medicine Ball",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "mountain-climber",
     "name": "Mountain Climber",
     "videoResource": "mountain-climber",
     "posterResource": "mountain-climber",
     "equipment": "Bodyweight",
     "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "muscle-up",
+    "name": "Muscle-up",
+    "videoResource": "muscle-up",
+    "posterResource": "muscle-up",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Back, Chest, Triceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3443,6 +4576,28 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "open-book-rotation",
+    "name": "Open Book Rotation",
+    "videoResource": "open-book-rotation",
+    "posterResource": "open-book-rotation",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "open-book-rotations",
+    "name": "Open Book Rotations",
+    "videoResource": "open-book-rotations",
+    "posterResource": "open-book-rotations",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "pallof-press",
     "name": "Pallof Press",
     "videoResource": "pallof-press",
@@ -3498,6 +4653,28 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "pike-push-up",
+    "name": "Pike Push-Up/Handstand Push-Up",
+    "videoResource": "pike-push-up",
+    "posterResource": "pike-push-up",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "pistol-squat",
+    "name": "Pistol Squat",
+    "videoResource": "pistol-squat",
+    "posterResource": "pistol-squat",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps, Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "plate-forward-lunge",
     "name": "Plate Forward Lunge",
     "videoResource": "plate-forward-lunge",
@@ -3531,12 +4708,78 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "plyometric-kettlebell-push-up",
+    "name": "Plyo Kettlebell Pushups",
+    "videoResource": "plyometric-kettlebell-push-up",
+    "posterResource": "plyometric-kettlebell-push-up",
+    "equipment": "Kettlebell",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "pogo-hops",
+    "name": "Pogo Hops",
+    "videoResource": "pogo-hops",
+    "posterResource": "pogo-hops",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Calves",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "power-clean",
     "name": "Power Clean - no overhead press",
     "videoResource": "power-clean",
     "posterResource": "power-clean",
     "equipment": "Barbell",
     "muscleFocus": "Glutes, Hamstrings, Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "press-sit-up",
+    "name": "Press Sit-Up",
+    "videoResource": "press-sit-up",
+    "posterResource": "press-sit-up",
+    "equipment": "Barbell",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "prone-lateral-raises",
+    "name": "Prone Lateral Raises",
+    "videoResource": "prone-lateral-raises",
+    "posterResource": "prone-lateral-raises",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "prone-y-t-raises",
+    "name": "Prone Y-T Raises",
+    "videoResource": "prone-y-t-raises",
+    "posterResource": "prone-y-t-raises",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Trapezius, Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "prying-goblet-squat",
+    "name": "Prying Goblet Squat",
+    "videoResource": "prying-goblet-squat",
+    "posterResource": "prying-goblet-squat",
+    "equipment": "Kettlebell",
+    "muscleFocus": "Quadriceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3575,6 +4818,28 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "quadruped-thoracic-rotation",
+    "name": "Quadruped Thoracic Rotation",
+    "videoResource": "quadruped-thoracic-rotation",
+    "posterResource": "quadruped-thoracic-rotation",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "reverse-crunch",
+    "name": "Reverse Crunch",
+    "videoResource": "reverse-crunch",
+    "posterResource": "reverse-crunch",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "reverse-grip-barbell-bench-press",
     "name": "Reverse-Grip Barbell Bench Press",
     "videoResource": "reverse-grip-barbell-bench-press",
@@ -3592,6 +4857,17 @@
     "posterResource": "reverse-grip-barbell-curl",
     "equipment": "Barbell",
     "muscleFocus": "Forearms",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "reverse-grip-incline-push-up",
+    "name": "Incline Push-Up Reverse Grip",
+    "videoResource": "reverse-grip-incline-push-up",
+    "posterResource": "reverse-grip-incline-push-up",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Chest",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3636,6 +4912,17 @@
     "posterResource": "reverse-pec-deck",
     "equipment": "Machine",
     "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "rkc-plank",
+    "name": "RKC Plank",
+    "videoResource": "rkc-plank",
+    "posterResource": "rkc-plank",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Core",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3707,12 +4994,45 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "scapular-pull-up",
+    "name": "Scapular Pull-up",
+    "videoResource": "scapular-pull-up",
+    "posterResource": "scapular-pull-up",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "seal-row",
     "name": "Seal Row",
     "videoResource": "seal-row",
     "posterResource": "seal-row",
     "equipment": "Barbell",
     "muscleFocus": "Back, Trapezius",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "seated-ankle-circles",
+    "name": "Seated Ankle Circles",
+    "videoResource": "seated-ankle-circles",
+    "posterResource": "seated-ankle-circles",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Calves",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "seated-barbell-military-press",
+    "name": "Seated Barbell Military Press",
+    "videoResource": "seated-barbell-military-press",
+    "posterResource": "seated-barbell-military-press",
+    "equipment": "Barbell",
+    "muscleFocus": "Shoulders",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3729,12 +5049,34 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "seated-chin-tuck-neck-retraction",
+    "name": "Seated Chin Tuck / Neck Retraction",
+    "videoResource": "seated-chin-tuck-neck-retraction",
+    "posterResource": "seated-chin-tuck-neck-retraction",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Neck",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "seated-dumbbell-curl",
     "name": "Seated Dumbbell Curl",
     "videoResource": "seated-dumbbell-curl",
     "posterResource": "seated-dumbbell-curl",
     "equipment": "Dumbbell",
     "muscleFocus": "Biceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "seated-lateral-neck-flexion-hold",
+    "name": "Seated Lateral Neck Flexion (Hold)",
+    "videoResource": "seated-lateral-neck-flexion-hold",
+    "posterResource": "seated-lateral-neck-flexion-hold",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Neck",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3751,6 +5093,72 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "seated-pelvic-tilt-anterior-posterior",
+    "name": "Seated Pelvic Tilt (Anterior / Posterior)",
+    "videoResource": "seated-pelvic-tilt-anterior-posterior",
+    "posterResource": "seated-pelvic-tilt-anterior-posterior",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "seated-shoulder-rolls-scapular-retraction",
+    "name": "Seated Shoulder Rolls / Scapular Retraction",
+    "videoResource": "seated-shoulder-rolls-scapular-retraction",
+    "posterResource": "seated-shoulder-rolls-scapular-retraction",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Trapezius",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "seated-thoracic-extension-chest-opener",
+    "name": "Seated Thoracic Extension (Chest Opener)",
+    "videoResource": "seated-thoracic-extension-chest-opener",
+    "posterResource": "seated-thoracic-extension-chest-opener",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Lower Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "seated-wrist-flexor-stretch",
+    "name": "Seated Wrist Flexor Stretch",
+    "videoResource": "seated-wrist-flexor-stretch",
+    "posterResource": "seated-wrist-flexor-stretch",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Forearms",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "selectorized-overhead-press-machine",
+    "name": "Selectorized Overhead Press Machine",
+    "videoResource": "selectorized-overhead-press-machine",
+    "posterResource": "selectorized-overhead-press-machine",
+    "equipment": "Machine",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "selectorized-torso-rotation-machine",
+    "name": "Selectorized Torso Rotation Machine",
+    "videoResource": "selectorized-torso-rotation-machine",
+    "posterResource": "selectorized-torso-rotation-machine",
+    "equipment": "Machine",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "shadow-boxing",
     "name": "Shadow Boxing",
     "videoResource": "shadow-boxing",
@@ -3762,11 +5170,33 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "side-plank-lateral-raise",
+    "name": "Side Plank Lateral Raise",
+    "videoResource": "side-plank-lateral-raise",
+    "posterResource": "side-plank-lateral-raise",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "single-arm-cable-fly",
     "name": "Single-Arm Cable Fly",
     "videoResource": "single-arm-cable-fly",
     "posterResource": "single-arm-cable-fly",
     "equipment": "Cable Machine",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "single-arm-dumbbell-bench-press",
+    "name": "One Arm Dumbbell Bench Press",
+    "videoResource": "single-arm-dumbbell-bench-press",
+    "posterResource": "single-arm-dumbbell-bench-press",
+    "equipment": "Dumbbell",
     "muscleFocus": "Chest",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
@@ -3784,12 +5214,45 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "single-arm-incline-lateral-raise",
+    "name": "One-Arm Incline Lateral Raise",
+    "videoResource": "single-arm-incline-lateral-raise",
+    "posterResource": "single-arm-incline-lateral-raise",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "single-arm-kettlebell-military-press-to-side",
+    "name": "One-Arm Kettlebell Military Press To Side",
+    "videoResource": "single-arm-kettlebell-military-press-to-side",
+    "posterResource": "single-arm-kettlebell-military-press-to-side",
+    "equipment": "Kettlebell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "single-arm-landmine-press",
     "name": "Single-Arm Landmine Press",
     "videoResource": "single-arm-landmine-press",
     "posterResource": "single-arm-landmine-press",
     "equipment": "Barbell",
     "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "single-arm-landmine-row",
+    "name": "Bent Over One-Arm Long Bar Row",
+    "videoResource": "single-arm-landmine-row",
+    "posterResource": "single-arm-landmine-row",
+    "equipment": "Barbell",
+    "muscleFocus": "Back",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3839,6 +5302,50 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "single-leg-balance",
+    "name": "Single-Leg Balance (Ankle Proprioception)",
+    "videoResource": "single-leg-balance",
+    "posterResource": "single-leg-balance",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Glutes, Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "single-leg-balance-reach",
+    "name": "Single-Leg Balance Reach",
+    "videoResource": "single-leg-balance-reach",
+    "posterResource": "single-leg-balance-reach",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "single-leg-barbell-squat",
+    "name": "One Leg Barbell Squat",
+    "videoResource": "single-leg-barbell-squat",
+    "posterResource": "single-leg-barbell-squat",
+    "equipment": "Barbell",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "single-leg-bound",
+    "name": "Single-Leg Bound",
+    "videoResource": "single-leg-bound",
+    "posterResource": "single-leg-bound",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "single-leg-dumbbell-romanian-deadlift",
     "name": "Single-Leg Dumbbell Romanian Deadlift",
     "videoResource": "single-leg-dumbbell-romanian-deadlift",
@@ -3867,6 +5374,17 @@
     "posterResource": "single-leg-hip-thrust",
     "equipment": "Bodyweight",
     "muscleFocus": "Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "single-leg-hop",
+    "name": "Single-Leg Hop",
+    "videoResource": "single-leg-hop",
+    "posterResource": "single-leg-hop",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -3938,6 +5456,28 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "sit-up",
+    "name": "Sit-Up/Ab Mat Sit-Up",
+    "videoResource": "sit-up",
+    "posterResource": "sit-up",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Core",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "skater-bound",
+    "name": "Skater Bound",
+    "videoResource": "skater-bound",
+    "posterResource": "skater-bound",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps, Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "ski-erg",
     "name": "Ski Erg",
     "videoResource": "ski-erg",
@@ -3966,6 +5506,17 @@
     "posterResource": "sled-push",
     "equipment": "Sled",
     "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "slider-leg-curl",
+    "name": "Slider Leg Curl",
+    "videoResource": "slider-leg-curl",
+    "posterResource": "slider-leg-curl",
+    "equipment": "Slider",
+    "muscleFocus": "Hamstrings",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -4015,6 +5566,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "smith-machine-decline-bench-press",
+    "name": "Smith Machine Decline Bench Press",
+    "videoResource": "smith-machine-decline-bench-press",
+    "posterResource": "smith-machine-decline-bench-press",
+    "equipment": "Machine, Bench",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "smith-machine-front-squat",
     "name": "Smith Machine Front Squat",
     "videoResource": "smith-machine-front-squat",
@@ -4032,6 +5594,17 @@
     "posterResource": "smith-machine-incline-bench-press",
     "equipment": "Machine",
     "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "smith-machine-overhead-press",
+    "name": "Smith Machine Overhead Press",
+    "videoResource": "smith-machine-overhead-press",
+    "posterResource": "smith-machine-overhead-press",
+    "equipment": "Machine",
+    "muscleFocus": "Shoulders",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -4081,6 +5654,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "snap-down-landing",
+    "name": "Snap-Down Landing",
+    "videoResource": "snap-down-landing",
+    "posterResource": "snap-down-landing",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "snatch-grip-deadlift",
     "name": "Snatch-Grip Deadlift",
     "videoResource": "snatch-grip-deadlift",
@@ -4125,6 +5709,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "spiderman-stretch",
+    "name": "Spiderman Stretch",
+    "videoResource": "spiderman-stretch",
+    "posterResource": "spiderman-stretch",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Hamstrings, Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "split-jerk",
     "name": "Split Jerk",
     "videoResource": "split-jerk",
@@ -4140,6 +5735,17 @@
     "name": "Split Squat Isometric Hold",
     "videoResource": "split-squat-isometric-hold",
     "posterResource": "split-squat-isometric-hold",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "squat-thrusts",
+    "name": "Squat Thrusts",
+    "videoResource": "squat-thrusts",
+    "posterResource": "squat-thrusts",
     "equipment": "Bodyweight",
     "muscleFocus": "Quadriceps",
     "sets": "Follow your workout",
@@ -4169,6 +5775,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "standing-alternating-dumbbell-overhead-press",
+    "name": "Standing Alternating Dumbbell Press",
+    "videoResource": "standing-alternating-dumbbell-overhead-press",
+    "posterResource": "standing-alternating-dumbbell-overhead-press",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "standing-cable-hip-abduction",
     "name": "Standing Cable Hip Abduction",
     "videoResource": "standing-cable-hip-abduction",
@@ -4191,6 +5808,39 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "standing-dumbbell-overhead-press",
+    "name": "Standing Dumbbell Press",
+    "videoResource": "standing-dumbbell-overhead-press",
+    "posterResource": "standing-dumbbell-overhead-press",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "standing-neutral-grip-dumbbell-overhead-press",
+    "name": "Standing Palms-In Dumbbell Press",
+    "videoResource": "standing-neutral-grip-dumbbell-overhead-press",
+    "posterResource": "standing-neutral-grip-dumbbell-overhead-press",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "standing-wall-shoulder-opening-stretch",
+    "name": "Standing Wall Shoulder Opening Stretch",
+    "videoResource": "standing-wall-shoulder-opening-stretch",
+    "posterResource": "standing-wall-shoulder-opening-stretch",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Shoulders, Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "steady-state-ride",
     "name": "Steady State Ride",
     "videoResource": "steady-state-ride",
@@ -4202,12 +5852,56 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "step-down-to-balance",
+    "name": "Step-Down to Balance",
+    "videoResource": "step-down-to-balance",
+    "posterResource": "step-down-to-balance",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "straight-arm-lat-pulldown",
     "name": "Straight-Arm Lat Pulldown",
     "videoResource": "straight-arm-lat-pulldown",
     "posterResource": "straight-arm-lat-pulldown",
     "equipment": "Cable Machine",
     "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "straight-arm-rope-pulldown-light",
+    "name": "Straight Arm Rope Pulldown (Light)",
+    "videoResource": "straight-arm-rope-pulldown-light",
+    "posterResource": "straight-arm-rope-pulldown-light",
+    "equipment": "Cable Machine",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "straight-bar-bench-mid-row",
+    "name": "Straight Bar Bench Mid Rows",
+    "videoResource": "straight-bar-bench-mid-row",
+    "posterResource": "straight-bar-bench-mid-row",
+    "equipment": "Barbell, Bench",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "sumo-deadlift",
+    "name": "Sumo Deadlift",
+    "videoResource": "sumo-deadlift",
+    "posterResource": "sumo-deadlift",
+    "equipment": "Barbell",
+    "muscleFocus": "Glutes, Lower Back",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -4279,6 +5973,17 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "thoracic-extension-over-foam-roller",
+    "name": "Thoracic Extension over Foam Roller",
+    "videoResource": "thoracic-extension-over-foam-roller",
+    "posterResource": "thoracic-extension-over-foam-roller",
+    "equipment": "Foam Roller",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "tibialis-raise",
     "name": "Tibialis Raise",
     "videoResource": "tibialis-raise",
@@ -4301,6 +6006,28 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "towel-doorframe-row",
+    "name": "Towel Doorframe Row",
+    "videoResource": "towel-doorframe-row",
+    "posterResource": "towel-doorframe-row",
+    "equipment": "Towel",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "towel-isometric-curls",
+    "name": "Towel Isometric Curls",
+    "videoResource": "towel-isometric-curls",
+    "posterResource": "towel-isometric-curls",
+    "equipment": "Towel",
+    "muscleFocus": "Biceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "towel-slide-leg-curl",
     "name": "Towel Slide Leg Curl",
     "videoResource": "towel-slide-leg-curl",
@@ -4318,6 +6045,17 @@
     "posterResource": "trail-run",
     "equipment": "Bodyweight",
     "muscleFocus": "Quadriceps, Glutes, Calves",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "trap-bar-carry",
+    "name": "Trap Bar Carry",
+    "videoResource": "trap-bar-carry",
+    "posterResource": "trap-bar-carry",
+    "equipment": "Barbell",
+    "muscleFocus": "Forearms, Trapezius",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -4356,6 +6094,61 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "trx-row",
+    "name": "TRX Row",
+    "videoResource": "trx-row",
+    "posterResource": "trx-row",
+    "equipment": "TRX",
+    "muscleFocus": "Back",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "trx-squat",
+    "name": "TRX Squat",
+    "videoResource": "trx-squat",
+    "posterResource": "trx-squat",
+    "equipment": "TRX",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "tuck-jump",
+    "name": "Tuck Jumps",
+    "videoResource": "tuck-jump",
+    "posterResource": "tuck-jump",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps, Glutes, Hamstrings",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "turkish-get-up",
+    "name": "Turkish Get-Up",
+    "videoResource": "turkish-get-up",
+    "posterResource": "turkish-get-up",
+    "equipment": "Kettlebell",
+    "muscleFocus": "Core, Shoulders, Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "two-arm-kettlebell-military-press",
+    "name": "Two-Arm Kettlebell Military Press",
+    "videoResource": "two-arm-kettlebell-military-press",
+    "posterResource": "two-arm-kettlebell-military-press",
+    "equipment": "Kettlebell",
+    "muscleFocus": "Shoulders",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "underhand-barbell-row",
     "name": "Underhand Barbell Row",
     "videoResource": "underhand-barbell-row",
@@ -4389,6 +6182,28 @@
     "rest": "Follow your workout"
   },
   {
+    "id": "walking-knee-hugs",
+    "name": "Walking Knee Hugs",
+    "videoResource": "walking-knee-hugs",
+    "posterResource": "walking-knee-hugs",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Glutes",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "walking-lunge-with-twist",
+    "name": "Walking Lunge with Twist",
+    "videoResource": "walking-lunge-with-twist",
+    "posterResource": "walking-lunge-with-twist",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
     "id": "wall-ball",
     "name": "Wall Ball",
     "videoResource": "wall-ball",
@@ -4406,6 +6221,17 @@
     "posterResource": "wall-sit",
     "equipment": "Bodyweight",
     "muscleFocus": "Quadriceps",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "weighted-parallel-bar-straight-leg-raise",
+    "name": "Weighted Parallel-Bar Straight-Leg Raise",
+    "videoResource": "weighted-parallel-bar-straight-leg-raise",
+    "posterResource": "weighted-parallel-bar-straight-leg-raise",
+    "equipment": "Dumbbell",
+    "muscleFocus": "Core",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
@@ -4472,6 +6298,50 @@
     "posterResource": "wide-grip-seated-cable-row",
     "equipment": "Cable Machine",
     "muscleFocus": "Back, Trapezius",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "wide-incline-push-up",
+    "name": "Incline Push-Up Wide",
+    "videoResource": "wide-incline-push-up",
+    "posterResource": "wide-incline-push-up",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "wide-push-up",
+    "name": "Push-Up Wide",
+    "videoResource": "wide-push-up",
+    "posterResource": "wide-push-up",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "wide-push-ups",
+    "name": "Wide Push-Ups",
+    "videoResource": "wide-push-ups",
+    "posterResource": "wide-push-ups",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Chest",
+    "sets": "Follow your workout",
+    "reps": "Follow your workout",
+    "rest": "Follow your workout"
+  },
+  {
+    "id": "worlds-greatest-stretch",
+    "name": "Worlds Greatest Stretch",
+    "videoResource": "worlds-greatest-stretch",
+    "posterResource": "worlds-greatest-stretch",
+    "equipment": "Bodyweight",
+    "muscleFocus": "Glutes",
     "sets": "Follow your workout",
     "reps": "Follow your workout",
     "rest": "Follow your workout"
