@@ -119,7 +119,12 @@ enum MoveKitExerciseCatalog {
     static let equipmentFilters = [
         "Barbell", "Dumbbell", "Cable", "Machine", "Kettlebell", "Band",
         "Bodyweight", "Stability Ball", "Bicycle", "Weight Plate", "Sled",
-        "Battle Ropes", "Bench", "Wrist Roller", "Treadmill"
+        "Battle Ropes", "Bench", "Wrist Roller", "Treadmill", "Medicine Ball",
+        "TRX", "Foam Roller", "Household"
+    ]
+    /// Filters that gather several small equipment words from the golden release.
+    private static let equipmentFilterTerms: [String: [String]] = [
+        "Household": ["Backpack", "Towel", "Dowel", "Slider"]
     ]
 
     static func exercise(for videoID: String) -> MoveKitExercise? {
@@ -171,8 +176,10 @@ enum MoveKitExerciseCatalog {
             let muscleMatches = muscle.map {
                 exercise.muscleFocus.localizedCaseInsensitiveContains($0)
             } ?? true
-            let equipmentMatches = equipment.map {
-                exercise.equipment.localizedCaseInsensitiveContains($0)
+            let equipmentMatches = equipment.map { filter in
+                (equipmentFilterTerms[filter] ?? [filter]).contains {
+                    exercise.equipment.localizedCaseInsensitiveContains($0)
+                }
             } ?? true
             return muscleMatches && equipmentMatches
         }
